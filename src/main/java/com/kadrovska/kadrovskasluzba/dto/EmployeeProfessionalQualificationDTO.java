@@ -9,16 +9,37 @@ public class EmployeeProfessionalQualificationDTO {
 	private Date dateOfGraduation;
 	private String educationalInstitution;
 	private String profession;
+	private Long professionalQId;
+	private Long employeeId;
 	
 	public EmployeeProfessionalQualificationDTO() {}
 
 	public EmployeeProfessionalQualificationDTO(Long ePQId, Date dateOfGraduation, String educationalInstitution,
-			String profession) {
+			String profession, Long professionalQId, Long employeeId) {
 		super();
 		this.ePQId = ePQId;
 		this.dateOfGraduation = dateOfGraduation;
 		this.educationalInstitution = educationalInstitution;
 		this.profession = profession;
+		this.professionalQId = professionalQId;
+		this.employeeId = employeeId;
+	}
+	
+	
+	public Long getProfessionalQId() {
+		return professionalQId;
+	}
+
+	public void setProfessionalQId(Long professionalQId) {
+		this.professionalQId = professionalQId;
+	}
+
+	public Long getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public Long getePQId() {
