@@ -7,25 +7,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class VacationRequest {
 
 	@Id
 	@GeneratedValue
 	private Long vRId;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Integer numOfDays;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Boolean approved;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "employeeId")
 	private Employee employee;
-	
-	public VacationRequest() {}
+
+	public VacationRequest() {
+	}
 
 	public Long getId() {
 		return vRId;
@@ -58,7 +58,4 @@ public class VacationRequest {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
-	
-
 }

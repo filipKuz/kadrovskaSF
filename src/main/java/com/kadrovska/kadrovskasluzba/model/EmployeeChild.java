@@ -16,21 +16,21 @@ public class EmployeeChild {
 	@Id
 	@GeneratedValue
 	private Long employeeChildId;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String lastName;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Date birthDate;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String sex;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employeeId")
+	@JoinColumn(name = "employeeId")
 	private Employee parent;
 
 	public EmployeeChild() {
@@ -83,6 +83,4 @@ public class EmployeeChild {
 	public void setParent(Employee parent) {
 		this.parent = parent;
 	}
-	
-
 }
