@@ -5,7 +5,7 @@ INSERT INTO work_place (coefficient, name)
 VALUES(1, 'Work place 1');
 
 INSERT INTO professional_qualification (name, qualification_degree)
-VALUES('Srednja strucna sprema' 'SSS');
+VALUES('Srednja strucna sprema', 'SSS');
 
 INSERT INTO company (name, vat, address, email, phone_number, city_id) 
 VALUES ('Company 1', '0123456789', 'Adress 2', 'firma@gmail.com', '0038165565',1);

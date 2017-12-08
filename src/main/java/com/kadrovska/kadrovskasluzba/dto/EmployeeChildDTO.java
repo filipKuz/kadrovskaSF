@@ -22,6 +22,14 @@ public class EmployeeChildDTO {
 		this.sex = sex;
 		this.parentId = parentId;
 	}
+	
+	
+
+
+	public EmployeeChildDTO() {
+		super();
+	}
+
 
 
 

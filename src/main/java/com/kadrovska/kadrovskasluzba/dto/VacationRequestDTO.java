@@ -21,6 +21,14 @@ public class VacationRequestDTO {
 		this.approved = approved;
 		this.employeeId = employeeId;
 	}
+	
+	
+
+
+	public VacationRequestDTO() {
+		super();
+	}
+
 
 
 
