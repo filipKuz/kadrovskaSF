@@ -1,5 +1,7 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,10 @@ public class VacationRequest {
 	private Long vRId;
 	
 	@Column(nullable=false)
-	private Integer numOfDays;
+	private Date strDate;
+	
+	@Column(nullable=false)
+	private Date endDate;
 	
 	@Column(nullable=false)
 	private Boolean approved;
@@ -35,12 +40,28 @@ public class VacationRequest {
 		this.vRId = id;
 	}
 
-	public Integer getNumOfDays() {
-		return numOfDays;
+	public Long getvRId() {
+		return vRId;
 	}
 
-	public void setNumOfDays(Integer numOfDays) {
-		this.numOfDays = numOfDays;
+	public void setvRId(Long vRId) {
+		this.vRId = vRId;
+	}
+
+	public Date getStrDate() {
+		return strDate;
+	}
+
+	public void setStrDate(Date strDate) {
+		this.strDate = strDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Boolean getApproved() {

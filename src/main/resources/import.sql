@@ -19,8 +19,8 @@ VALUES('Kuzmanovic','Filip','1994-05-14','Z',1);
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id)
 VALUES('2010-05-05','FTN','Inzinjer necega',1,1);
 
-INSERT INTO vacation_request (num_of_days,approved,employee_id)
-VALUES(5,true,1);
+INSERT INTO vacation_request (str_date,end_date,approved,employee_id)
+VALUES('2010-05-05','2010-06-05',true,1);
 
 INSERT INTO work_history (previous_company,start_date,end_date,employee_id,wpid)
 VALUES('Company 2','1996-05-29','2010-05-10',1,1);

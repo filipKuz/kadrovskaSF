@@ -1,17 +1,23 @@
 package com.kadrovska.kadrovskasluzba.dto;
 
+import java.sql.Date;
+
 public class VacationRequestDTO {
 	
 	private Long vRId;
-	private Integer numOfDays;
+	private Date strDate;
+	private Date endDate;
 	private Boolean approved;
 	private Long employeeId;
 	
 	
 	
-	public VacationRequestDTO(Integer numOfDays, Boolean approved, Long employeeId) {
+	
+	
+	public VacationRequestDTO(Date strDate, Date endDate, Boolean approved, Long employeeId) {
 		super();
-		this.numOfDays = numOfDays;
+		this.strDate = strDate;
+		this.endDate = endDate;
 		this.approved = approved;
 		this.employeeId = employeeId;
 	}
@@ -28,16 +34,28 @@ public class VacationRequestDTO {
 		this.vRId = vRId;
 	}
 
+	
 
-
-	public Integer getNumOfDays() {
-		return numOfDays;
+	public Date getStrDate() {
+		return strDate;
 	}
 
 
 
-	public void setNumOfDays(Integer numOfDays) {
-		this.numOfDays = numOfDays;
+	public void setStrDate(Date strDate) {
+		this.strDate = strDate;
+	}
+
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 
@@ -68,10 +86,11 @@ public class VacationRequestDTO {
 
 	@Override
 	public String toString() {
-		return "VacationRequestDTO [vRId=" + vRId + ", numOfDays=" + numOfDays + ", approved=" + approved
-				+ ", employeeId=" + employeeId + "]";
+		return "VacationRequestDTO [vRId=" + vRId + ", strDate=" + strDate + ", endDate=" + endDate + ", approved="
+				+ approved + ", employeeId=" + employeeId + "]";
 	}
-	
+
+
 	
 
 }
