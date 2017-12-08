@@ -2,27 +2,46 @@ package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
+@Entity
 public class EmployeeProfessionalQualification {
 	
-		
-	private Long id;
+	@Id
+	@GeneratedValue
+	private Long ePQId;
+	
+	@Column(nullable=false)
 	private Date dateOfGraduation;
+	
+	@Column(nullable=false)
 	private String educationalInstitution;
+	
+	@Column(nullable=false)
 	private String profession;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pQId")
 	private ProfessionalQualification professionalQualification;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeId")
 	private Employee employee;
 	
 	public EmployeeProfessionalQualification() {}
 	
 	public Long getID() {
-		return id;
+		return ePQId;
 	}
 	public void setID(Long iD) {
-		id = iD;
+		ePQId = iD;
 	}
 	public Date getDateOfGraduation() {
 		return dateOfGraduation;

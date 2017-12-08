@@ -1,25 +1,38 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class VacationRequest {
 
-	private Long id;
+	@Id
+	@GeneratedValue
+	private Long vRId;
+	
+	@Column(nullable=false)
 	private Integer numOfDays;
+	
+	@Column(nullable=false)
 	private Boolean approved;
-	@OneToMany
+	
+	@ManyToOne
+	@JoinColumn(name = "employeeId")
 	private Employee employee;
 	
 	public VacationRequest() {}
 
 	public Long getId() {
-		return id;
+		return vRId;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.vRId = id;
 	}
 
 	public Integer getNumOfDays() {

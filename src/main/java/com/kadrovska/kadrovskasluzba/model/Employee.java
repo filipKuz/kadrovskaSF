@@ -1,11 +1,15 @@
 package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -15,42 +19,47 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long employeeId;
 	private String lastName;
 	private String firstName;
 	private String parentName;
 	private String madenName;
 	private Date birthDate;
-	private Sex sex;
+	private String sex;
+	@Column(nullable=false)
 	private String address;
+	private String email;
+	private String phoneNumber;
 	private Integer numberOfVacationDaysLeft;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyId")
 	private Company company;
 	
-	@OneToMany
-	private Set<EmployeeChild> children;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+	private Set<EmployeeChild> children = new HashSet<>();
 	
-	@OneToMany
-	private Set<EmployeeProfessionalQualification> professionalQualifications;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+	private Set<EmployeeProfessionalQualification> professionalQualifications = new HashSet<>();
 	
-	@OneToMany
-	private Set<VacationRequest> vacationRequests;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+	private Set<VacationRequest> vacationRequests = new HashSet<>();
 	
-	@OneToMany
-	private Set<WorkHistory> workingHistory; 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+	private Set<WorkHistory> workingHistory = new HashSet<>();
 	
 	@ManyToOne
+	@JoinColumn(name = "cityId")
 	private City city;
 	
 	public Employee() {}
 
 	public long getID() {
-		return id;
+		return employeeId;
 	}
 
 	public void setID(long iD) {
-		id = iD;
+		employeeId = iD;
 	}
 
 	public String getLastName() {
@@ -93,11 +102,11 @@ public class Employee {
 		this.birthDate = birthDate;
 	}
 
-	public Sex getSex() {
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(Sex sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
@@ -163,6 +172,22 @@ public class Employee {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 	

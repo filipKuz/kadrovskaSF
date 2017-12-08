@@ -2,28 +2,46 @@ package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class EmployeeChild {
 
-	private Long id;
-	private String name;
-	private String lastName;
-	private Date birthDate;
-	private Sex sex;
+	@Id
+	@GeneratedValue
+	private Long employeeChildId;
 	
-	@ManyToOne
+	@Column(nullable=false)
+	private String name;
+	
+	@Column(nullable=false)
+	private String lastName;
+	
+	@Column(nullable=false)
+	private Date birthDate;
+	
+	@Column(nullable=false)
+	private String sex;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeId")
 	private Employee parent;
 
 	public EmployeeChild() {
 	}
 
 	public Long getID() {
-		return id;
+		return employeeChildId;
 	}
 
 	public void setID(Long iD) {
-		id = iD;
+		employeeChildId = iD;
 	}
 
 	public String getName() {
@@ -50,11 +68,11 @@ public class EmployeeChild {
 		this.birthDate = birthDate;
 	}
 
-	public Sex getSex() {
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(Sex sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 

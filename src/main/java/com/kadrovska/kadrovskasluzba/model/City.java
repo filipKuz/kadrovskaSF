@@ -1,28 +1,41 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@Entity
 public class City {
-
-	private Long id;
+	
+	@Id
+	@GeneratedValue
+	private Long cityId;
+	
+	@Column(nullable=false)
 	private Integer zipCode;
+	
+	@Column(nullable=false)
 	private String cityName;
 	
-	@OneToMany
-	private Set<Employee> employees;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
+	private Set<Employee> employees = new HashSet<>();
 	
-	@OneToMany
-	private Set<Company> companies;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
+	private Set<Company> companies = new HashSet<>();
 	
 	public City() {}
 	
 	public Long getID() {
-		return id;
+		return cityId;
 	}
 	public void setID(Long iD) {
-		id = iD;
+		cityId = iD;
 	}
 	public Integer getZipCode() {
 		return zipCode;

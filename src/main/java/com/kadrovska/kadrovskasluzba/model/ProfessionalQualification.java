@@ -1,27 +1,39 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class ProfessionalQualification {
 	
-	private Long id;
+	@Id
+	@GeneratedValue
+	private Long pQId;
+	
+	@Column(nullable=false)
 	private String name;
+	
+	@Column(nullable=false)
 	private String qualificationDegree;
 	
-	@OneToMany
-	private Set<EmployeeProfessionalQualification> employees;
+	@Column(nullable=false)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professionalQualification")
+	private Set<EmployeeProfessionalQualification> employees = new HashSet<>();
 	
 	public ProfessionalQualification() {}
 	
 	public Long getID() {
-		return id;
+		return pQId;
 	}
 	public void setID(Long iD) {
-		id = iD;
+		pQId = iD;
 	}
 	public String getName() {
 		return name;

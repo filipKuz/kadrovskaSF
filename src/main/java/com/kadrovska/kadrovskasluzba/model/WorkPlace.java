@@ -1,27 +1,38 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 @Entity
 public class WorkPlace {
 	
-	private Long id;
+	@Id
+	@GeneratedValue
+	private Long wPId;
+	
+	@Column(nullable=false)
 	private String name;
+	
+	@Column(nullable=false)
 	private Double coefficient;
 	
-	@OneToMany
-	private Set<WorkHistory> workHistory;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "workPlace")
+	private Set<WorkHistory> workHistory = new HashSet<>();
 	
 	
 	public WorkPlace() {}
 	
 	public Long getWorkplaceId() {
-		return id;
+		return wPId;
 	}
 	public void setWorkplaceId(Long workplaceId) {
-		this.id = workplaceId;
+		this.wPId = workplaceId;
 	}
 	public String getName() {
 		return name;
