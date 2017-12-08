@@ -20,11 +20,17 @@ public class Employee {
 	@Id
 	@GeneratedValue
 	private Long employeeId;
+	@Column(nullable=false)
 	private String lastName;
+	@Column(nullable=false)
 	private String firstName;
+	@Column(nullable=false)
 	private String parentName;
+
 	private String madenName;
+	@Column(nullable=false)
 	private Date birthDate;
+	@Column(nullable=false)
 	private String sex;
 	@Column(nullable=false)
 	private String address;
