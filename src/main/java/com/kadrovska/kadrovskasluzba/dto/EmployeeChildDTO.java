@@ -13,10 +13,9 @@ public class EmployeeChildDTO {
 	
 	
 	
-	public EmployeeChildDTO(Long employeeChildId, String name, String lastName, Date birthDate, String sex,
+	public EmployeeChildDTO(String name, String lastName, Date birthDate, String sex,
 			Long parentId) {
 		super();
-		this.employeeChildId = employeeChildId;
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
