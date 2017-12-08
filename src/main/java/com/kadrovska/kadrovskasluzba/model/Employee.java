@@ -38,7 +38,7 @@ public class Employee {
 	private String phoneNumber;
 	private Integer numberOfVacationDaysLeft;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companyId")
 	private Company company;
 	

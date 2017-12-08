@@ -1,5 +1,37 @@
 package com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation;
 
-public class EmployeeService {
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kadrovska.kadrovskasluzba.model.Employee;
+import com.kadrovska.kadrovskasluzba.repositories.EmployeeJPARepository;
+import com.kadrovska.kadrovskasluzba.services.EmployeeServiceInterface;
+@Transactional
+@Service
+public class EmployeeService implements EmployeeServiceInterface{
+	
+	@Autowired
+	private EmployeeJPARepository employeeRepo;
+
+	@Override
+	public Employee findOne(Long id) {
+		return employeeRepo.findOne(id);
+	}
+
+	@Override
+	public List<Employee> findAll() {
+		return employeeRepo.findAll();
+	}
+
+	@Override
+	public Employee save(Employee e) {
+		return employeeRepo.save(e);
+	}
+	
+	
 
 }

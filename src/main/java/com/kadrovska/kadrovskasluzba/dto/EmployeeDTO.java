@@ -16,6 +16,8 @@ public class EmployeeDTO {
 	private String email;
 	private String phoneNumber;
 	private Integer numberOfVacationDaysLeft;
+	private Long cityId;
+	private Long companyId;
 	
 	
 	public EmployeeDTO () {}
@@ -23,7 +25,7 @@ public class EmployeeDTO {
 
 	public EmployeeDTO(Long employeeId, String lastName, String firstName, String parentName, String madenName,
 			Date birthDate, String sex, String address, String email, String phoneNumber,
-			Integer numberOfVacationDaysLeft) {
+			Integer numberOfVacationDaysLeft, Long cityId, Long companyId) {
 		super();
 		this.employeeId = employeeId;
 		this.lastName = lastName;
@@ -36,6 +38,8 @@ public class EmployeeDTO {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.numberOfVacationDaysLeft = numberOfVacationDaysLeft;
+		this.cityId = cityId;
+		this.companyId = companyId;
 	}
 
 
@@ -146,6 +150,26 @@ public class EmployeeDTO {
 
 	public void setNumberOfVacationDaysLeft(Integer numberOfVacationDaysLeft) {
 		this.numberOfVacationDaysLeft = numberOfVacationDaysLeft;
+	}
+
+
+	public Long getCityId() {
+		return cityId;
+	}
+
+
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
+	}
+
+
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 	
 	
