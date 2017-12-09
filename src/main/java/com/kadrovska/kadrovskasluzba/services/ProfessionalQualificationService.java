@@ -1,4 +1,4 @@
-package com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation;
+package com.kadrovska.kadrovskasluzba.services;
 
 import javax.transaction.Transactional;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.ProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.repositories.ProfessionalQualificationJPARepository;
-import com.kadrovska.kadrovskasluzba.services.ProfessionalQualificationServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.ProfessionalQualificationServiceInterface;
 
 @Transactional
 @Service

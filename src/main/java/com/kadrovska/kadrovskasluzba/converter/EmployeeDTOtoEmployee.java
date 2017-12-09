@@ -8,9 +8,9 @@ import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
 import com.kadrovska.kadrovskasluzba.model.City;
 import com.kadrovska.kadrovskasluzba.model.Company;
 import com.kadrovska.kadrovskasluzba.model.Employee;
-import com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation.CityService;
-import com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation.CompanyService;
-import com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation.EmployeeService;
+import com.kadrovska.kadrovskasluzba.services.CityService;
+import com.kadrovska.kadrovskasluzba.services.CompanyService;
+import com.kadrovska.kadrovskasluzba.services.EmployeeService;
 
 @Component
 public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {
@@ -19,12 +19,12 @@ public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {
 	private CityService cityService;
 	@Autowired
 	private CompanyService companyService;
-	
+
 	@Override
 	public Employee convert(EmployeeDTO a) {
-		
+
 		Employee e = new Employee();
-		
+
 		e.setID(a.getEmployeeId());
 		e.setAddress(a.getAddress());
 		e.setLastName(a.getLastName());
@@ -36,18 +36,17 @@ public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {
 		e.setEmail(a.getEmail());
 		e.setPhoneNumber(a.getPhoneNumber());
 		e.setNumberOfVacationDaysLeft(a.getNumberOfVacationDaysLeft());
-		
-		
+
 		City c = cityService.findOne(a.getCityId());
 		if (c != null) {
 			e.setCity(c);
 		}
-		
+
 		Company comp = companyService.findOne(a.getCompanyId());
-		if(comp != null) {
+		if (comp != null) {
 			e.setCompany(comp);
 		}
-		
+
 		return e;
 	}
 

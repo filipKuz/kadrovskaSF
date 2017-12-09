@@ -1,4 +1,4 @@
-package com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation;
+package com.kadrovska.kadrovskasluzba.services;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.repositories.EmployeeJPARepository;
-import com.kadrovska.kadrovskasluzba.services.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 @Transactional
 @Service
 public class EmployeeService implements EmployeeServiceInterface{

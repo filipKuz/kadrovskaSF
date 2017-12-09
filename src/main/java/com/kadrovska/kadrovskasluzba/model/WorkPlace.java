@@ -9,40 +9,46 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 @Entity
 public class WorkPlace {
-	
+
 	@Id
 	@GeneratedValue
 	private Long wPId;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Double coefficient;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "workPlace")
 	private Set<WorkHistory> workHistory = new HashSet<>();
-	
-	
-	public WorkPlace() {}
-	
+
+	public WorkPlace() {
+	}
+
 	public Long getWorkplaceId() {
 		return wPId;
 	}
+
 	public void setWorkplaceId(Long workplaceId) {
 		this.wPId = workplaceId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Double getCoefficient() {
 		return coefficient;
 	}
+
 	public void setCoefficient(Double coefficient) {
 		this.coefficient = coefficient;
 	}
@@ -54,8 +60,4 @@ public class WorkPlace {
 	public void setWorkHistory(Set<WorkHistory> workHistory) {
 		this.workHistory = workHistory;
 	}
-	
-	
-	
-
 }

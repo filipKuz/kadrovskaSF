@@ -11,24 +11,22 @@ public class EpqtoEpqDTO implements Converter<EmployeeProfessionalQualification,
 
 	@Override
 	public EmployeeProfessionalQualificationDTO convert(EmployeeProfessionalQualification arg0) {
-		
+
 		EmployeeProfessionalQualificationDTO epqDTO = new EmployeeProfessionalQualificationDTO();
-		
+
 		epqDTO.setDateOfGraduation(arg0.getDateOfGraduation());
 		epqDTO.setEducationalInstitution(arg0.getEducationalInstitution());
 		epqDTO.setProfession(arg0.getProfession());
 		epqDTO.setePQId(arg0.getID());
-		
-		if(arg0.getEmployee() != null) {
+
+		if (arg0.getEmployee() != null) {
 			epqDTO.setEmployeeId(arg0.getEmployee().getID());
 		}
-		
-		if(arg0.getProfessionalQualification() != null) {
+
+		if (arg0.getProfessionalQualification() != null) {
 			epqDTO.setProfessionalQId(arg0.getProfessionalQualification().getID());
 		}
-		
-		
-		
+
 		return epqDTO;
 	}
 
