@@ -83,6 +83,4 @@ public class EmployeeChild {
 	public void setParent(Employee parent) {
 		this.parent = parent;
 	}
-	
-
 }

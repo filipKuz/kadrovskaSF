@@ -1,12 +1,13 @@
-package com.kadrovska.kadrovskasluzba.services;
+package com.kadrovska.kadrovskasluzba.serviceInterfaces;
 
 import java.util.List;
 
 import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 
-
-public interface EmployeeProfessionalQualificationInterface {
+public interface EmployeeProfessionalQualificationServiceInterface {
 	EmployeeProfessionalQualification findOne(Long id);
+
 	List<EmployeeProfessionalQualification> findAll();
-	EmployeeProfessionalQualification save(EmployeeProfessionalQualification e); 
+
+	EmployeeProfessionalQualification save(EmployeeProfessionalQualification e);
 }

@@ -10,34 +10,31 @@ import org.springframework.stereotype.Component;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeChildDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.EmployeeChild;
-import com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation.EmployeeService;
-import com.kadrovska.kadrovskasluzba.services.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.services.EmployeeService;
 
 @Component
-public class EmployeeChildDTOToEmployeeChild implements Converter<EmployeeChildDTO,EmployeeChild>{
+public class EmployeeChildDTOToEmployeeChild implements Converter<EmployeeChildDTO, EmployeeChild> {
 
 	@Autowired
-	private EmployeeService employeeService; 
-	
+	private EmployeeService employeeService;
+
 	@Override
-	public EmployeeChild convert(EmployeeChildDTO employeeChildDTO){
+	public EmployeeChild convert(EmployeeChildDTO employeeChildDTO) {
 		EmployeeChild employeeChild = new EmployeeChild();
-		
+
 		employeeChild.setID(employeeChildDTO.getEmployeeChildId());
 		employeeChild.setName(employeeChildDTO.getName());
 		employeeChild.setLastName(employeeChildDTO.getLastName());
 		employeeChild.setBirthDate(employeeChildDTO.getBirthDate());
 		employeeChild.setSex(employeeChildDTO.getSex());
-		Employee parent = employeeService.findOne(employeeChildDTO.getParentId()); 
-		
-		if (parent != null){
+		Employee parent = employeeService.findOne(employeeChildDTO.getParentId());
+
+		if (parent != null) {
 			employeeChild.setParent(parent);
 		}
-		
-		
+
 		return employeeChild;
 	}
 
-
-	
 }

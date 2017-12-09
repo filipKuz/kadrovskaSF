@@ -14,11 +14,11 @@ import com.kadrovska.kadrovskasluzba.model.EmployeeChild;
 import com.kadrovska.kadrovskasluzba.model.VacationRequest;
 
 @Component
-public class VacationReqToVacationReqDTO implements Converter<VacationRequest,VacationRequestDTO > {
+public class VacationReqToVacationReqDTO implements Converter<VacationRequest, VacationRequestDTO> {
 
 	@Override
 	public VacationRequestDTO convert(VacationRequest arg0) {
-		
+
 		VacationRequestDTO vDTO = new VacationRequestDTO();
 		vDTO.setvRId(arg0.getId());
 		vDTO.setEmployeeId(arg0.getEmployee().getID());
@@ -26,20 +26,18 @@ public class VacationReqToVacationReqDTO implements Converter<VacationRequest,Va
 		vDTO.setEndDate(arg0.getEndDate());
 		vDTO.setApproved(arg0.getApproved());
 		return vDTO;
-		
+
 	}
-	
+
 	public List<VacationRequestDTO> convert(List<VacationRequest> VacationRequests) {
-		
+
 		List<VacationRequestDTO> retVal = new ArrayList<>();
-		
-		for (VacationRequest vr: VacationRequests) {
+
+		for (VacationRequest vr : VacationRequests) {
 			retVal.add(convert(vr));
 		}
-		
+
 		return retVal;
 	}
-	
-	
-	
+
 }

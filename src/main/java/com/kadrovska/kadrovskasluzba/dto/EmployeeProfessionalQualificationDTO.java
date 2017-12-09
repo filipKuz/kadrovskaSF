@@ -2,17 +2,17 @@ package com.kadrovska.kadrovskasluzba.dto;
 
 import java.sql.Date;
 
-
 public class EmployeeProfessionalQualificationDTO {
-	
+
 	private Long ePQId;
 	private Date dateOfGraduation;
 	private String educationalInstitution;
 	private String profession;
 	private Long professionalQId;
 	private Long employeeId;
-	
-	public EmployeeProfessionalQualificationDTO() {}
+
+	public EmployeeProfessionalQualificationDTO() {
+	}
 
 	public EmployeeProfessionalQualificationDTO(Long ePQId, Date dateOfGraduation, String educationalInstitution,
 			String profession, Long professionalQId, Long employeeId) {
@@ -24,8 +24,7 @@ public class EmployeeProfessionalQualificationDTO {
 		this.professionalQId = professionalQId;
 		this.employeeId = employeeId;
 	}
-	
-	
+
 	public Long getProfessionalQId() {
 		return professionalQId;
 	}
@@ -73,6 +72,4 @@ public class EmployeeProfessionalQualificationDTO {
 	public void setProfession(String profession) {
 		this.profession = profession;
 	}
-	
-	
 }

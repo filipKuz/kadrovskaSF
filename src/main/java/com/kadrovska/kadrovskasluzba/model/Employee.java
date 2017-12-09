@@ -13,52 +13,61 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Employee {
-	
+
 	@Id
 	@GeneratedValue
 	private Long employeeId;
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String lastName;
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String firstName;
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String parentName;
 
 	private String madenName;
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Date birthDate;
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String sex;
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String address;
+
 	private String email;
+
 	private String phoneNumber;
+
 	private Integer numberOfVacationDaysLeft;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "companyId")
+	@JoinColumn(name = "companyId")
 	private Company company;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
 	private Set<EmployeeChild> children = new HashSet<>();
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
 	private Set<EmployeeProfessionalQualification> professionalQualifications = new HashSet<>();
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
 	private Set<VacationRequest> vacationRequests = new HashSet<>();
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
 	private Set<WorkHistory> workingHistory = new HashSet<>();
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cityId")
 	private City city;
-	
-	public Employee() {}
+
+	public Employee() {
+	}
 
 	public long getID() {
 		return employeeId;
@@ -195,7 +204,4 @@ public class Employee {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
-	
 }

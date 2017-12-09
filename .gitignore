@@ -22,3 +22,7 @@
 hs_err_pid*
 /target/
 .idea/
+
+\target\classes\META-INF\maven\com.kadrovska\kadrovskasluzba\pom.properties
+
+\target\classes\META-INF\MANIFEST.MF
