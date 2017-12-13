@@ -33,6 +33,10 @@ public class EmployeeToEmployeeDTO implements Converter<Employee, EmployeeDTO>{
 			eDTO.setCompanyId(employee.getCompany().getId());
 		}
 		
+		if(employee.getCity() != null) {
+			eDTO.setCityId(employee.getCity().getID());
+		}
+		
 		return eDTO;
 	}
 	
