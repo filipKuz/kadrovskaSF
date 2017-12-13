@@ -21,10 +21,10 @@ public class VacationReqToVacationReqDTO implements Converter<VacationRequest, V
 
 		VacationRequestDTO vDTO = new VacationRequestDTO();
 		vDTO.setvRId(arg0.getId());
-		vDTO.setEmployeeId(arg0.getEmployee().getID());
+		vDTO.setAnnualHolidayRegulationId(arg0.getAnnualHolidayRegulation().getAnnualHolidayRegulationId());
 		vDTO.setStrDate(arg0.getStrDate());
 		vDTO.setEndDate(arg0.getEndDate());
-		vDTO.setApproved(arg0.getApproved());
+		vDTO.setNumOfDays(arg0.getNumOfDays());
 		return vDTO;
 
 	}

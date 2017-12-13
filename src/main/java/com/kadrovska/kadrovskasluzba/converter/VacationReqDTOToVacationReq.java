@@ -5,15 +5,18 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.kadrovska.kadrovskasluzba.dto.VacationRequestDTO;
+import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.VacationRequest;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.AnnualHolidayRegulationServiceInterface;
+import com.kadrovska.kadrovskasluzba.services.AnnualHolidayRegulationService;
 import com.kadrovska.kadrovskasluzba.services.EmployeeService;
 
 @Component
 public class VacationReqDTOToVacationReq implements Converter<VacationRequestDTO, VacationRequest> {
 
 	@Autowired
-	private EmployeeService employeeService;
+	private AnnualHolidayRegulationService annualHolidayRegulationService;
 
 	@Override
 	public VacationRequest convert(VacationRequestDTO vDTO) {
@@ -21,11 +24,11 @@ public class VacationReqDTOToVacationReq implements Converter<VacationRequestDTO
 		v.setvRId(vDTO.getvRId());
 		v.setStrDate(vDTO.getStrDate());
 		v.setEndDate(vDTO.getEndDate());
-		v.setApproved(vDTO.getApproved());
+		v.setNumOfDays(vDTO.getNumOfDays());
 
-		Employee e = employeeService.findOne(vDTO.getEmployeeId());
-		if (e != null) {
-			v.setEmployee(e);
+		AnnualHolidayRegulation a = annualHolidayRegulationService.findOne(vDTO.getAnnualHolidayRegulationId());
+		if (a != null) {
+			v.setAnnualHolidayRegulation(a);
 		}
 
 		return v;

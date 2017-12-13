@@ -44,7 +44,6 @@ public class Employee {
 
 	private String phoneNumber;
 
-	private Integer numberOfVacationDaysLeft;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "companyId")
@@ -57,7 +56,7 @@ public class Employee {
 	private Set<EmployeeProfessionalQualification> professionalQualifications = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
-	private Set<VacationRequest> vacationRequests = new HashSet<>();
+	private Set<AnnualHolidayRegulation> annualHolidayRegulations = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
 	private Set<WorkHistory> workingHistory = new HashSet<>();
@@ -133,14 +132,6 @@ public class Employee {
 		this.address = address;
 	}
 
-	public Integer getNumberOfVacationDaysLeft() {
-		return numberOfVacationDaysLeft;
-	}
-
-	public void setNumberOfVacationDaysLeft(Integer numberOfVacationDaysLeft) {
-		this.numberOfVacationDaysLeft = numberOfVacationDaysLeft;
-	}
-
 	public Company getCompany() {
 		return company;
 	}
@@ -165,12 +156,22 @@ public class Employee {
 		this.professionalQualifications = professionalQualifications;
 	}
 
-	public Set<VacationRequest> getVacationRequests() {
-		return vacationRequests;
+	
+
+	public Long getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setVacationRequests(Set<VacationRequest> vacationRequests) {
-		this.vacationRequests = vacationRequests;
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Set<AnnualHolidayRegulation> getAnnualHolidayRegulations() {
+		return annualHolidayRegulations;
+	}
+
+	public void setAnnualHolidayRegulations(Set<AnnualHolidayRegulation> annualHolidayRegulations) {
+		this.annualHolidayRegulations = annualHolidayRegulations;
 	}
 
 	public Set<WorkHistory> getWorkingHistory() {

@@ -7,15 +7,15 @@ public class VacationRequestDTO {
 	private Long vRId;
 	private Date strDate;
 	private Date endDate;
-	private Boolean approved;
-	private Long employeeId;
+	private Integer numOfDays;
+	private Long annualHolidayRegulationId;
 
-	public VacationRequestDTO(Date strDate, Date endDate, Boolean approved, Long employeeId) {
+	public VacationRequestDTO(Date strDate, Date endDate, Long employeeId, Integer numOfDays, Long annualHolidayRegulationId) {
 		super();
 		this.strDate = strDate;
 		this.endDate = endDate;
-		this.approved = approved;
-		this.employeeId = employeeId;
+		this.numOfDays = numOfDays;
+		this.annualHolidayRegulationId = annualHolidayRegulationId;
 	}
 
 	public VacationRequestDTO() {
@@ -46,25 +46,22 @@ public class VacationRequestDTO {
 		this.endDate = endDate;
 	}
 
-	public Boolean getApproved() {
-		return approved;
+	public Integer getNumOfDays() {
+		return numOfDays;
 	}
 
-	public void setApproved(Boolean approved) {
-		this.approved = approved;
+	public void setNumOfDays(Integer numOfDays) {
+		this.numOfDays = numOfDays;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	public Long getAnnualHolidayRegulationId() {
+		return annualHolidayRegulationId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setAnnualHolidayRegulationId(Long annualHolidayRegulationId) {
+		this.annualHolidayRegulationId = annualHolidayRegulationId;
 	}
-
-	@Override
-	public String toString() {
-		return "VacationRequestDTO [vRId=" + vRId + ", strDate=" + strDate + ", endDate=" + endDate + ", approved="
-				+ approved + ", employeeId=" + employeeId + "]";
-	}
+	
+	
+	
 }

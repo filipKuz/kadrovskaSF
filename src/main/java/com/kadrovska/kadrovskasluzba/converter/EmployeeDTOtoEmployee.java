@@ -35,7 +35,6 @@ public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {
 		e.setSex(a.getSex());
 		e.setEmail(a.getEmail());
 		e.setPhoneNumber(a.getPhoneNumber());
-		e.setNumberOfVacationDaysLeft(a.getNumberOfVacationDaysLeft());
 
 		City c = cityService.findOne(a.getCityId());
 		if (c != null) {

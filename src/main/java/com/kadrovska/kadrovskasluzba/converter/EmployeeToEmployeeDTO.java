@@ -27,7 +27,6 @@ public class EmployeeToEmployeeDTO implements Converter<Employee, EmployeeDTO> {
 		eDTO.setSex(employee.getSex());
 		eDTO.setEmail(employee.getEmail());
 		eDTO.setPhoneNumber(employee.getPhoneNumber());
-		eDTO.setNumberOfVacationDaysLeft(employee.getNumberOfVacationDaysLeft());
 
 		if (employee.getCompany() != null) {
 			eDTO.setCompanyId(employee.getCompany().getId());

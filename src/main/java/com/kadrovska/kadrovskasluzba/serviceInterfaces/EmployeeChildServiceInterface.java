@@ -6,7 +6,7 @@ import com.kadrovska.kadrovskasluzba.model.EmployeeChild;
 
 public interface EmployeeChildServiceInterface {
 
-	EmployeeChild findAll();
+	List<EmployeeChild> findAll();
 
 	EmployeeChild findOne(Long id);
 
@@ -14,7 +14,7 @@ public interface EmployeeChildServiceInterface {
 
 	List<EmployeeChild> save(List<EmployeeChild> children);
 
-	EmployeeChild delete(Long id);
+	void delete(Long id);
 
 	void delete(List<Long> ids);
 }
