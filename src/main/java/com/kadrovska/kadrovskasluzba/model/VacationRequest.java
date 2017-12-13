@@ -1,5 +1,7 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,25 +9,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class VacationRequest {
 
 	@Id
 	@GeneratedValue
 	private Long vRId;
-	
-	@Column(nullable=false)
-	private Integer numOfDays;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
+	private Date strDate;
+
+	@Column(nullable = false)
+	private Date endDate;
+
+	@Column(nullable = false)
 	private Boolean approved;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "employeeId")
 	private Employee employee;
-	
-	public VacationRequest() {}
+
+	public VacationRequest() {
+	}
 
 	public Long getId() {
 		return vRId;
@@ -35,12 +40,28 @@ public class VacationRequest {
 		this.vRId = id;
 	}
 
-	public Integer getNumOfDays() {
-		return numOfDays;
+	public Long getvRId() {
+		return vRId;
 	}
 
-	public void setNumOfDays(Integer numOfDays) {
-		this.numOfDays = numOfDays;
+	public void setvRId(Long vRId) {
+		this.vRId = vRId;
+	}
+
+	public Date getStrDate() {
+		return strDate;
+	}
+
+	public void setStrDate(Date strDate) {
+		this.strDate = strDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Boolean getApproved() {
@@ -58,7 +79,4 @@ public class VacationRequest {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
-	
-
 }

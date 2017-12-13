@@ -4,7 +4,7 @@ create table employee (employee_id bigint not null auto_increment, address varch
 create table employee_child (employee_child_id bigint not null auto_increment, birth_date date not null, last_name varchar(255) not null, name varchar(255) not null, sex varchar(255) not null, employee_id bigint, primary key (employee_child_id))
 create table employee_professional_qualification (epqid bigint not null auto_increment, date_of_graduation date not null, educational_institution varchar(255) not null, profession varchar(255) not null, employee_id bigint, pqid bigint, primary key (epqid))
 create table professional_qualification (pqid bigint not null auto_increment, name varchar(255) not null, qualification_degree varchar(255) not null, primary key (pqid))
-create table vacation_request (vrid bigint not null auto_increment, approved bit not null, num_of_days integer not null, employee_id bigint, primary key (vrid))
+create table vacation_request (vrid bigint not null auto_increment, approved bit not null, end_date date not null, str_date date not null, employee_id bigint, primary key (vrid))
 create table work_history (whid bigint not null auto_increment, end_date date, previous_company varchar(255), start_date date not null, employee_id bigint, wpid bigint, primary key (whid))
 create table work_place (wpid bigint not null auto_increment, coefficient double precision not null, name varchar(255) not null, primary key (wpid))
 alter table company add constraint FK11ll1ewpdxjg9bm3jtg858qn8 foreign key (city_id) references city (city_id)

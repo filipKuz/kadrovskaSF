@@ -21,14 +21,16 @@ public class Company {
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private Long vat;
-	
+
 	private String address;
+
 	private String email;
+
 	private String phoneNumber;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cityId")
 	private City city;
@@ -102,5 +104,4 @@ public class Company {
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
-
 }

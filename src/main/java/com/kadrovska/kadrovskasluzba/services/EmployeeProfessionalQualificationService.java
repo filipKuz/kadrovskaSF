@@ -1,4 +1,4 @@
-package com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation;
+package com.kadrovska.kadrovskasluzba.services;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.repositories.EmployeeProfessionalQualificationJPARepository;
-import com.kadrovska.kadrovskasluzba.services.EmployeeProfessionalQualificationInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeProfessionalQualificationServiceInterface;
 
 @Transactional
 @Service
-public class EmployeeProfessionalQualificationService implements EmployeeProfessionalQualificationInterface{
+public class EmployeeProfessionalQualificationService implements EmployeeProfessionalQualificationServiceInterface{
 
 	@Autowired
 	private EmployeeProfessionalQualificationJPARepository employeePQRepo;

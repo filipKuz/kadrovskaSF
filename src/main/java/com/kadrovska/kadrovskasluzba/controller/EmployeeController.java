@@ -16,8 +16,8 @@ import com.kadrovska.kadrovskasluzba.converter.EmployeeDTOtoEmployee;
 import com.kadrovska.kadrovskasluzba.converter.EmployeeToEmployeeDTO;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
-import com.kadrovska.kadrovskasluzba.serviceInterfaceImplementation.EmployeeService;
-import com.kadrovska.kadrovskasluzba.services.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.services.EmployeeService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 
 @Controller
 @RequestMapping("/api/employees")
