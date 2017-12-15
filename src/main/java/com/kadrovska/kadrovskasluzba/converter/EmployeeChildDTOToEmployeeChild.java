@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeChildDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.EmployeeChild;
-import com.kadrovska.kadrovskasluzba.services.EmployeeService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 
 @Component
 public class EmployeeChildDTOToEmployeeChild implements Converter<EmployeeChildDTO, EmployeeChild> {
 
 	@Autowired
-	private EmployeeService employeeService;
+	private EmployeeServiceInterface employeeService;
 
 	@Override
 	public EmployeeChild convert(EmployeeChildDTO employeeChildDTO) {

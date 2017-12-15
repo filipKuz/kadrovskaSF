@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 
-public interface WorkPlaceInterface {
+public interface WorkPlaceServiceInterface {
 	
 	List<WorkPlace> findAll();
 	
