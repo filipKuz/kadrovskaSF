@@ -11,20 +11,20 @@ public class WorkHistoryDTO {
 	private String previousCompany;
 	private Date startDate;
 	private Date endDate;
-	private Employee employee;
-	private WorkPlace workPlace;
+	private Long employeeId;
+	private Long wPId;
 	
 	public WorkHistoryDTO() {}
 
-	public WorkHistoryDTO(Long wHId, String previousCompany, Date startDate, Date endDate, Employee employee,
-			WorkPlace workPlace) {
+	public WorkHistoryDTO(Long wHId, String previousCompany, Date startDate, Date endDate, Long employeeId
+	, Long wPId) {
 		super();
 		this.wHId = wHId;
 		this.previousCompany = previousCompany;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.employee = employee;
-		this.workPlace = workPlace;
+		this.employeeId = employeeId;
+		this.wHId = wHId;
 	}
 
 	public Long getwHId() {
@@ -59,28 +59,31 @@ public class WorkHistoryDTO {
 		this.endDate = endDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Long getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public WorkPlace getWorkPlace() {
-		return workPlace;
+	public Long getwPId() {
+		return wPId;
 	}
 
-	public void setWorkPlace(WorkPlace workPlace) {
-		this.workPlace = workPlace;
+	public void setwPId(Long wPId) {
+		this.wPId = wPId;
 	}
 
 	@Override
 	public String toString() {
 		return "WorkHistoryDTO [wHId=" + wHId + ", previousCompany=" + previousCompany + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", employee=" + employee + ", workPlace=" + workPlace + "]";
+				+ ", endDate=" + endDate + ", employeeId=" + employeeId + ", wPId=" + wPId + "]";
 	}
 	
+	
+
+
 	
 	
 	
