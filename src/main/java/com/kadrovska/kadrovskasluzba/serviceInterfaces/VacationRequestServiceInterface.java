@@ -6,7 +6,7 @@ import com.kadrovska.kadrovskasluzba.model.VacationRequest;
 
 public interface VacationRequestServiceInterface {
 
-	VacationRequest findAll();
+	List<VacationRequest> findAll();
 
 	VacationRequest findOne(Long id);
 
@@ -14,7 +14,7 @@ public interface VacationRequestServiceInterface {
 
 	List<VacationRequest> save(List<VacationRequest> VacationRequests);
 
-	VacationRequest delete(Long id);
+	void delete(Long id);
 
 	void delete(List<Long> ids);
 }

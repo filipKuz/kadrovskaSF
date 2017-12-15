@@ -15,7 +15,7 @@ public class WorkPlace {
 
 	@Id
 	@GeneratedValue
-	private Long wPId;
+	private Long workPlaceId;
 
 	@Column(nullable = false)
 	private String name;
@@ -29,12 +29,12 @@ public class WorkPlace {
 	public WorkPlace() {
 	}
 
-	public Long getWorkplaceId() {
-		return wPId;
+	public Long getWorkPlaceId() {
+		return workPlaceId;
 	}
 
-	public void setWorkplaceId(Long workplaceId) {
-		this.wPId = workplaceId;
+	public void setWorkPlaceId(Long workPlaceId) {
+		this.workPlaceId = workPlaceId;
 	}
 
 	public String getName() {

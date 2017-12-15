@@ -14,7 +14,6 @@ public class EmployeeDTO {
 	private String address;
 	private String email;
 	private String phoneNumber;
-	private Integer numberOfVacationDaysLeft;
 	private Long cityId;
 	private Long companyId;
 
@@ -22,9 +21,7 @@ public class EmployeeDTO {
 	}
 
 	public EmployeeDTO(Long employeeId, String lastName, String firstName, String parentName, String madenName,
-			Date birthDate, String sex, String address, String email, String phoneNumber,
-			Integer numberOfVacationDaysLeft, Long cityId, Long companyId) {
-		super();
+			Date birthDate, String sex, String address, String email, String phoneNumber, Long cityId, Long companyId) {
 		this.employeeId = employeeId;
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -35,7 +32,6 @@ public class EmployeeDTO {
 		this.address = address;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.numberOfVacationDaysLeft = numberOfVacationDaysLeft;
 		this.cityId = cityId;
 		this.companyId = companyId;
 	}
@@ -120,14 +116,6 @@ public class EmployeeDTO {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Integer getNumberOfVacationDaysLeft() {
-		return numberOfVacationDaysLeft;
-	}
-
-	public void setNumberOfVacationDaysLeft(Integer numberOfVacationDaysLeft) {
-		this.numberOfVacationDaysLeft = numberOfVacationDaysLeft;
-	}
-
 	public Long getCityId() {
 		return cityId;
 	}
@@ -143,18 +131,4 @@ public class EmployeeDTO {
 	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
-
-	@Override
-	public String toString() {
-		return "EmployeeDTO [employeeId=" + employeeId + ", lastName=" + lastName + ", firstName=" + firstName
-				+ ", parentName=" + parentName + ", madenName=" + madenName + ", birthDate=" + birthDate + ", sex="
-				+ sex + ", address=" + address + ", email=" + email + ", phoneNumber=" + phoneNumber
-				+ ", numberOfVacationDaysLeft=" + numberOfVacationDaysLeft + ", cityId=" + cityId + ", companyId="
-				+ companyId + "]";
-	}
-	
-	
-	
-	
-
 }

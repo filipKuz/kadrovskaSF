@@ -1,7 +1,5 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
-import java.sql.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -42,7 +40,5 @@ public class EpqDTOtoEpq implements Converter<EmployeeProfessionalQualificationD
 			epq.setEmployee(e);
 		}
 		return epq;
-
 	}
-
 }

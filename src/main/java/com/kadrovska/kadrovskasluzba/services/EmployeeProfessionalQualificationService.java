@@ -5,10 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
@@ -36,8 +32,4 @@ public class EmployeeProfessionalQualificationService implements EmployeeProfess
 	public EmployeeProfessionalQualification save(EmployeeProfessionalQualification e) {
 		return employeePQRepo.save(e);
 	}
-	
-	
-	
-	
 }

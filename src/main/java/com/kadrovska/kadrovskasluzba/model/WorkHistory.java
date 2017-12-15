@@ -15,7 +15,7 @@ public class WorkHistory {
 
 	@Id
 	@GeneratedValue
-	private Long wHId;
+	private Long workHistoryId;
 
 	private String previousCompany;
 
@@ -29,18 +29,18 @@ public class WorkHistory {
 	private Employee employee;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "wPId")
+	@JoinColumn(name = "workPlaceId")
 	private WorkPlace workPlace;
 
 	public WorkHistory() {
 	}
 
-	public Long getwHId() {
-		return wHId;
+	public Long getWorkHistoryId() {
+		return workHistoryId;
 	}
 
-	public void setwHId(Long wHId) {
-		this.wHId = wHId;
+	public void setWorkHistoryId(Long workHistoryId) {
+		this.workHistoryId = workHistoryId;
 	}
 
 	public String getPreviousCompany() {

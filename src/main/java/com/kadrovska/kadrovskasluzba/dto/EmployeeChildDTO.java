@@ -11,6 +11,9 @@ public class EmployeeChildDTO {
 	private String sex;
 	private Long parentId;
 
+	public EmployeeChildDTO() {
+	}
+
 	public EmployeeChildDTO(String name, String lastName, Date birthDate, String sex, Long parentId) {
 		super();
 		this.name = name;
@@ -18,10 +21,6 @@ public class EmployeeChildDTO {
 		this.birthDate = birthDate;
 		this.sex = sex;
 		this.parentId = parentId;
-	}
-
-	public EmployeeChildDTO() {
-		super();
 	}
 
 	public Long getEmployeeChildId() {

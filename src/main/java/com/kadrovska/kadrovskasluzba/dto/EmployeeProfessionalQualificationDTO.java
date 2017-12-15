@@ -16,7 +16,6 @@ public class EmployeeProfessionalQualificationDTO {
 
 	public EmployeeProfessionalQualificationDTO(Long ePQId, Date dateOfGraduation, String educationalInstitution,
 			String profession, Long professionalQId, Long employeeId) {
-		super();
 		this.ePQId = ePQId;
 		this.dateOfGraduation = dateOfGraduation;
 		this.educationalInstitution = educationalInstitution;

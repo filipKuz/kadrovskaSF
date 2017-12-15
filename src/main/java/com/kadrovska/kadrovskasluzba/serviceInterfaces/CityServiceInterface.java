@@ -1,6 +1,5 @@
 package com.kadrovska.kadrovskasluzba.serviceInterfaces;
 
-import java.util.List;
 import java.util.Set;
 
 import com.kadrovska.kadrovskasluzba.model.City;

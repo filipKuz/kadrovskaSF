@@ -23,11 +23,11 @@ public class VacationRequest {
 	private Date endDate;
 
 	@Column(nullable = false)
-	private Boolean approved;
+	private Integer numOfDays;
 
 	@ManyToOne
-	@JoinColumn(name = "employeeId")
-	private Employee employee;
+	@JoinColumn(name = "annualHolidayRegulationId")
+	private AnnualHolidayRegulation annualHolidayRegulation;
 
 	public VacationRequest() {
 	}
@@ -64,19 +64,20 @@ public class VacationRequest {
 		this.endDate = endDate;
 	}
 
-	public Boolean getApproved() {
-		return approved;
+	public AnnualHolidayRegulation getAnnualHolidayRegulation() {
+		return annualHolidayRegulation;
 	}
 
-	public void setApproved(Boolean approved) {
-		this.approved = approved;
+	public void setAnnualHolidayRegulation(AnnualHolidayRegulation annualHolidayRegulation) {
+		this.annualHolidayRegulation = annualHolidayRegulation;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Integer getNumOfDays() {
+		return numOfDays;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setNumOfDays(Integer numOfDays) {
+		this.numOfDays = numOfDays;
 	}
+
 }

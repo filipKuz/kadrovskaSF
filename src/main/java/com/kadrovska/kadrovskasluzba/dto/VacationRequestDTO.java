@@ -4,38 +4,38 @@ import java.sql.Date;
 
 public class VacationRequestDTO {
 
-	private Long vRId;
-	private Date strDate;
+	private Long vacationRequestId;
+	private Date startDate;
 	private Date endDate;
-	private Boolean approved;
-	private Long employeeId;
+	private Integer numOfDays;
+	private Long annualHolidayRegulationId;
 
-	public VacationRequestDTO(Date strDate, Date endDate, Boolean approved, Long employeeId) {
-		super();
-		this.strDate = strDate;
+	public VacationRequestDTO(Long vacationRequestId, Date startDate, Date endDate, Long employeeId, Integer numOfDays,
+			Long annualHolidayRegulationId) {
+		this.vacationRequestId = vacationRequestId;
+		this.startDate = startDate;
 		this.endDate = endDate;
-		this.approved = approved;
-		this.employeeId = employeeId;
+		this.numOfDays = numOfDays;
+		this.annualHolidayRegulationId = annualHolidayRegulationId;
 	}
 
 	public VacationRequestDTO() {
-		super();
 	}
 
-	public Long getvRId() {
-		return vRId;
+	public Long getVacationRequestId() {
+		return vacationRequestId;
 	}
 
-	public void setvRId(Long vRId) {
-		this.vRId = vRId;
+	public void setVacationRequestId(Long vRId) {
+		this.vacationRequestId = vRId;
 	}
 
-	public Date getStrDate() {
-		return strDate;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setStrDate(Date strDate) {
-		this.strDate = strDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public Date getEndDate() {
@@ -46,25 +46,19 @@ public class VacationRequestDTO {
 		this.endDate = endDate;
 	}
 
-	public Boolean getApproved() {
-		return approved;
+	public Integer getNumOfDays() {
+		return numOfDays;
 	}
 
-	public void setApproved(Boolean approved) {
-		this.approved = approved;
+	public void setNumOfDays(Integer numOfDays) {
+		this.numOfDays = numOfDays;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	public Long getAnnualHolidayRegulationId() {
+		return annualHolidayRegulationId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	@Override
-	public String toString() {
-		return "VacationRequestDTO [vRId=" + vRId + ", strDate=" + strDate + ", endDate=" + endDate + ", approved="
-				+ approved + ", employeeId=" + employeeId + "]";
+	public void setAnnualHolidayRegulationId(Long annualHolidayRegulationId) {
+		this.annualHolidayRegulationId = annualHolidayRegulationId;
 	}
 }

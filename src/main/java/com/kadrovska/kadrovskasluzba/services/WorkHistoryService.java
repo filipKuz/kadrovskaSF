@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.repositories.WorkHistoryJPARepository;
-import com.kadrovska.kadrovskasluzba.repositories.WorkPlaceJPARepository;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryInterface;
 
 @Transactional
@@ -34,9 +33,4 @@ public class WorkHistoryService implements WorkHistoryInterface{
 	public WorkHistory save(WorkHistory workHistory) {
 		return workHistoryRepository.save(workHistory);
 	}
-	
-	
-	
-	
-
 }

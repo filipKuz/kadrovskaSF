@@ -17,9 +17,18 @@
 *.zip
 *.tar.gz
 *.rar
+*.properties
+*.MF
+\target\classes\META-INF\
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+<<<<<<< HEAD
 /target/
 
 *.properties
 *.MF
+=======
+/target/
+
+>>>>>>> b322db4752201ef79b13105d475c129ed832c8b8

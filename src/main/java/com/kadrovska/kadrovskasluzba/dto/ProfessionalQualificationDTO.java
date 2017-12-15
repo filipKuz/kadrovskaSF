@@ -2,26 +2,25 @@ package com.kadrovska.kadrovskasluzba.dto;
 
 public class ProfessionalQualificationDTO {
 
-	private Long pQId;
+	private Long professionalQualificationId;
 	private String name;
 	private String qualificationDegree;
 
 	public ProfessionalQualificationDTO() {
 	}
 
-	public ProfessionalQualificationDTO(Long pQId, String name, String qualificationDegree) {
-		super();
-		this.pQId = pQId;
+	public ProfessionalQualificationDTO(Long professionalQualificationId, String name, String qualificationDegree) {
+		this.professionalQualificationId = professionalQualificationId;
 		this.name = name;
 		this.qualificationDegree = qualificationDegree;
 	}
 
-	public Long getpQId() {
-		return pQId;
+	public Long getProfessionalQualificationId() {
+		return professionalQualificationId;
 	}
 
-	public void setpQId(Long pQId) {
-		this.pQId = pQId;
+	public void setProfessionalQualificationId(Long professionalQualificationId) {
+		this.professionalQualificationId = professionalQualificationId;
 	}
 
 	public String getName() {
