@@ -13,14 +13,14 @@ import com.kadrovska.kadrovskasluzba.model.VacationRequest;
 public class VacationReqToVacationReqDTO implements Converter<VacationRequest, VacationRequestDTO> {
 
 	@Override
-	public VacationRequestDTO convert(VacationRequest arg0) {
+	public VacationRequestDTO convert(VacationRequest vacationRequest) {
 
 		VacationRequestDTO vDTO = new VacationRequestDTO();
-		vDTO.setVacationRequestId(arg0.getId());
-		vDTO.setAnnualHolidayRegulationId(arg0.getAnnualHolidayRegulation().getAnnualHolidayRegulationId());
-		vDTO.setStartDate(arg0.getStrDate());
-		vDTO.setEndDate(arg0.getEndDate());
-		vDTO.setNumOfDays(arg0.getNumOfDays());
+		vDTO.setVacationRequestId(vacationRequest.getId());
+		vDTO.setAnnualHolidayRegulationId(vacationRequest.getAnnualHolidayRegulation().getAnnualHolidayRegulationId());
+		vDTO.setStartDate(vacationRequest.getStrDate());
+		vDTO.setEndDate(vacationRequest.getEndDate());
+		vDTO.setNumOfDays(vacationRequest.getNumOfDays());
 		return vDTO;
 
 	}

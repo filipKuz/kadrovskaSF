@@ -8,17 +8,17 @@ import com.kadrovska.kadrovskasluzba.dto.EmployeeProfessionalQualificationDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.model.ProfessionalQualification;
-import com.kadrovska.kadrovskasluzba.services.EmployeeService;
-import com.kadrovska.kadrovskasluzba.services.ProfessionalQualificationService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.ProfessionalQualificationServiceInterface;
 
 @Component
 public class EpqDTOtoEpq implements Converter<EmployeeProfessionalQualificationDTO, EmployeeProfessionalQualification> {
 
 	@Autowired
-	ProfessionalQualificationService pqs;
+	ProfessionalQualificationServiceInterface professionalQualificationService;
 
 	@Autowired
-	EmployeeService es;
+	EmployeeServiceInterface employeeService;
 
 	@Override
 	public EmployeeProfessionalQualification convert(EmployeeProfessionalQualificationDTO arg0) {
@@ -30,12 +30,12 @@ public class EpqDTOtoEpq implements Converter<EmployeeProfessionalQualificationD
 		epq.setEducationalInstitution(arg0.getEducationalInstitution());
 		epq.setProfession(arg0.getProfession());
 
-		ProfessionalQualification pq = pqs.findOne(arg0.getProfessionalQId());
+		ProfessionalQualification pq = professionalQualificationService.findOne(arg0.getProfessionalQId());
 		if (pq != null) {
 			epq.setProfessionalQualification(pq);
 		}
 
-		Employee e = es.findOne(arg0.getEmployeeId());
+		Employee e = employeeService.findOne(arg0.getEmployeeId());
 		if (e != null) {
 			epq.setEmployee(e);
 		}

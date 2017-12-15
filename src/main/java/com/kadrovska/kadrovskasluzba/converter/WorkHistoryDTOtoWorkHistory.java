@@ -2,20 +2,21 @@ package com.kadrovska.kadrovskasluzba.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+
 import com.kadrovska.kadrovskasluzba.dto.WorkHistoryDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.model.WorkPlace;
-import com.kadrovska.kadrovskasluzba.services.EmployeeService;
-import com.kadrovska.kadrovskasluzba.services.WorkPlaceService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceServiceInterface;
 
 public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, WorkHistory> {
 
 	@Autowired
-	private EmployeeService employeeService;
+	private EmployeeServiceInterface employeeService;
 
 	@Autowired
-	private WorkPlaceService workPlaceService;
+	private WorkPlaceServiceInterface workPlaceService;
 
 	@Override
 	public WorkHistory convert(WorkHistoryDTO workHistoryDTO) {
@@ -35,6 +36,7 @@ public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, Wo
 		if (workPlace != null) {
 			workHistory.setWorkPlace(workPlace);
 		}
+
 		return workHistory;
 	}
 }

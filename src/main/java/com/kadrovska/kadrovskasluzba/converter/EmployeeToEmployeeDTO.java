@@ -15,28 +15,28 @@ public class EmployeeToEmployeeDTO implements Converter<Employee, EmployeeDTO> {
 	@Override
 	public EmployeeDTO convert(Employee employee) {
 
-		EmployeeDTO eDTO = new EmployeeDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 
-		eDTO.setEmployeeId(employee.getID());
-		eDTO.setAddress(employee.getAddress());
-		eDTO.setLastName(employee.getLastName());
-		eDTO.setFirstName(employee.getFirstName());
-		eDTO.setParentName(employee.getParentName());
-		eDTO.setMadenName(employee.getMadenName());
-		eDTO.setBirthDate(employee.getBirthDate());
-		eDTO.setSex(employee.getSex());
-		eDTO.setEmail(employee.getEmail());
-		eDTO.setPhoneNumber(employee.getPhoneNumber());
+		employeeDTO.setEmployeeId(employee.getID());
+		employeeDTO.setAddress(employee.getAddress());
+		employeeDTO.setLastName(employee.getLastName());
+		employeeDTO.setFirstName(employee.getFirstName());
+		employeeDTO.setParentName(employee.getParentName());
+		employeeDTO.setMadenName(employee.getMadenName());
+		employeeDTO.setBirthDate(employee.getBirthDate());
+		employeeDTO.setSex(employee.getSex());
+		employeeDTO.setEmail(employee.getEmail());
+		employeeDTO.setPhoneNumber(employee.getPhoneNumber());
 
 		if (employee.getCompany() != null) {
-			eDTO.setCompanyId(employee.getCompany().getId());
+			employeeDTO.setCompanyId(employee.getCompany().getId());
 		}
 		
 		if(employee.getCity() != null) {
-			eDTO.setCityId(employee.getCity().getID());
+			employeeDTO.setCityId(employee.getCity().getID());
 		}
 		
-		return eDTO;
+		return employeeDTO;
 	}
 
 	public List<EmployeeDTO> convert(List<Employee> employees) {

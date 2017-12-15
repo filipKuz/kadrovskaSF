@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 
-public interface WorkHistoryInterface {
+public interface WorkHistoryServiceInterface {
 	
 	List<WorkHistory> findAll();
 	
