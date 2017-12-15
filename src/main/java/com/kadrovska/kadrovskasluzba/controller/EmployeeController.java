@@ -31,7 +31,6 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeDTOtoEmployee toEmployee;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping
 	public ResponseEntity<List<EmployeeDTO>> getEmployees() {
 
