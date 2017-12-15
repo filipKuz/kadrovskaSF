@@ -1,8 +1,5 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -10,7 +7,6 @@ import org.springframework.stereotype.Component;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeChildDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.EmployeeChild;
-import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 import com.kadrovska.kadrovskasluzba.services.EmployeeService;
 
 @Component

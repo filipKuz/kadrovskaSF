@@ -18,7 +18,7 @@ public class ProfessionalQualificationtoProfessioanalQualificationDTO
 
 		ProfessionalQualificationDTO pqDTO = new ProfessionalQualificationDTO();
 
-		pqDTO.setpQId(pq.getID());
+		pqDTO.setProfessionalQualificationId(pq.getID());
 		pqDTO.setName(pq.getName());
 		pqDTO.setQualificationDegree(pq.getQualificationDegree());
 
@@ -34,7 +34,5 @@ public class ProfessionalQualificationtoProfessioanalQualificationDTO
 		}
 
 		return retVal;
-
 	}
-
 }

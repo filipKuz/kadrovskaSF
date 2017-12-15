@@ -13,15 +13,14 @@ public class NonworkingDay {
 	@Id
 	@GeneratedValue
 	private Long nonWorkingDayId;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String description;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Date date;
-	
+
 	public NonworkingDay(String description, Date date) {
-		super();
 		this.description = description;
 		this.date = date;
 	}
@@ -49,7 +48,4 @@ public class NonworkingDay {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
 }

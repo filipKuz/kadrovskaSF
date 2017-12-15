@@ -2,37 +2,34 @@ package com.kadrovska.kadrovskasluzba.dto;
 
 import java.sql.Date;
 
-import com.kadrovska.kadrovskasluzba.model.Employee;
-import com.kadrovska.kadrovskasluzba.model.WorkPlace;
-
 public class WorkHistoryDTO {
-	
-	private Long wHId;
+
+	private Long workHistoryId;
 	private String previousCompany;
 	private Date startDate;
 	private Date endDate;
-	private Employee employee;
-	private WorkPlace workPlace;
-	
-	public WorkHistoryDTO() {}
+	private Long employeeId;
+	private Long workPlaceId;
 
-	public WorkHistoryDTO(Long wHId, String previousCompany, Date startDate, Date endDate, Employee employee,
-			WorkPlace workPlace) {
-		super();
-		this.wHId = wHId;
+	public WorkHistoryDTO() {
+	}
+
+	public WorkHistoryDTO(Long workHistoryId, String previousCompany, Date startDate, Date endDate, Long employeeId,
+			Long workPlaceId) {
+		this.workHistoryId = workHistoryId;
 		this.previousCompany = previousCompany;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.employee = employee;
-		this.workPlace = workPlace;
+		this.employeeId = employeeId;
+		this.workPlaceId = workPlaceId;
 	}
 
-	public Long getwHId() {
-		return wHId;
+	public Long getWorkHistoryId() {
+		return workHistoryId;
 	}
 
-	public void setwHId(Long wHId) {
-		this.wHId = wHId;
+	public void setWorkHistoryId(Long workHistoryId) {
+		this.workHistoryId = workHistoryId;
 	}
 
 	public String getPreviousCompany() {
@@ -59,30 +56,19 @@ public class WorkHistoryDTO {
 		this.endDate = endDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Long getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public WorkPlace getWorkPlace() {
-		return workPlace;
+	public Long getWorkPlaceId() {
+		return workPlaceId;
 	}
 
-	public void setWorkPlace(WorkPlace workPlace) {
-		this.workPlace = workPlace;
+	public void setWorkPlaceId(Long workPlaceId) {
+		this.workPlaceId = workPlaceId;
 	}
-
-	@Override
-	public String toString() {
-		return "WorkHistoryDTO [wHId=" + wHId + ", previousCompany=" + previousCompany + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", employee=" + employee + ", workPlace=" + workPlace + "]";
-	}
-	
-	
-	
-	
-
 }

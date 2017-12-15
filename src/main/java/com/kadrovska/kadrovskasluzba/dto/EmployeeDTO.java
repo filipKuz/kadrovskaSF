@@ -13,7 +13,7 @@ public class EmployeeDTO {
 	private String sex;
 	private String address;
 	private String email;
-	private String phoneNumber; 
+	private String phoneNumber;
 	private Long cityId;
 	private Long companyId;
 
@@ -22,7 +22,6 @@ public class EmployeeDTO {
 
 	public EmployeeDTO(Long employeeId, String lastName, String firstName, String parentName, String madenName,
 			Date birthDate, String sex, String address, String email, String phoneNumber, Long cityId, Long companyId) {
-		super();
 		this.employeeId = employeeId;
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -132,8 +131,4 @@ public class EmployeeDTO {
 	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
-
-	
-	
-
 }

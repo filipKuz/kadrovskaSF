@@ -28,8 +28,6 @@ public class VacationRequest {
 	@ManyToOne
 	@JoinColumn(name = "annualHolidayRegulationId")
 	private AnnualHolidayRegulation annualHolidayRegulation;
-	
-	
 
 	public VacationRequest() {
 	}
@@ -66,8 +64,6 @@ public class VacationRequest {
 		this.endDate = endDate;
 	}
 
-	
-
 	public AnnualHolidayRegulation getAnnualHolidayRegulation() {
 		return annualHolidayRegulation;
 	}
@@ -83,7 +79,5 @@ public class VacationRequest {
 	public void setNumOfDays(Integer numOfDays) {
 		this.numOfDays = numOfDays;
 	}
-	
-	
-	
+
 }

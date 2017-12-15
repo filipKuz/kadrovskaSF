@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class AnnualHolidayRegulation {
 	
-
 	@Id
 	@GeneratedValue
 	private Long annualHolidayRegulationId;
@@ -27,14 +26,14 @@ public class AnnualHolidayRegulation {
 	private Integer numOfDays;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "annualHolidayRegulation")
-	private Set<VacationRequest>vacationRequests = new HashSet<>();
+	private Set<VacationRequest> vacationRequests = new HashSet<>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="employeeId")
+	@JoinColumn(name = "employeeId")
 	private Employee employee;
 
 	public AnnualHolidayRegulation() {
-		
+
 	}
 
 	public Long getAnnualHolidayRegulationId() {
@@ -76,9 +75,4 @@ public class AnnualHolidayRegulation {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
-	
-	
-	
-	
 }

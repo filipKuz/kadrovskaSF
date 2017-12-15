@@ -6,9 +6,12 @@ public class AnnualHolidayRegulationDTO {
 	private Integer businessYear;
 	private Integer numOfDays;
 	private Long employeeId;
-	
-	public AnnualHolidayRegulationDTO(Integer businessYear, Integer numOfDays, Long employeeId) {
+
+	public AnnualHolidayRegulationDTO() {
 		super();
+	}
+
+	public AnnualHolidayRegulationDTO(Integer businessYear, Integer numOfDays, Long employeeId) {
 		this.businessYear = businessYear;
 		this.numOfDays = numOfDays;
 		this.employeeId = employeeId;
@@ -45,6 +48,4 @@ public class AnnualHolidayRegulationDTO {
 	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
-	
-	
 }

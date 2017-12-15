@@ -10,7 +10,6 @@ import com.kadrovska.kadrovskasluzba.model.Company;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.services.CityService;
 import com.kadrovska.kadrovskasluzba.services.CompanyService;
-import com.kadrovska.kadrovskasluzba.services.EmployeeService;
 
 @Component
 public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {

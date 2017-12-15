@@ -9,36 +9,32 @@ import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 import com.kadrovska.kadrovskasluzba.services.EmployeeService;
 import com.kadrovska.kadrovskasluzba.services.WorkPlaceService;
 
-public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, WorkHistory>{
-	
+public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, WorkHistory> {
+
 	@Autowired
 	private EmployeeService employeeService;
-	
+
 	@Autowired
 	private WorkPlaceService workPlaceService;
-	
-	@Override
-	public WorkHistory convert(WorkHistoryDTO whDTO) {
-		WorkHistory wh = new WorkHistory();
-		
-		wh.setwHId(whDTO.getwHId());
-		wh.setPreviousCompany(whDTO.getPreviousCompany());
-		wh.setStartDate(whDTO.getStartDate());
-		wh.setEndDate(whDTO.getEndDate());
-		
-		Employee e = employeeService.findOne(whDTO.getwHId());
-			if (e != null) {
-				wh.setEmployee(e);
-				
-			}
-			
-		WorkPlace wp = workPlaceService.findOne(whDTO.getWorkPlace().getWorkplaceId());
-		if (wp != null) {
-			wh.setWorkPlace(wp);
-			
-		}
-		return wh;
-			
-	}
 
+	@Override
+	public WorkHistory convert(WorkHistoryDTO workHistoryDTO) {
+		WorkHistory workHistory = new WorkHistory();
+
+		workHistory.setWorkHistoryId(workHistoryDTO.getWorkHistoryId());
+		workHistory.setPreviousCompany(workHistoryDTO.getPreviousCompany());
+		workHistory.setStartDate(workHistoryDTO.getStartDate());
+		workHistory.setEndDate(workHistoryDTO.getEndDate());
+
+		Employee employee = employeeService.findOne(workHistoryDTO.getWorkHistoryId());
+		if (employee != null) {
+			workHistory.setEmployee(employee);
+		}
+
+		WorkPlace workPlace = workPlaceService.findOne(workHistoryDTO.getWorkPlaceId());
+		if (workPlace != null) {
+			workHistory.setWorkPlace(workPlace);
+		}
+		return workHistory;
+	}
 }

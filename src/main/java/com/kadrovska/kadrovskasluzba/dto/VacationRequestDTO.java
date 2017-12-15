@@ -4,38 +4,38 @@ import java.sql.Date;
 
 public class VacationRequestDTO {
 
-	private Long vRId;
-	private Date strDate;
+	private Long vacationRequestId;
+	private Date startDate;
 	private Date endDate;
 	private Integer numOfDays;
 	private Long annualHolidayRegulationId;
 
-	public VacationRequestDTO(Date strDate, Date endDate, Long employeeId, Integer numOfDays, Long annualHolidayRegulationId) {
-		super();
-		this.strDate = strDate;
+	public VacationRequestDTO(Long vacationRequestId, Date startDate, Date endDate, Long employeeId, Integer numOfDays,
+			Long annualHolidayRegulationId) {
+		this.vacationRequestId = vacationRequestId;
+		this.startDate = startDate;
 		this.endDate = endDate;
 		this.numOfDays = numOfDays;
 		this.annualHolidayRegulationId = annualHolidayRegulationId;
 	}
 
 	public VacationRequestDTO() {
-		super();
 	}
 
-	public Long getvRId() {
-		return vRId;
+	public Long getVacationRequestId() {
+		return vacationRequestId;
 	}
 
-	public void setvRId(Long vRId) {
-		this.vRId = vRId;
+	public void setVacationRequestId(Long vRId) {
+		this.vacationRequestId = vRId;
 	}
 
-	public Date getStrDate() {
-		return strDate;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setStrDate(Date strDate) {
-		this.strDate = strDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public Date getEndDate() {
@@ -61,7 +61,4 @@ public class VacationRequestDTO {
 	public void setAnnualHolidayRegulationId(Long annualHolidayRegulationId) {
 		this.annualHolidayRegulationId = annualHolidayRegulationId;
 	}
-	
-	
-	
 }

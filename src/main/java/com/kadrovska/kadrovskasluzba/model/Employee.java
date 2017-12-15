@@ -44,7 +44,6 @@ public class Employee {
 
 	private String phoneNumber;
 
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "companyId")
 	private Company company;
@@ -155,8 +154,6 @@ public class Employee {
 	public void setProfessionalQualifications(Set<EmployeeProfessionalQualification> professionalQualifications) {
 		this.professionalQualifications = professionalQualifications;
 	}
-
-	
 
 	public Long getEmployeeId() {
 		return employeeId;

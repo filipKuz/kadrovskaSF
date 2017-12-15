@@ -1,7 +1,6 @@
 package com.kadrovska.kadrovskasluzba.services;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -16,8 +15,9 @@ import com.kadrovska.kadrovskasluzba.serviceInterfaces.AnnualHolidayRegulationSe
 @Service
 public class AnnualHolidayRegulationService implements AnnualHolidayRegulationServiceInterface {
 
-	@Autowired AnnualHolidayRegulationJPARepository annualHolidayRegSerJPARep;
-	
+	@Autowired
+	AnnualHolidayRegulationJPARepository annualHolidayRegSerJPARep;
+
 	@Override
 	public AnnualHolidayRegulation findOne(Long id) {
 		return annualHolidayRegSerJPARep.findOne(id);
@@ -36,7 +36,5 @@ public class AnnualHolidayRegulationService implements AnnualHolidayRegulationSe
 	@Override
 	public void delete(Long id) {
 		annualHolidayRegSerJPARep.delete(id);
-		
 	}
-
 }
