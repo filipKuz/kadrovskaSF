@@ -25,7 +25,6 @@ public class AnnualHolidayRegulationController {
 	@Autowired
 	private AnnualHolidayRegulationService annualHolidayRegulationService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> getAnnualHolidayRegulations() {
 
