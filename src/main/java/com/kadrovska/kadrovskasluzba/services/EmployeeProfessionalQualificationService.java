@@ -32,4 +32,12 @@ public class EmployeeProfessionalQualificationService implements EmployeeProfess
 	public EmployeeProfessionalQualification save(EmployeeProfessionalQualification e) {
 		return employeePQRepo.save(e);
 	}
+
+	@Override
+	public List<EmployeeProfessionalQualification> findByEmployeeId(Long id) {
+		
+		return employeePQRepo.findByEmployeeEmployeeId(id);
+	}
+	
+	
 }
