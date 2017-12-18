@@ -1,5 +1,8 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +31,17 @@ public class EpqtoEpqDTO implements Converter<EmployeeProfessionalQualification,
 		}
 
 		return epqDTO;
+	}
+	
+	
+	public List<EmployeeProfessionalQualificationDTO> convert(List<EmployeeProfessionalQualification> epqs) {
+		
+		List<EmployeeProfessionalQualificationDTO> retVal = new ArrayList<>();
+		
+		for(EmployeeProfessionalQualification epq: epqs) {
+			retVal.add(convert(epq));
+		}
+		
+		return retVal;
 	}
 }

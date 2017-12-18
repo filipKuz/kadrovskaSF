@@ -11,4 +11,6 @@ public interface EmployeeProfessionalQualificationServiceInterface {
 	List<EmployeeProfessionalQualification> findAll();
 
 	EmployeeProfessionalQualification save(EmployeeProfessionalQualification e);
+	
+	List<EmployeeProfessionalQualification> findByEmployeeId(Long id);
 }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Manifest-Version: 1.0
 Implementation-Title: kadrovskasluzba
 Implementation-Version: 0.0.1-SNAPSHOT
@@ -10,16 +9,3 @@ Implementation-URL: http://projects.spring.io/spring-boot/kadrovskaslu
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 
-=======
-Manifest-Version: 1.0
-Implementation-Title: kadrovskasluzba
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: vladi
-Implementation-Vendor-Id: com.kadrovska
-Build-Jdk: 1.8.0_151
-Implementation-URL: http://projects.spring.io/spring-boot/kadrovskaslu
- zba/
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-
->>>>>>> 46f4393d1169d0af0b2a3097ff1f998ff51a36bf
