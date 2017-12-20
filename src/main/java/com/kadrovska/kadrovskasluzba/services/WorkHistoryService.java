@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.repositories.WorkHistoryJPARepository;
-import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryServiceInterface;
 
 @Transactional
 @Service
-public class WorkHistoryService implements WorkHistoryInterface{
+public class WorkHistoryService implements WorkHistoryServiceInterface{
 	
 	
 	@Autowired

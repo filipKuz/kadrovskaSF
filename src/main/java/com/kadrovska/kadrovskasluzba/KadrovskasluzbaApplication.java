@@ -9,4 +9,5 @@ public class KadrovskasluzbaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KadrovskasluzbaApplication.class, args);
 	}
+
 }

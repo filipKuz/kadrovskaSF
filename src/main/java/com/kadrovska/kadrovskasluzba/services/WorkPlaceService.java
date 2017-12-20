@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 import com.kadrovska.kadrovskasluzba.repositories.WorkPlaceJPARepository;
-import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceServiceInterface;
 
 @Transactional
 @Service
-public class WorkPlaceService implements WorkPlaceInterface {
+public class WorkPlaceService implements WorkPlaceServiceInterface {
 	
 	@Autowired
 	private WorkPlaceJPARepository workPlaceRepository;

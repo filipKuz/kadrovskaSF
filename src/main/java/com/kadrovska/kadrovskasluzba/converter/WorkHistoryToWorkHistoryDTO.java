@@ -12,20 +12,20 @@ import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 public class WorkHistoryToWorkHistoryDTO implements Converter<WorkHistory, WorkHistoryDTO> {
 
 	@Override
-	public WorkHistoryDTO convert(WorkHistory wh) {
+	public WorkHistoryDTO convert(WorkHistory workHistory) {
 
-		WorkHistoryDTO whDTO = new WorkHistoryDTO();
+		WorkHistoryDTO workHistoryDTO = new WorkHistoryDTO();
 
-		whDTO.setWorkHistoryId(wh.getWorkHistoryId());
-		whDTO.setPreviousCompany(wh.getPreviousCompany());
-		whDTO.setStartDate(wh.getStartDate());
-		whDTO.setEndDate(wh.getEndDate());
+		workHistoryDTO.setWorkHistoryId(workHistory.getWorkHistoryId());
+		workHistoryDTO.setPreviousCompany(workHistory.getPreviousCompany());
+		workHistoryDTO.setStartDate(workHistory.getStartDate());
+		workHistoryDTO.setEndDate(workHistory.getEndDate());
 
-		if (wh.getEmployee() != null) {
-			whDTO.setEmployeeId(wh.getEmployee().getEmployeeId());
+		if (workHistory.getEmployee() != null) {
+			workHistoryDTO.setEmployeeId(workHistory.getEmployee().getEmployeeId());
 		}
 
-		return whDTO;
+		return workHistoryDTO;
 	}
 
 	public List<WorkHistoryDTO> convert(List<WorkHistory> whList) {

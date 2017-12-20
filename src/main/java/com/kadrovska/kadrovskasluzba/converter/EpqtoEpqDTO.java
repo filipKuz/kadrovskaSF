@@ -1,5 +1,8 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -10,24 +13,35 @@ import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 public class EpqtoEpqDTO implements Converter<EmployeeProfessionalQualification, EmployeeProfessionalQualificationDTO> {
 
 	@Override
-	public EmployeeProfessionalQualificationDTO convert(EmployeeProfessionalQualification arg0) {
+	public EmployeeProfessionalQualificationDTO convert(EmployeeProfessionalQualification epq) {
 
 		EmployeeProfessionalQualificationDTO epqDTO = new EmployeeProfessionalQualificationDTO();
 
-		epqDTO.setDateOfGraduation(arg0.getDateOfGraduation());
-		epqDTO.setEducationalInstitution(arg0.getEducationalInstitution());
-		epqDTO.setProfession(arg0.getProfession());
-		epqDTO.setePQId(arg0.getID());
+		epqDTO.setDateOfGraduation(epq.getDateOfGraduation());
+		epqDTO.setEducationalInstitution(epq.getEducationalInstitution());
+		epqDTO.setProfession(epq.getProfession());
+		epqDTO.setePQId(epq.getID());
 
-		if (arg0.getEmployee() != null) {
-			epqDTO.setEmployeeId(arg0.getEmployee().getID());
+		if (epq.getEmployee() != null) {
+			epqDTO.setEmployeeId(epq.getEmployee().getID());
 		}
 
-		if (arg0.getProfessionalQualification() != null) {
-			epqDTO.setProfessionalQId(arg0.getProfessionalQualification().getID());
+		if (epq.getProfessionalQualification() != null) {
+			epqDTO.setProfessionalQId(epq.getProfessionalQualification().getID());
 		}
 
 		return epqDTO;
 	}
-
+	
+	
+	public List<EmployeeProfessionalQualificationDTO> convert(List<EmployeeProfessionalQualification> epqs) {
+		
+		List<EmployeeProfessionalQualificationDTO> retVal = new ArrayList<>();
+		
+		for(EmployeeProfessionalQualification epq: epqs) {
+			retVal.add(convert(epq));
+		}
+		
+		return retVal;
+	}
 }

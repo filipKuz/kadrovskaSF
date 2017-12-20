@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 import com.kadrovska.kadrovskasluzba.dto.VacationRequestDTO;
 import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
 import com.kadrovska.kadrovskasluzba.model.VacationRequest;
-import com.kadrovska.kadrovskasluzba.services.AnnualHolidayRegulationService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.AnnualHolidayRegulationServiceInterface;
 
 @Component
 public class VacationReqDTOToVacationReq implements Converter<VacationRequestDTO, VacationRequest> {
 
 	@Autowired
-	private AnnualHolidayRegulationService annualHolidayRegulationService;
+	private AnnualHolidayRegulationServiceInterface annualHolidayRegulationService;
 
 	@Override
 	public VacationRequest convert(VacationRequestDTO vDTO) {

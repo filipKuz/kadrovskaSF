@@ -13,15 +13,15 @@ import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 public class WorkPlaceToWorkPlaceDTO implements Converter<WorkPlace, WorkPlaceDTO> {
 
 	@Override
-	public WorkPlaceDTO convert(WorkPlace wp) {
+	public WorkPlaceDTO convert(WorkPlace workPlace) {
 
-		WorkPlaceDTO wpDTO = new WorkPlaceDTO();
+		WorkPlaceDTO workPlaceDTO = new WorkPlaceDTO();
 
-		wpDTO.setWorkPlaceId(wp.getWorkPlaceId());
-		wpDTO.setName(wp.getName());
-		wpDTO.setCoefficient(wp.getCoefficient());
+		workPlaceDTO.setWorkPlaceId(workPlace.getWorkPlaceId());
+		workPlaceDTO.setName(workPlace.getName());
+		workPlaceDTO.setCoefficient(workPlace.getCoefficient());
 
-		return wpDTO;
+		return workPlaceDTO;
 	}
 
 	public List<WorkPlaceDTO> convert(List<WorkPlace> wpList) {

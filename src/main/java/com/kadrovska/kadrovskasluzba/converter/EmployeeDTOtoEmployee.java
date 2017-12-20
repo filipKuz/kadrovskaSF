@@ -8,44 +8,44 @@ import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
 import com.kadrovska.kadrovskasluzba.model.City;
 import com.kadrovska.kadrovskasluzba.model.Company;
 import com.kadrovska.kadrovskasluzba.model.Employee;
-import com.kadrovska.kadrovskasluzba.services.CityService;
-import com.kadrovska.kadrovskasluzba.services.CompanyService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.CityServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.CompanyServiceInterface;
 
 @Component
 public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {
 
 	@Autowired
-	private CityService cityService;
+	private CityServiceInterface cityService;
+
 	@Autowired
-	private CompanyService companyService;
+	private CompanyServiceInterface companyService;
 
 	@Override
-	public Employee convert(EmployeeDTO a) {
+	public Employee convert(EmployeeDTO employeeDTO) {
 
-		Employee e = new Employee();
+		Employee employee = new Employee();
 
-		e.setID(a.getEmployeeId());
-		e.setAddress(a.getAddress());
-		e.setLastName(a.getLastName());
-		e.setFirstName(a.getFirstName());
-		e.setParentName(a.getParentName());
-		e.setMadenName(a.getMadenName());
-		e.setBirthDate(a.getBirthDate());
-		e.setSex(a.getSex());
-		e.setEmail(a.getEmail());
-		e.setPhoneNumber(a.getPhoneNumber());
+		employee.setID(employeeDTO.getEmployeeId());
+		employee.setAddress(employeeDTO.getAddress());
+		employee.setLastName(employeeDTO.getLastName());
+		employee.setFirstName(employeeDTO.getFirstName());
+		employee.setParentName(employeeDTO.getParentName());
+		employee.setMadenName(employeeDTO.getMadenName());
+		employee.setBirthDate(employeeDTO.getBirthDate());
+		employee.setSex(employeeDTO.getSex());
+		employee.setEmail(employeeDTO.getEmail());
+		employee.setPhoneNumber(employeeDTO.getPhoneNumber());
 
-		City c = cityService.findOne(a.getCityId());
+		City c = cityService.findOne(employeeDTO.getCityId());
 		if (c != null) {
-			e.setCity(c);
+			employee.setCity(c);
 		}
 
-		Company comp = companyService.findOne(a.getCompanyId());
+		Company comp = companyService.findOne(employeeDTO.getCompanyId());
 		if (comp != null) {
-			e.setCompany(comp);
+			employee.setCompany(comp);
 		}
 
-		return e;
+		return employee;
 	}
-
 }

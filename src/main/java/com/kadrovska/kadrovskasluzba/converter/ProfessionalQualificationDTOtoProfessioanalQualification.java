@@ -11,13 +11,13 @@ public class ProfessionalQualificationDTOtoProfessioanalQualification
 		implements Converter<ProfessionalQualificationDTO, ProfessionalQualification> {
 
 	@Override
-	public ProfessionalQualification convert(ProfessionalQualificationDTO arg0) {
+	public ProfessionalQualification convert(ProfessionalQualificationDTO professionalQualificationDTO) {
 
 		ProfessionalQualification professionalQualification = new ProfessionalQualification();
 
-		professionalQualification.setID(arg0.getProfessionalQualificationId());
-		professionalQualification.setName(arg0.getName());
-		professionalQualification.setQualificationDegree(arg0.getQualificationDegree());
+		professionalQualification.setID(professionalQualificationDTO.getProfessionalQualificationId());
+		professionalQualification.setName(professionalQualificationDTO.getName());
+		professionalQualification.setQualificationDegree(professionalQualificationDTO.getQualificationDegree());
 
 		return professionalQualification;
 	}

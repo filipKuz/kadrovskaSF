@@ -27,4 +27,9 @@
 
 *.idea
 \.idea
+/target/
 
+*.properties
+*.MF
+=======
+/target/

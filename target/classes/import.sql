@@ -1,4 +1,3 @@
-
 INSERT INTO city (city_name, zip_code) VALUES('Prijedor',79101);
 INSERT INTO city (city_name, zip_code) VALUES('Los Angeles',33002);
 
