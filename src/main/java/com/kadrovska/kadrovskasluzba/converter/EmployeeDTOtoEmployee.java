@@ -25,7 +25,6 @@ public class EmployeeDTOtoEmployee implements Converter<EmployeeDTO, Employee> {
 
 		Employee employee = new Employee();
 
-		employee.setID(employeeDTO.getEmployeeId());
 		employee.setAddress(employeeDTO.getAddress());
 		employee.setLastName(employeeDTO.getLastName());
 		employee.setFirstName(employeeDTO.getFirstName());

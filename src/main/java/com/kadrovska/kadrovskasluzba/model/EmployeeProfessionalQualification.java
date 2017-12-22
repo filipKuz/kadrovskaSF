@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 public class EmployeeProfessionalQualification {
 
@@ -68,7 +69,7 @@ public class EmployeeProfessionalQualification {
 	public void setProfession(String profession) {
 		this.profession = profession;
 	}
-
+	
 	public ProfessionalQualification getProfessionalQualification() {
 		return professionalQualification;
 	}
@@ -76,7 +77,7 @@ public class EmployeeProfessionalQualification {
 	public void setProfessionalQualification(ProfessionalQualification professionalQualification) {
 		this.professionalQualification = professionalQualification;
 	}
-
+	
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -84,4 +85,13 @@ public class EmployeeProfessionalQualification {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeProfessionalQualification [ePQId=" + ePQId + ", dateOfGraduation=" + dateOfGraduation
+				+ ", educationalInstitution=" + educationalInstitution + ", profession=" + profession
+				+ ", professionalQualification=" + professionalQualification + ", employee=" + employee + "]";
+	}
+	
+	
 }

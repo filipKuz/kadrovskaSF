@@ -13,6 +13,7 @@ INSERT INTO company (name, vat, address, email, phone_number, city_id) VALUES ('
 
 INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Ilic', 'Vladimir', 'Sasa', '', '1996-08-20', 'M', 'Address 1',1,1);
 INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Messi', 'Lionel', 'Milenko', '', '1980-08-20', 'M', 'Address 2',1,2);
+INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Ronaldo', 'Cristiano', 'Marko', '', '1980-08-20', 'M', 'Address 3',1,2);
 
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2016,20,1);
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2016,20,2);
@@ -22,7 +23,7 @@ INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('K
 
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2010-05-05','FTN','Inzenjer necega',1,1);
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2009-05-05','FTN','Arhitekta',4,2);
-
+INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2009-05-05','FTN','Programer',4,3);
 
 INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(5,1,'2010-05-10','2010-06-10');
 

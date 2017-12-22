@@ -1,5 +1,7 @@
 package com.kadrovska.kadrovskasluzba.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,11 @@ public class ProfessionalQualificationService implements ProfessionalQualificati
 	@Override
 	public ProfessionalQualification findOne(Long id) {
 		return pQrepo.findOne(id);
+	}
+
+	@Override
+	public List<ProfessionalQualification> findAll() {
+		return pQrepo.findAll();
 	}
 
 }
