@@ -131,4 +131,14 @@ public class EmployeeDTO {
 	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeDTO [employeeId=" + employeeId + ", lastName=" + lastName + ", firstName=" + firstName
+				+ ", parentName=" + parentName + ", madenName=" + madenName + ", birthDate=" + birthDate + ", sex="
+				+ sex + ", address=" + address + ", email=" + email + ", phoneNumber=" + phoneNumber + ", cityId="
+				+ cityId + ", companyId=" + companyId + "]";
+	}
+	
+	
 }

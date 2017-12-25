@@ -25,7 +25,7 @@ public class ProfessionalQualification {
 
 	@Column(nullable = false)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professionalQualification")
-	private Set<EmployeeProfessionalQualification> employees = new HashSet<>();
+	private Set<EmployeeProfessionalQualification> employeesPQ = new HashSet<>();
 
 	public ProfessionalQualification() {
 	}
@@ -53,4 +53,22 @@ public class ProfessionalQualification {
 	public void setQualificationDegree(String qualificationDegree) {
 		this.qualificationDegree = qualificationDegree;
 	}
+
+	public Long getpQId() {
+		return pQId;
+	}
+
+	public void setpQId(Long pQId) {
+		this.pQId = pQId;
+	}
+
+	public Set<EmployeeProfessionalQualification> getEmployeesPQ() {
+		return employeesPQ;
+	}
+
+	public void setEmployeesPQ(Set<EmployeeProfessionalQualification> employeesPQ) {
+		this.employeesPQ = employeesPQ;
+	}
+	
+	
 }

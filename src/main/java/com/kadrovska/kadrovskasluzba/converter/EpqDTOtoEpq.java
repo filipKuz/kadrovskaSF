@@ -30,7 +30,7 @@ public class EpqDTOtoEpq implements Converter<EmployeeProfessionalQualificationD
 		epq.setEducationalInstitution(arg0.getEducationalInstitution());
 		epq.setProfession(arg0.getProfession());
 
-		ProfessionalQualification pq = professionalQualificationService.findOne(arg0.getProfessionalQId());
+		ProfessionalQualification pq = professionalQualificationService.findOne(arg0.getProfessionalQId().getProfessionalQualificationId());
 		if (pq != null) {
 			epq.setProfessionalQualification(pq);
 		}

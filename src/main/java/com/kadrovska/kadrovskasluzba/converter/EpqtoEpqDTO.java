@@ -3,6 +3,7 @@ package com.kadrovska.kadrovskasluzba.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,10 @@ import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 
 @Component
 public class EpqtoEpqDTO implements Converter<EmployeeProfessionalQualification, EmployeeProfessionalQualificationDTO> {
-
+	
+	@Autowired
+	ProfessionalQualificationtoProfessioanalQualificationDTO pq;
+	
 	@Override
 	public EmployeeProfessionalQualificationDTO convert(EmployeeProfessionalQualification epq) {
 
@@ -27,7 +31,7 @@ public class EpqtoEpqDTO implements Converter<EmployeeProfessionalQualification,
 		}
 
 		if (epq.getProfessionalQualification() != null) {
-			epqDTO.setProfessionalQId(epq.getProfessionalQualification().getID());
+			epqDTO.setProfessionalQId(pq.convert(epq.getProfessionalQualification()));
 		}
 
 		return epqDTO;

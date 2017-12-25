@@ -2,6 +2,7 @@ package com.kadrovska.kadrovskasluzba.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import com.kadrovska.kadrovskasluzba.dto.WorkHistoryDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
@@ -10,6 +11,7 @@ import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceServiceInterface;
 
+@Component
 public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, WorkHistory> {
 
 	@Autowired
