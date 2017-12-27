@@ -13,41 +13,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kadrovska.kadrovskasluzba.converter.WorkPlaceDTOtoWorkPlace;
 import com.kadrovska.kadrovskasluzba.converter.WorkPlaceToWorkPlaceDTO;
-import com.kadrovska.kadrovskasluzba.dto.WorkHistoryDTO;
 import com.kadrovska.kadrovskasluzba.dto.WorkPlaceDTO;
-import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.model.WorkPlace;
-import com.kadrovska.kadrovskasluzba.services.WorkHistoryService;
-import com.kadrovska.kadrovskasluzba.services.WorkPlaceService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceServiceInterface;
 
 @Controller
 @RequestMapping("/api/workPlace")
 public class WorkPlaceController {
 
-	
 	@Autowired
 	private WorkPlaceToWorkPlaceDTO workPlaceToWorkPlaceDTO;
-	
-	
+
 	@Autowired
 	private WorkPlaceDTOtoWorkPlace workPlaceDTOtoWorkPlace;
-	
+
 	@Autowired
-	private WorkPlaceService wPlaceService;
-	
+	private WorkPlaceServiceInterface workPlaceService;
+
 	@GetMapping
 	public ResponseEntity<List<WorkPlaceDTO>> getWorkPlaces() {
 
-		return new ResponseEntity<>(workPlaceToWorkPlaceDTO.convert(wPlaceService.findAll()), HttpStatus.OK);
+		return new ResponseEntity<>(workPlaceToWorkPlaceDTO.convert(workPlaceService.findAll()), HttpStatus.OK);
 	}
-	
-	@PostMapping(consumes="application/json")
+
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<WorkPlaceDTO> saveWorkPlace(@RequestBody WorkPlaceDTO workPlaceDTO) {
 		System.out.println(workPlaceDTO);
-		WorkPlace wP = wPlaceService.save(workPlaceDTOtoWorkPlace.convert(workPlaceDTO));
-		System.out.println(wP);
-		return new ResponseEntity<>(workPlaceToWorkPlaceDTO.convert(wP), HttpStatus.OK);
+		WorkPlace workPlace = workPlaceService.save(workPlaceDTOtoWorkPlace.convert(workPlaceDTO));
+		System.out.println(workPlace);
+		return new ResponseEntity<>(workPlaceToWorkPlaceDTO.convert(workPlace), HttpStatus.OK);
 	}
-	
-	
 }

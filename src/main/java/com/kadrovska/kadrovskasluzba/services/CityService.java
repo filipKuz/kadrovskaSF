@@ -1,7 +1,6 @@
 package com.kadrovska.kadrovskasluzba.services;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -25,8 +24,8 @@ public class CityService implements CityServiceInterface {
 	}
 
 	@Override
-	public Set<City> findAll() {
-		return new HashSet<City>(cityRepo.findAll());
+	public List<City> findAll() {
+		return cityRepo.findAll();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.kadrovska.kadrovskasluzba.serviceInterfaces;
 
-import java.util.Set;
+import java.util.List;
 
 import com.kadrovska.kadrovskasluzba.model.City;
 
@@ -8,7 +8,7 @@ public interface CityServiceInterface {
 
 	City findOne(Long id);
 
-	Set<City> findAll();
+	List<City> findAll();
 
 	City save(City city);
 
