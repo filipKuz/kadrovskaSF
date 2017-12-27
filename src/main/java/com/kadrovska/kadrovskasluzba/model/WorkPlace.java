@@ -17,9 +17,11 @@ public class WorkPlace {
 	@GeneratedValue
 	private Long workPlaceId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String name;
 
+	private Integer additionalVacationDays;
+	
 	@Column(nullable = false)
 	private Double coefficient;
 
@@ -60,4 +62,14 @@ public class WorkPlace {
 	public void setWorkHistory(Set<WorkHistory> workHistory) {
 		this.workHistory = workHistory;
 	}
+
+	public Integer getAdditionalVacationDays() {
+		return additionalVacationDays;
+	}
+
+	public void setAdditionalVacationDays(Integer additionalVacationDays) {
+		this.additionalVacationDays = additionalVacationDays;
+	}
+	
+	
 }

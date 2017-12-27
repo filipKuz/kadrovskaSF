@@ -1,6 +1,7 @@
 package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ public class WorkHistory {
 	@GeneratedValue
 	private Long workHistoryId;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String previousCompany;
 
 	@Column(nullable = false)
@@ -81,5 +83,17 @@ public class WorkHistory {
 
 	public void setWorkPlace(WorkPlace workPlace) {
 		this.workPlace = workPlace;
+	}
+	
+	public Integer getNumOfWorkingDays(){
+		Calendar currenttime = Calendar.getInstance();
+	    Date today = new Date((currenttime.getTime()).getTime());
+	    Date strDate = this.getStartDate();
+	    Date endDate = this.getEndDate();
+		if(this.getEndDate()==null){
+			endDate = today;
+		}
+		
+		return (int) ((endDate.getTime() - strDate.getTime())* 1000*60*60*24 );
 	}
 }

@@ -202,4 +202,28 @@ public class Employee {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	
+	public Integer getNumOfExtraVacationDays(){
+		Integer numOfWorkingDays = 0;
+		Integer NumOfExtraVacationDays = 0;
+		
+		for (WorkHistory wh: this.getWorkingHistory()){
+			numOfWorkingDays += wh.getNumOfWorkingDays();
+		}
+		
+		for(int i = 0; i<= numOfWorkingDays; i += 365 * 3){
+			NumOfExtraVacationDays +=1;
+		}		
+		return NumOfExtraVacationDays;
+	
+	}
+	
+	public WorkPlace getCurrentWorkPlace(){
+		for (WorkHistory wh : this.workingHistory){
+			if (wh.getEndDate()==null){
+				return wh.getWorkPlace();
+			}
+		}		
+		return null;
+	}
 }

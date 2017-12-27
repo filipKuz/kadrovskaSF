@@ -20,7 +20,7 @@ public class City {
 	@Column(nullable = false)
 	private Integer zipCode;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String cityName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
