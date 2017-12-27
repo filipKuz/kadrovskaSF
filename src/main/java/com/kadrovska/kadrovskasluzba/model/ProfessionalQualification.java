@@ -17,10 +17,10 @@ public class ProfessionalQualification {
 	@GeneratedValue
 	private Long pQId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String name;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String qualificationDegree;
 
 	@Column(nullable = false)

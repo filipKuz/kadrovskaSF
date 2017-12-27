@@ -21,10 +21,10 @@ public class EmployeeProfessionalQualification {
 	@Column(nullable = false)
 	private Date dateOfGraduation;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String educationalInstitution;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String profession;
 
 	@ManyToOne(fetch = FetchType.LAZY)

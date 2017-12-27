@@ -54,10 +54,17 @@ public class AnnualHolidayRegulationController {
 	@PostMapping(value="createAnnualHolidayRegulations")
 	public ResponseEntity<List<AnnualHolidayRegulation>> createAnnualHolidayRegulations(){
 		List<Employee> employees = employeeService.findAll();
-
+		
 		for (Employee e: employees){
-			Integer numOfDays = 20;			
-			numOfDays = numOfDays + e.getCurrentWorkPlace().getAdditionalVacationDays() + e.getNumOfExtraVacationDays();
+			Integer numOfDays = 0;
+			Integer numOfMinimalDays = 20;
+			Integer numOfAdditionalVacationDays = (int) e.getNumOfAdditionalVacationDays();
+			Integer extraVacationDays = (int) e.getCurrentWorkPlace().getExtraVacationDays();
+			System.out.println("Broj slobodnih dana zakosnskog minimuma: " + numOfMinimalDays);
+			System.out.println("Broj dodatnih slobodnih dana zbog staza: "+ numOfAdditionalVacationDays);
+			System.out.println("Dodatni slobodni dani zbog exstremnog radnog mesta radnog mesta: " + extraVacationDays );
+			numOfDays += (numOfAdditionalVacationDays + numOfMinimalDays + extraVacationDays);
+			System.out.println("Ukupno slobodnih dana za ovu godinu " + numOfDays );
 			
 			AnnualHolidayRegulation a = new AnnualHolidayRegulation();
 			a.setBusinessYear(Year.now().getValue());

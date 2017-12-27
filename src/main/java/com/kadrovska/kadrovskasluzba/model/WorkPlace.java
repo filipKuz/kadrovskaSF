@@ -20,7 +20,8 @@ public class WorkPlace {
 	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String name;
 
-	private Integer additionalVacationDays;
+	
+	private Integer extraVacationDays;
 	
 	@Column(nullable = false)
 	private Double coefficient;
@@ -63,13 +64,15 @@ public class WorkPlace {
 		this.workHistory = workHistory;
 	}
 
-	public Integer getAdditionalVacationDays() {
-		return additionalVacationDays;
+	public Integer getExtraVacationDays() {
+		return extraVacationDays;
 	}
 
-	public void setAdditionalVacationDays(Integer additionalVacationDays) {
-		this.additionalVacationDays = additionalVacationDays;
+	public void setExtraVacationDays(Integer extraVacationDays) {
+		this.extraVacationDays = extraVacationDays;
 	}
+
+	
 	
 	
 }

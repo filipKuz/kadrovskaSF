@@ -20,28 +20,31 @@ public class Employee {
 	@GeneratedValue
 	private Long employeeId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String parentName;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String madenName;
 
 	@Column(nullable = false)
 	private Date birthDate;
-
-	@Column(nullable = false)
+	
+	@Column(nullable = false, columnDefinition="VARCHAR(6)")
 	private String sex;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String address;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String email;
 
+	@Column(columnDefinition="VARCHAR(15)")
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -203,18 +206,20 @@ public class Employee {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public Integer getNumOfExtraVacationDays(){
+	public Integer getNumOfAdditionalVacationDays(){
 		Integer numOfWorkingDays = 0;
-		Integer NumOfExtraVacationDays = 0;
+		Integer NumOfAdditionalVacationDays = 0;
 		
 		for (WorkHistory wh: this.getWorkingHistory()){
 			numOfWorkingDays += wh.getNumOfWorkingDays();
 		}
 		
-		for(int i = 0; i<= numOfWorkingDays; i += 365 * 3){
-			NumOfExtraVacationDays +=1;
-		}		
-		return NumOfExtraVacationDays;
+		System.out.println("Ukupan broj radnih dana: " + numOfWorkingDays);
+		
+		for(int i = 0; i<= numOfWorkingDays; i += 365*5){
+			NumOfAdditionalVacationDays +=1;
+		}
+		return NumOfAdditionalVacationDays;
 	
 	}
 	

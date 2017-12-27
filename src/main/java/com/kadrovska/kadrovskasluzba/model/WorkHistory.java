@@ -93,7 +93,8 @@ public class WorkHistory {
 		if(this.getEndDate()==null){
 			endDate = today;
 		}
-		
-		return (int) ((endDate.getTime() - strDate.getTime())* 1000*60*60*24 );
+
+		System.out.println("Broj radnih dana na jednom radnom mjestu: "+  (int) (( endDate.getTime() - strDate.getTime())/ 86400000 ));
+		return (int) ((endDate.getTime() - strDate.getTime())/ 86400000 );
 	}
 }
