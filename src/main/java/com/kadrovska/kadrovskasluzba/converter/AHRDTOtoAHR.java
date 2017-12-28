@@ -27,7 +27,7 @@ public class AHRDTOtoAHR implements Converter<AnnualHolidayRegulationDTO, Annual
 		ahr.setBusinessYear(arg0.getBusinessYear());
 		ahr.setNumOfDays(arg0.getNumOfDays());
 
-		Employee e = employeeService.findOne(arg0.getEmployeeId());
+		Employee e = employeeService.findOne(arg0.getEmployeeDTO().getEmployeeId());
 		if (e != null) {
 			ahr.setEmployee(e);;
 		}
