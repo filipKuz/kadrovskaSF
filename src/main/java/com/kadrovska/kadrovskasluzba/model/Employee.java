@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Employee {
@@ -20,28 +22,44 @@ public class Employee {
 	@GeneratedValue
 	private Long employeeId;
 
-	@Column(nullable = false)
+	@Size(min=2, max=15)
+	@NotNull
+	@Column(nullable = false, length=15)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Size(min=2,max=15)
+	@NotNull
+	@Column(nullable = false, length=15)
 	private String firstName;
 
-	@Column(nullable = false)
+	@Size(min=2,max=15)
+	@NotNull
+	@Column(nullable = false, length=15)
 	private String parentName;
 
+	@Size(max=15)
+	@Column(length=15)
 	private String madenName;
 
+	@NotNull
 	@Column(nullable = false)
 	private Date birthDate;
 
-	@Column(nullable = false)
+	@NotNull
+	@Size(min=1, max=1)
+	@Column(nullable = false, length=1)
 	private String sex;
-
-	@Column(nullable = false)
+	
+	@Size(max=45)
+	@Column(nullable = false, length=45)
 	private String address;
 
+	@Size(max=30)
+	@Column(length=30)
 	private String email;
 
+	@Size(max=20)
+	@Column(length=20)
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -61,7 +79,8 @@ public class Employee {
 	private Set<WorkHistory> workingHistory = new HashSet<>();
 
 	@ManyToOne
-	@JoinColumn(name = "cityId")
+	@NotNull
+	@JoinColumn(name = "cityId", nullable=false)
 	private City city;
 
 	public Employee() {
