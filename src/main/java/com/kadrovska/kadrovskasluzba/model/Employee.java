@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Employee {
@@ -22,44 +20,31 @@ public class Employee {
 	@GeneratedValue
 	private Long employeeId;
 
-	@Size(min=2, max=15)
-	@NotNull
-	@Column(nullable = false, length=15)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String lastName;
 
-	@Size(min=2,max=15)
-	@NotNull
-	@Column(nullable = false, length=15)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String firstName;
 
-	@Size(min=2,max=15)
-	@NotNull
-	@Column(nullable = false, length=15)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String parentName;
 
-	@Size(max=15)
-	@Column(length=15)
+	@Column(columnDefinition="VARCHAR(30)")
 	private String madenName;
 
-	@NotNull
 	@Column(nullable = false)
 	private Date birthDate;
 
-	@NotNull
-	@Size(min=1, max=1)
-	@Column(nullable = false, length=1)
+	@Column(nullable = false, columnDefinition="VARCHAR(6)")
 	private String sex;
-	
-	@Size(max=45)
-	@Column(nullable = false, length=45)
+
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String address;
 
-	@Size(max=30)
-	@Column(length=30)
+	@Column(columnDefinition="VARCHAR(30)")
 	private String email;
 
-	@Size(max=20)
-	@Column(length=20)
+	@Column(columnDefinition="VARCHAR(15)")
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -79,7 +64,6 @@ public class Employee {
 	private Set<WorkHistory> workingHistory = new HashSet<>();
 
 	@ManyToOne
-	@NotNull
 	@JoinColumn(name = "cityId", nullable=false)
 	private City city;
 
@@ -220,5 +204,31 @@ public class Employee {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	public Integer getNumOfAdditionalVacationDays(){
+		Integer numOfWorkingDays = 0;
+		Integer NumOfAdditionalVacationDays = 0;
+		
+		for (WorkHistory wh: this.getWorkingHistory()){
+			numOfWorkingDays += wh.getNumOfWorkingDays();
+		}
+		
+		System.out.println("Ukupan broj radnih dana: " + numOfWorkingDays);
+		
+		for(int i = 0; i<= numOfWorkingDays; i += 365*5){
+			NumOfAdditionalVacationDays +=1;
+		}
+		return NumOfAdditionalVacationDays;
+	
+	}
+	
+	public WorkPlace getCurrentWorkPlace(){
+		for (WorkHistory wh : this.workingHistory){
+			if (wh.getEndDate()==null){
+				return wh.getWorkPlace();
+			}
+		}		
+		return null;
 	}
 }

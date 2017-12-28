@@ -1,10 +1,15 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import com.kadrovska.kadrovskasluzba.dto.CityDTO;
 import com.kadrovska.kadrovskasluzba.model.City;
 
+@Component
 public class CityToCityDTO implements Converter<City, CityDTO> {
 
 	@Override
@@ -16,5 +21,15 @@ public class CityToCityDTO implements Converter<City, CityDTO> {
 		cityDTO.setZipCode(city.getZipCode());
 
 		return cityDTO;
+	}
+
+	public List<CityDTO> convert(List<City> cities) {
+		List<CityDTO> retValue = new ArrayList<>();
+
+		for (City city : cities) {
+			retValue.add(convert(city));
+		}
+
+		return retValue;
 	}
 }

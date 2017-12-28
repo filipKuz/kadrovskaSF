@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -20,26 +18,19 @@ public class EmployeeProfessionalQualification {
 	@GeneratedValue
 	private Long ePQId;
 
-	@NotNull
 	@Column(nullable = false)
 	private Date dateOfGraduation;
-	
-	@Size(min=1, max=30)
-	@NotNull
-	@Column(nullable = false)
+
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String educationalInstitution;
 
-	@NotNull
-	@Size(min=1, max=30)
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String profession;
 	
-	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pQId", nullable=false)
 	private ProfessionalQualification professionalQualification;
 	
-	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId", nullable=false)
 	private Employee employee;

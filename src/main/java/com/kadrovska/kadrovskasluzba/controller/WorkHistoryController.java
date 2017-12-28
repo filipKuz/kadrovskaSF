@@ -15,7 +15,7 @@ import com.kadrovska.kadrovskasluzba.converter.WorkHistoryDTOtoWorkHistory;
 import com.kadrovska.kadrovskasluzba.converter.WorkHistoryToWorkHistoryDTO;
 import com.kadrovska.kadrovskasluzba.dto.WorkHistoryDTO;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
-import com.kadrovska.kadrovskasluzba.services.WorkHistoryService;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryServiceInterface;
 
 @Controller
 @RequestMapping("/api/workHistory")
@@ -28,7 +28,7 @@ public class WorkHistoryController {
 	private WorkHistoryDTOtoWorkHistory wHDTOtoWh;
 	
 	@Autowired
-	private WorkHistoryService wHistoryService;
+	private WorkHistoryServiceInterface wHistoryService;
 	
 	@GetMapping
 	public ResponseEntity<List<WorkHistoryDTO>> getWorkHistory() {

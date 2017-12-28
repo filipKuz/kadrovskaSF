@@ -37,4 +37,5 @@ public class AnnualHolidayRegulationService implements AnnualHolidayRegulationSe
 	public void delete(Long id) {
 		annualHolidayRegSerJPARep.delete(id);
 	}
+
 }

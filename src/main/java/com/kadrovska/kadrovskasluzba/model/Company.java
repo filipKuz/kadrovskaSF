@@ -19,16 +19,19 @@ public class Company {
 	@GeneratedValue
 	private Long companyId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String name;
 
 	@Column(nullable = false)
 	private Long vat;
-
+	
+	@Column(columnDefinition="VARCHAR(30)")
 	private String address;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String email;
 
+	@Column(columnDefinition="VARCHAR(15)")
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.LAZY)

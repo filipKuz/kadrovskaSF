@@ -1,7 +1,6 @@
 package com.kadrovska.kadrovskasluzba.services;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -25,8 +24,8 @@ public class CompanyService implements CompanyServiceInterface {
 	}
 
 	@Override
-	public Set<Company> findAll() {
-		return new HashSet<Company>(companyRepo.findAll());
+	public List<Company> findAll() {
+		return companyRepo.findAll();
 	}
 
 	@Override

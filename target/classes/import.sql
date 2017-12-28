@@ -1,8 +1,8 @@
 INSERT INTO city (city_name, zip_code) VALUES('Prijedor',79101);
 INSERT INTO city (city_name, zip_code) VALUES('Los Angeles',33002);
 
-INSERT INTO work_place (coefficient, name) VALUES(1, 'Work place 1');
-INSERT INTO work_place (coefficient, name) VALUES(2, 'Work place 2');
+INSERT INTO work_place (coefficient, name, extra_vacation_days) VALUES(1, 'Work place 1',2);
+INSERT INTO work_place (coefficient, name, extra_vacation_days) VALUES(2, 'Work place 2',3);
 
 INSERT INTO professional_qualification (name, qualification_degree) VALUES('Srednja strucna sprema', 'SSS');
 INSERT INTO professional_qualification (name, qualification_degree) VALUES('Visoka strucna sprema', 'VSS');
@@ -27,4 +27,7 @@ INSERT INTO employee_professional_qualification (date_of_graduation,educational_
 
 INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(5,1,'2010-05-10','2010-06-10');
 
-INSERT INTO work_history (previous_company,start_date,end_date,employee_id,wpid) VALUES('Company 2','1996-05-29','2010-05-10',1,1);
+INSERT INTO work_history (previous_company,start_date,end_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29','2010-05-10',1,1);
+INSERT INTO work_history (previous_company,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',1,2);
+INSERT INTO work_history (previous_company,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',2,1);
+INSERT INTO work_history (previous_company,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',3,1);

@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class ProfessionalQualification {
@@ -18,15 +16,11 @@ public class ProfessionalQualification {
 	@Id
 	@GeneratedValue
 	private Long pQId;
-	
-	@NotNull
-	@Size(min=1, max=30)
-	@Column(nullable = false, length=30)
+
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String name;
 
-	@NotNull
-	@Size(min=1, max=3)
-	@Column(nullable = false, length=3)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String qualificationDegree;
 
 	@Column(nullable = false)

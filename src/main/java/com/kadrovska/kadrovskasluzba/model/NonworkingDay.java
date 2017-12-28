@@ -14,7 +14,7 @@ public class NonworkingDay {
 	@GeneratedValue
 	private Long nonWorkingDayId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String description;
 
 	@Column(nullable = false)

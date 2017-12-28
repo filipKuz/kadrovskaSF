@@ -16,17 +16,16 @@ import com.kadrovska.kadrovskasluzba.serviceInterfaces.ProfessionalQualification
 @Component
 @RequestMapping("/api/PQ")
 public class ProfessionalQualificationController {
-	
+
 	@Autowired
-	private ProfessionalQualificationServiceInterface pqsi;
-	
+	private ProfessionalQualificationServiceInterface pqService;
+
 	@Autowired
 	private ProfessionalQualificationtoProfessioanalQualificationDTO toPQDTO;
-	
+
 	@GetMapping
 	public ResponseEntity<List<ProfessionalQualificationDTO>> getAllPQs() {
-		
-		return new ResponseEntity<>(toPQDTO.convert(pqsi.findAll()), HttpStatus.OK);
+
+		return new ResponseEntity<>(toPQDTO.convert(pqService.findAll()), HttpStatus.OK);
 	}
-	
 }

@@ -13,4 +13,5 @@ public interface AnnualHolidayRegulationServiceInterface {
 	AnnualHolidayRegulation save(AnnualHolidayRegulation annualHolidayRegulation);
 
 	void delete(Long id);
+	
 }

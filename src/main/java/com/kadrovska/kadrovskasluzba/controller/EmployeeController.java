@@ -24,18 +24,21 @@ import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeServiceInterface employeeServiceInterface;
+	private EmployeeServiceInterface employeeService;
 
 	@Autowired
 	private EmployeeToEmployeeDTO toEmployeeDTO;
 
 	@Autowired
 	private EmployeeDTOtoEmployee toEmployee;
+
+	@Autowired
+	EmployeeServiceInterface employeeServiceInterface;
+	
 	
 	@GetMapping
 	public ResponseEntity<List<EmployeeDTO>> getEmployees() {
-
-		return new ResponseEntity<>(toEmployeeDTO.convert(employeeServiceInterface.findAll()), HttpStatus.OK);
+		return new ResponseEntity<>(toEmployeeDTO.convert(employeeService.findAll()), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="{id}")
@@ -44,14 +47,14 @@ public class EmployeeController {
 		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(employeeServiceInterface.findOne(id)), HttpStatus.OK);
 	}
 	
-	@PostMapping(consumes="application/json")
+
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
 		System.out.println(employeeDTO);
-		Employee e = employeeServiceInterface.save(toEmployee.convert(employeeDTO));
-		System.out.println(e);
-		return new ResponseEntity<>(toEmployeeDTO.convert(e), HttpStatus.OK);
+		Employee employee = employeeService.save(toEmployee.convert(employeeDTO));
+		System.out.println(employee);
+		return new ResponseEntity<>(toEmployeeDTO.convert(employee), HttpStatus.OK);
 	}
-	
 	
 	@PutMapping(value="{id}") 
 	public ResponseEntity<?> editEmployee(@RequestBody EmployeeDTO dto, @PathVariable("id") Long id) {
@@ -77,8 +80,5 @@ public class EmployeeController {
 		
 		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(e), HttpStatus.OK);
 	};
-	
-	
-	
-	
 }
+

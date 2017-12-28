@@ -1,5 +1,6 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
 @Component
 public class AHRtoAHRDTO implements Converter<AnnualHolidayRegulation,AnnualHolidayRegulationDTO> {
 
+	@Autowired
+	EmployeeToEmployeeDTO toEmployeeDTO;
+	
 	@Override
 	public AnnualHolidayRegulationDTO convert(AnnualHolidayRegulation arg0) {
 		AnnualHolidayRegulationDTO ahrDTO = new AnnualHolidayRegulationDTO();
@@ -21,7 +25,7 @@ public class AHRtoAHRDTO implements Converter<AnnualHolidayRegulation,AnnualHoli
 		ahrDTO.setBusinessYear(arg0.getBusinessYear());
 		ahrDTO.setNumOfDays(arg0.getNumOfDays());
 		if (arg0.getEmployee()!=null){
-			ahrDTO.setEmployeeId(arg0.getEmployee().getEmployeeId());
+			ahrDTO.setEmployeeDTO(toEmployeeDTO.convert(arg0.getEmployee()));
 		}
 		
 		return ahrDTO;
