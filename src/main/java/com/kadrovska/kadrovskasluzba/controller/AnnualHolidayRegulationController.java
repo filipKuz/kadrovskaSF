@@ -1,6 +1,7 @@
 package com.kadrovska.kadrovskasluzba.controller;
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,9 @@ public class AnnualHolidayRegulationController {
 	}
 
 	@PostMapping(value = "createAnnualHolidayRegulations")
-	public ResponseEntity<List<AnnualHolidayRegulation>> createAnnualHolidayRegulations() {
+	public ResponseEntity<List<AnnualHolidayRegulationDTO>> createAnnualHolidayRegulations() {
 		List<Employee> employees = employeeService.findAll();
-
+		List<AnnualHolidayRegulationDTO> annualHolidayRegulationsDTO = new ArrayList<AnnualHolidayRegulationDTO>();
 		for (Employee e : employees) {
 			Integer numOfDays = 0;
 			Integer numOfMinimalDays = 20;
@@ -71,7 +72,9 @@ public class AnnualHolidayRegulationController {
 			a.setEmployee(e);
 			a.setNumOfDays(numOfDays);
 			annualHolidayRegulationService.save(a);
+			annualHolidayRegulationsDTO.add(toAhrDTO.convert(a));
+			
 		}
-		return null;
+		return new ResponseEntity<>(annualHolidayRegulationsDTO, HttpStatus.CREATED);
 	}
 }
