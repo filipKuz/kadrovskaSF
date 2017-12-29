@@ -31,6 +31,11 @@ public class EmployeeService implements EmployeeServiceInterface{
 	public Employee save(Employee e) {
 		return employeeRepo.save(e);
 	}
+
+	@Override
+	public List<Employee> findActiveEmployees() {
+		return employeeRepo.findActiveEmployees();
+	}
 	
 	
 

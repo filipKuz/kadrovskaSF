@@ -11,5 +11,7 @@ public interface WorkHistoryServiceInterface {
 	WorkHistory findOne(Long id);
 	
 	WorkHistory save(WorkHistory workHistory);
+	
+	WorkHistory findByEmployeeEmployeeIdAndEndDateIsNull(Long id);
 
 }
