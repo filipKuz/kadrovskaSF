@@ -11,9 +11,9 @@ INSERT INTO professional_qualification (name, qualification_degree) VALUES('Magi
 
 INSERT INTO company (name, vat, address, email, phone_number, city_id) VALUES ('Company 1', '0123456789', 'Adress 2', 'firma@gmail.com', '0038165565',1);
 
-INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Ilic', 'Vladimir', 'Sasa', '', '1996-08-20', 'M', 'Address 1',1,1);
-INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Messi', 'Lionel', 'Milenko', '', '1980-08-20', 'M', 'Address 2',1,2);
-INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Ronaldo', 'Cristiano', 'Marko', '', '1980-08-20', 'M', 'Address 3',1,2);
+INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Ilic', 'Vladimir', 'Sasa', '', '1996-8-20', 'M', 'Address 1',1,1);
+INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Messi', 'Lionel', 'Milenko', '', '1980-8-20', 'M', 'Address 2',1,2);
+INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Ronaldo', 'Cristiano', 'Marko', '', '1982-8-20', 'M', 'Address 3',1,2);
 
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2016,20,1);
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2016,20,2);

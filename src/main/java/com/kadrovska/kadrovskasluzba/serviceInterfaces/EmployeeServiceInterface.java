@@ -11,4 +11,6 @@ public interface EmployeeServiceInterface {
 	List<Employee> findAll();
 
 	Employee save(Employee e);
+	
+	List<Employee> findActiveEmployees();
 }

@@ -1,5 +1,7 @@
 package com.kadrovska.kadrovskasluzba.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,10 @@ import com.kadrovska.kadrovskasluzba.converter.EmployeeDTOtoEmployee;
 import com.kadrovska.kadrovskasluzba.converter.EmployeeToEmployeeDTO;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
 import com.kadrovska.kadrovskasluzba.model.Employee;
+import com.kadrovska.kadrovskasluzba.model.WorkHistory;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.CityServiceInterface;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryServiceInterface;
 
 @Controller
 @RequestMapping("/api/employees")
@@ -35,15 +40,25 @@ public class EmployeeController {
 	@Autowired
 	EmployeeServiceInterface employeeServiceInterface;
 	
+	@Autowired
+	CityServiceInterface cityServiceInterface;
+	
+	@Autowired 
+	WorkHistoryServiceInterface workHistoryServiceInterface;
+	
 	
 	@GetMapping
 	public ResponseEntity<List<EmployeeDTO>> getEmployees() {
 		return new ResponseEntity<>(toEmployeeDTO.convert(employeeService.findAll()), HttpStatus.OK);
 	}
 	
+	@GetMapping(value="activeEmployees")
+	public ResponseEntity<List<EmployeeDTO>> getActiveEmployees() {
+		return new ResponseEntity<>(toEmployeeDTO.convert(employeeService.findActiveEmployees()), HttpStatus.OK);
+	}
+	
 	@GetMapping(value="{id}")
 	public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("id") Long id) {
-		
 		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(employeeServiceInterface.findOne(id)), HttpStatus.OK);
 	}
 	
@@ -66,7 +81,7 @@ public class EmployeeController {
 		
 		e.setAddress(dto.getAddress());
 		e.setBirthDate(dto.getBirthDate());
-		// fali city kontroler e.setCity(dto.getCityId());
+		e.setCity(cityServiceInterface.findOne(dto.getCityId()));
 		// fali company kontroler e.setCompany(company);
 		e.setEmail(dto.getEmail());
 		e.setFirstName(dto.getFirstName());
@@ -80,5 +95,27 @@ public class EmployeeController {
 		
 		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(e), HttpStatus.OK);
 	};
+	
+	@PutMapping(value="delete/{id}") 
+	public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
+		Employee e = employeeServiceInterface.findOne(id);
+		if (e == null) {
+			return new ResponseEntity<String>("Can't find employee with given id", HttpStatus.BAD_REQUEST);
+		}
+		
+		Calendar calendar = Calendar.getInstance();
+		Date currentDate = calendar.getTime();
+		java.sql.Date date = new java.sql.Date(currentDate.getTime());
+		WorkHistory wh = workHistoryServiceInterface.findByEmployeeEmployeeIdAndEndDateIsNull(id);
+		if(wh != null) {
+			wh.setEndDate(date);
+		}
+		
+		employeeServiceInterface.save(e);
+		
+		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(e), HttpStatus.OK);
+	};
+	
+	
 }
 

@@ -225,7 +225,7 @@ public class Employee {
 	
 	public WorkPlace getCurrentWorkPlace(){
 		for (WorkHistory wh : this.workingHistory){
-			if (wh.getEndDate()==null){
+			if (wh.getEndDate()==null && !this.workingHistory.isEmpty()){
 				return wh.getWorkPlace();
 			}
 		}		

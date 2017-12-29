@@ -6,4 +6,5 @@ import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 
 public interface WorkHistoryJPARepository extends JpaRepository<WorkHistory, Long>{
 
+	WorkHistory findByEmployeeEmployeeIdAndEndDateIsNull(Long id);
 }

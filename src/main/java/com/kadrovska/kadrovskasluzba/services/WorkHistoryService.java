@@ -33,4 +33,9 @@ public class WorkHistoryService implements WorkHistoryServiceInterface{
 	public WorkHistory save(WorkHistory workHistory) {
 		return workHistoryRepository.save(workHistory);
 	}
+
+	@Override
+	public WorkHistory findByEmployeeEmployeeIdAndEndDateIsNull(Long id) {
+		return workHistoryRepository.findByEmployeeEmployeeIdAndEndDateIsNull(id);
+	}
 }

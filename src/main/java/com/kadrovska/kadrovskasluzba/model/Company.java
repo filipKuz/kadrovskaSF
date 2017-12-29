@@ -35,7 +35,7 @@ public class Company {
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cityId")
+	@JoinColumn(name = "cityId", nullable=false)
 	private City city;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
