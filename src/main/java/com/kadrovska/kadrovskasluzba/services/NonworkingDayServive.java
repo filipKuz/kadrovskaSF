@@ -3,11 +3,13 @@ package com.kadrovska.kadrovskasluzba.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.NonworkingDay;
 import com.kadrovska.kadrovskasluzba.repositories.NonworkingDayJPARepository;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.NonworkingDayServiceInterface;
 
+@Service
 public class NonworkingDayServive implements NonworkingDayServiceInterface {
 
 	@Autowired NonworkingDayJPARepository nonworkingDayRepo;
