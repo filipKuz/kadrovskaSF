@@ -1,6 +1,7 @@
 package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -208,7 +209,7 @@ public class Employee {
 	
 	public Integer getNumOfAdditionalVacationDays(){
 		Integer numOfWorkingDays = 0;
-		Integer NumOfAdditionalVacationDays = 0;
+		Integer NumOfAdditionalVacationDays = -1;
 		
 		for (WorkHistory wh: this.getWorkingHistory()){
 			numOfWorkingDays += wh.getNumOfWorkingDays();
@@ -230,5 +231,14 @@ public class Employee {
 			}
 		}		
 		return null;
+	}
+	
+	public Boolean thisYearAHR(){
+		for (AnnualHolidayRegulation ahr: this.getAnnualHolidayRegulations()){
+			if(ahr.getBusinessYear() == Year.now().getValue() ){
+				return true;
+			}
+		}
+		return false;
 	}
 }

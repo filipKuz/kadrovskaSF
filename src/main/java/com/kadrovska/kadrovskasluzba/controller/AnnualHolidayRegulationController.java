@@ -40,7 +40,7 @@ public class AnnualHolidayRegulationController {
 	@GetMapping
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> getAnnualHolidayRegulations() {
 
-		return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findAll()), HttpStatus.OK);
+		return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findByBusinessYear(Year.now().getValue())), HttpStatus.OK);
 	}
 
 	@PostMapping(consumes = "application/json")
@@ -54,26 +54,31 @@ public class AnnualHolidayRegulationController {
 
 	@PostMapping(value = "createAnnualHolidayRegulations")
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> createAnnualHolidayRegulations() {
-		List<Employee> employees = employeeService.findAll();
+		List<Employee> employees = employeeService.findActiveEmployees();
 		List<AnnualHolidayRegulationDTO> annualHolidayRegulationsDTO = new ArrayList<AnnualHolidayRegulationDTO>();
 		for (Employee e : employees) {
-			Integer numOfDays = 0;
-			Integer numOfMinimalDays = 20;
-			Integer numOfAdditionalVacationDays = (int) e.getNumOfAdditionalVacationDays();
-			Integer extraVacationDays = (int) e.getCurrentWorkPlace().getExtraVacationDays();
-			System.out.println("Broj slobodnih dana zakosnskog minimuma: " + numOfMinimalDays);
-			System.out.println("Broj dodatnih slobodnih dana zbog staza: " + numOfAdditionalVacationDays);
-			System.out.println("Dodatni slobodni dani zbog ekstremnog radnog mesta: " + extraVacationDays);
-			numOfDays += (numOfAdditionalVacationDays + numOfMinimalDays + extraVacationDays);
-			System.out.println("Ukupno slobodnih dana za ovu godinu " + numOfDays);
+			if(!e.thisYearAHR()){
+				Integer numOfDays = 0;
+				Integer extraVacationDays = 0;
+				Integer numOfMinimalDays = 20;
+				Integer numOfAdditionalVacationDays = (int) e.getNumOfAdditionalVacationDays();
+				if(e.getCurrentWorkPlace()!=null){
+					extraVacationDays = (int) e.getCurrentWorkPlace().getExtraVacationDays();
+				}
+				
+				System.out.println("Broj slobodnih dana zakosnskog minimuma: " + numOfMinimalDays);
+				System.out.println("Broj dodatnih slobodnih dana zbog staza: " + numOfAdditionalVacationDays);
+				System.out.println("Dodatni slobodni dani zbog ekstremnog radnog mesta: " + extraVacationDays);
+				numOfDays += (numOfAdditionalVacationDays + numOfMinimalDays + extraVacationDays);
+				System.out.println("Ukupno slobodnih dana za ovu godinu " + numOfDays);
 
-			AnnualHolidayRegulation a = new AnnualHolidayRegulation();
-			a.setBusinessYear(Year.now().getValue());
-			a.setEmployee(e);
-			a.setNumOfDays(numOfDays);
-			annualHolidayRegulationService.save(a);
-			annualHolidayRegulationsDTO.add(toAhrDTO.convert(a));
-			
+				AnnualHolidayRegulation a = new AnnualHolidayRegulation();
+				a.setBusinessYear(Year.now().getValue());
+				a.setEmployee(e);
+				a.setNumOfDays(numOfDays);
+				annualHolidayRegulationService.save(a);
+				annualHolidayRegulationsDTO.add(toAhrDTO.convert(a));
+			}		
 		}
 		return new ResponseEntity<>(annualHolidayRegulationsDTO, HttpStatus.CREATED);
 	}

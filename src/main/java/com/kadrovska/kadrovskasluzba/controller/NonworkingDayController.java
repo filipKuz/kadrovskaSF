@@ -31,9 +31,9 @@ public class NonworkingDayController {
 	
 	
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<NonworkingDay> saveNonworkingDay(@RequestBody NonworkingDay nonworkingDay) {
-		NonworkingDay nonworkingDay2 = nonworkingDayService.save(nonworkingDay);
-		return new ResponseEntity<>(nonworkingDay2, HttpStatus.OK);
+	public ResponseEntity<NonworkingDay> saveNonworkingDay(@RequestBody NonworkingDay newNonworkingDay) {
+		NonworkingDay nonworkingDay = nonworkingDayService.save(newNonworkingDay);
+		return new ResponseEntity<>(nonworkingDay, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping(value="{id}")
@@ -50,8 +50,8 @@ public class NonworkingDayController {
 			return new ResponseEntity<String>("Can't find non-working day with given id", HttpStatus.BAD_REQUEST);
 		}
 		
-		nwd2.setDate(nwd.getDate());
-		nwd2.setDescription(nwd.getDescription());
+		nwd2.setNonworkingDayDate(nwd.getNonworkingDayDate());
+		nwd2.setNonworkingDayDescription(nwd.getNonworkingDayDescription());
 		
 		nonworkingDayService.save(nwd2);
 		
