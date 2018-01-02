@@ -38,4 +38,9 @@ public class AnnualHolidayRegulationService implements AnnualHolidayRegulationSe
 		annualHolidayRegSerJPARep.delete(id);
 	}
 
+	@Override
+	public List<AnnualHolidayRegulation> findByBusinessYear(Integer year) {
+		return annualHolidayRegSerJPARep.findByBusinessYear(year);
+	}
+
 }

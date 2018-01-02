@@ -47,3 +47,5 @@ INSERT INTO work_history (company_name,start_date,end_date,employee_id,work_plac
 INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',6,2);
 INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',4,1);
 INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',5,1);
+
+INSERT INTO nonworking_day(nonworking_day_description, nonworking_day_date) VALUES('Nova godina', '2018-01-01')

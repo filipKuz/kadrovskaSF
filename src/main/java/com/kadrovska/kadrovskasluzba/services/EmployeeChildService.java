@@ -3,11 +3,13 @@ package com.kadrovska.kadrovskasluzba.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.EmployeeChild;
 import com.kadrovska.kadrovskasluzba.repositories.EmployeeChildJPARepository;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeChildServiceInterface;
 
+@Service
 public class EmployeeChildService implements EmployeeChildServiceInterface {
 
 	@Autowired

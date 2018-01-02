@@ -14,4 +14,6 @@ public interface AnnualHolidayRegulationServiceInterface {
 
 	void delete(Long id);
 	
+	List<AnnualHolidayRegulation> findByBusinessYear(Integer year);
+	
 }
