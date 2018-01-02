@@ -19,7 +19,7 @@ public class WorkHistory {
 	private Long workHistoryId;
 
 	@Column(columnDefinition="VARCHAR(30)")
-	private String previousCompany;
+	private String companyName;
 
 	@Column(nullable = false)
 	private Date startDate;
@@ -45,12 +45,12 @@ public class WorkHistory {
 		this.workHistoryId = workHistoryId;
 	}
 
-	public String getPreviousCompany() {
-		return previousCompany;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setPreviousCompany(String previousCompany) {
-		this.previousCompany = previousCompany;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public Date getStartDate() {
@@ -97,4 +97,5 @@ public class WorkHistory {
 		System.out.println("Broj radnih dana na jednom radnom mjestu: "+  (int) (( endDate.getTime() - strDate.getTime())/ 86400000 ));
 		return (int) ((endDate.getTime() - strDate.getTime())/ 86400000 );
 	}
+
 }

@@ -71,4 +71,13 @@ public class WorkHistoryDTO {
 	public void setWorkPlaceId(Long workPlaceId) {
 		this.workPlaceId = workPlaceId;
 	}
+
+	@Override
+	public String toString() {
+		return "WorkHistoryDTO [workHistoryId=" + workHistoryId + ", previousCompany=" + previousCompany
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", employeeId=" + employeeId + ", workPlaceId="
+				+ workPlaceId + "]";
+	}
+	
+	
 }

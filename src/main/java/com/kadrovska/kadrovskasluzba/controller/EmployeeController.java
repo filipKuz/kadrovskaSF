@@ -3,8 +3,12 @@ package com.kadrovska.kadrovskasluzba.controller;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,15 +18,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kadrovska.kadrovskasluzba.converter.EmployeeDTOtoEmployee;
 import com.kadrovska.kadrovskasluzba.converter.EmployeeToEmployeeDTO;
+import com.kadrovska.kadrovskasluzba.converter.WorkHistoryDTOtoWorkHistory;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
+import com.kadrovska.kadrovskasluzba.dto.WorkHistoryDTO;
+import com.kadrovska.kadrovskasluzba.model.Company;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
+import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.CityServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.CompanyServiceInterface;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryServiceInterface;
+import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceServiceInterface;
 
 @Controller
 @RequestMapping("/api/employees")
@@ -38,6 +50,9 @@ public class EmployeeController {
 	private EmployeeDTOtoEmployee toEmployee;
 
 	@Autowired
+	private WorkHistoryDTOtoWorkHistory toWh;
+	
+	@Autowired
 	EmployeeServiceInterface employeeServiceInterface;
 	
 	@Autowired
@@ -46,6 +61,11 @@ public class EmployeeController {
 	@Autowired 
 	WorkHistoryServiceInterface workHistoryServiceInterface;
 	
+	@Autowired
+	WorkPlaceServiceInterface workPlaceServiceInterface;
+	
+	@Autowired
+	CompanyServiceInterface companyServiceInterface;
 	
 	@GetMapping
 	public ResponseEntity<List<EmployeeDTO>> getEmployees() {
@@ -53,8 +73,14 @@ public class EmployeeController {
 	}
 	
 	@GetMapping(value="activeEmployees")
-	public ResponseEntity<List<EmployeeDTO>> getActiveEmployees() {
-		return new ResponseEntity<>(toEmployeeDTO.convert(employeeService.findActiveEmployees()), HttpStatus.OK);
+	public ResponseEntity<List<EmployeeDTO>> getActiveEmployees(@RequestParam("page") int page,
+																@RequestParam("size") int size) {
+
+		Page<Employee> employees = employeeService.findActiveEmployees(new PageRequest(page, size));
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("totalPages", Integer.toString(employees.getTotalPages()));
+		headers.add("access-control-expose-headers", "totalPages");
+		return new ResponseEntity<>(toEmployeeDTO.convert(employees.getContent()), headers, HttpStatus.OK);
 	}
 	
 	@GetMapping(value="{id}")
@@ -64,10 +90,30 @@ public class EmployeeController {
 	
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-		System.out.println(employeeDTO);
-		Employee employee = employeeService.save(toEmployee.convert(employeeDTO));
-		System.out.println(employee);
+	public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody Map<String, Object> data) {
+		Company com = companyServiceInterface.findByIsOursTrue();
+		ObjectMapper mapper = new ObjectMapper();
+		
+		EmployeeDTO ed = mapper.convertValue(data.get("Employee"), EmployeeDTO.class);
+		ed.setCompanyId(com.getId());
+		WorkPlace wp = workPlaceServiceInterface.findOne(Long.valueOf(data.get("workPlaceId").toString()));
+		WorkHistoryDTO whDTO = new WorkHistoryDTO();
+		System.out.println("1");
+		Employee employee = employeeService.save(toEmployee.convert(ed));
+		
+		whDTO.setEmployeeId(employee.getEmployeeId());
+		Calendar calendar = Calendar.getInstance();
+		Date currentDate = calendar.getTime();
+		whDTO.setStartDate(new java.sql.Date(currentDate.getTime()));
+		whDTO.setPreviousCompany(com.getName());
+		System.out.println("2");
+		//whDTO.setEndDate(new java.sql.Date(currentDate.getTime()));
+		whDTO.setWorkPlaceId(wp.getWorkPlaceId());
+		System.out.println(whDTO);
+		System.out.println(wp);
+		System.out.println("3");
+		WorkHistory wh1 = workHistoryServiceInterface.save(toWh.convert(whDTO));
+		System.out.println(wh1);
 		return new ResponseEntity<>(toEmployeeDTO.convert(employee), HttpStatus.OK);
 	}
 	
@@ -82,7 +128,6 @@ public class EmployeeController {
 		e.setAddress(dto.getAddress());
 		e.setBirthDate(dto.getBirthDate());
 		e.setCity(cityServiceInterface.findOne(dto.getCityId()));
-		// fali company kontroler e.setCompany(company);
 		e.setEmail(dto.getEmail());
 		e.setFirstName(dto.getFirstName());
 		e.setLastName(dto.getLastName());

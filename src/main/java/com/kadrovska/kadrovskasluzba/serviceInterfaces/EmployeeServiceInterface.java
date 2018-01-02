@@ -2,6 +2,9 @@ package com.kadrovska.kadrovskasluzba.serviceInterfaces;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.kadrovska.kadrovskasluzba.model.Employee;
 
 public interface EmployeeServiceInterface {
@@ -12,5 +15,5 @@ public interface EmployeeServiceInterface {
 
 	Employee save(Employee e);
 	
-	List<Employee> findActiveEmployees();
+	Page<Employee> findActiveEmployees(PageRequest pageRequest);
 }

@@ -24,12 +24,14 @@ public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, Wo
 	public WorkHistory convert(WorkHistoryDTO workHistoryDTO) {
 		WorkHistory workHistory = new WorkHistory();
 
-		workHistory.setWorkHistoryId(workHistoryDTO.getWorkHistoryId());
-		workHistory.setPreviousCompany(workHistoryDTO.getPreviousCompany());
+		workHistory.setCompanyName(workHistoryDTO.getPreviousCompany());
 		workHistory.setStartDate(workHistoryDTO.getStartDate());
-		workHistory.setEndDate(workHistoryDTO.getEndDate());
+		if(workHistoryDTO.getEndDate() != null) {
+			workHistory.setEndDate(workHistoryDTO.getEndDate());
+		}
+		
 
-		Employee employee = employeeService.findOne(workHistoryDTO.getWorkHistoryId());
+		Employee employee = employeeService.findOne(workHistoryDTO.getEmployeeId());
 		if (employee != null) {
 			workHistory.setEmployee(employee);
 		}

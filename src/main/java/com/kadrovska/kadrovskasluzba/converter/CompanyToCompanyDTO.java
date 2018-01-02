@@ -23,6 +23,7 @@ public class CompanyToCompanyDTO implements Converter<Company, CompanyDTO> {
 		companyDTO.setEmail(company.getEmail());
 		companyDTO.setPhoneNumber(company.getPhoneNumber());
 		companyDTO.setVat(company.getVat());
+		companyDTO.setIsOurs(company.getIsOurs());
 
 		City city = company.getCity();
 		if (city != null) {

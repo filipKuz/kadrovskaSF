@@ -38,4 +38,9 @@ public class CompanyService implements CompanyServiceInterface {
 		companyRepo.delete(id);
 	}
 
+	@Override
+	public Company findByIsOursTrue() {
+		return companyRepo.findByIsOursTrue();
+	}
+
 }
