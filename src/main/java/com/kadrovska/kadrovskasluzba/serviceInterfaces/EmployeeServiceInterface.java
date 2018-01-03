@@ -15,5 +15,5 @@ public interface EmployeeServiceInterface {
 
 	Employee save(Employee e);
 	
-	Page<Employee> findActiveEmployees(PageRequest pageRequest);
+	Page<Employee> findActiveEmployees(PageRequest pageRequest, String searchTerm);
 }

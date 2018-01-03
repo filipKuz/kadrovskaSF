@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,9 +75,20 @@ public class EmployeeController {
 	
 	@GetMapping(value="activeEmployees")
 	public ResponseEntity<List<EmployeeDTO>> getActiveEmployees(@RequestParam("page") int page,
-																@RequestParam("size") int size) {
-
-		Page<Employee> employees = employeeService.findActiveEmployees(new PageRequest(page, size));
+																@RequestParam("size") int size,
+																@RequestParam("searchTerm") String searchTerm,
+																@RequestParam("sortTerm") String sortTerm,
+																@RequestParam("sortDirection") String sortDir) {
+		
+		Sort sort = new Sort("employeeId");
+		
+		if(sortDir.equals("ASC")) {
+			sort = new Sort(Sort.Direction.ASC, sortTerm);
+		}else if(sortDir.equals("DESC")) {
+			sort = new Sort(Sort.Direction.DESC, sortTerm);
+		}
+		Page<Employee> employees = employeeService.findActiveEmployees(new PageRequest(page, size, sort), searchTerm);
+		System.out.println(searchTerm);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("totalPages", Integer.toString(employees.getTotalPages()));
 		headers.add("access-control-expose-headers", "totalPages");
@@ -158,7 +170,7 @@ public class EmployeeController {
 		
 		employeeServiceInterface.save(e);
 		
-		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(e), HttpStatus.OK);
+		return new ResponseEntity<String>("Success", HttpStatus.OK);
 	};
 	
 	
