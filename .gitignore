@@ -17,7 +17,6 @@
 *.zip
 *.tar.gz
 *.rar
-*.properties
 *.MF
 \target\classes\META-INF\
 
@@ -28,3 +27,4 @@
 *.idea
 \.idea
 
+/target/

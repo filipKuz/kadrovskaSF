@@ -9,12 +9,13 @@ public class CompanyDTO {
 	private String email;
 	private String phoneNumber;
 	private Long cityId;
+	private Boolean isOurs;
 
 	public CompanyDTO() {
 	}
 
 	public CompanyDTO(Long companyId, String name, Long vat, String address, String email, String phoneNumber,
-			Long cityId) {
+			Long cityId, Boolean isOurs) {
 		this.companyId = companyId;
 		this.name = name;
 		this.vat = vat;
@@ -22,6 +23,17 @@ public class CompanyDTO {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.cityId = cityId;
+		this.isOurs = isOurs;
+	}
+
+	
+	
+	public Boolean getIsOurs() {
+		return isOurs;
+	}
+
+	public void setIsOurs(Boolean isOurs) {
+		this.isOurs = isOurs;
 	}
 
 	public Long getCompanyId() {

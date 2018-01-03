@@ -20,7 +20,7 @@ import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeProfessionalQuali
 public class EmployeeProfessionalQualificationController {
 
 	@Autowired
-	private EmployeeProfessionalQualificationServiceInterface epqsi;
+	private EmployeeProfessionalQualificationServiceInterface epqService;
 
 	@Autowired
 	private EpqtoEpqDTO toEmployeeProfQualDTO;
@@ -30,13 +30,14 @@ public class EmployeeProfessionalQualificationController {
 
 	@GetMapping
 	public ResponseEntity<List<EmployeeProfessionalQualificationDTO>> getEpqs() {
-		return new ResponseEntity<>(toEmployeeProfQualDTO.convert(epqsi.findAll()), HttpStatus.OK);
-	}
-	
-	@GetMapping(value = "findByEmployee/{employeeId}")
-	public ResponseEntity<List<EmployeeProfessionalQualificationDTO>> getEpqByEmployeeId(@PathVariable("employeeId") Long employeeId) {
-		
-		return new ResponseEntity<>((toEmployeeProfQualDTO.convert(epqsi.findByEmployeeId(employeeId))), HttpStatus.OK);
+		return new ResponseEntity<>(toEmployeeProfQualDTO.convert(epqService.findAll()), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "findByEmployee/{employeeId}")
+	public ResponseEntity<List<EmployeeProfessionalQualificationDTO>> getEpqByEmployeeId(
+			@PathVariable("employeeId") Long employeeId) {
+
+		return new ResponseEntity<>((toEmployeeProfQualDTO.convert(epqService.findByEmployeeId(employeeId))),
+				HttpStatus.OK);
+	}
 }

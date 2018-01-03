@@ -14,15 +14,15 @@ public class NonworkingDay {
 	@GeneratedValue
 	private Long nonWorkingDayId;
 
-	@Column(nullable = false)
-	private String description;
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
+	private String nonworkingDayDescription;
 
 	@Column(nullable = false)
-	private Date date;
+	private Date nonworkingDayDate;
 
-	public NonworkingDay(String description, Date date) {
-		this.description = description;
-		this.date = date;
+	
+
+	public NonworkingDay() {
 	}
 
 	public Long getNonWorkingDayId() {
@@ -33,19 +33,21 @@ public class NonworkingDay {
 		this.nonWorkingDayId = nonWorkingDayId;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getNonworkingDayDescription() {
+		return nonworkingDayDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setNonworkingDayDescription(String nonworkingDayDescription) {
+		this.nonworkingDayDescription = nonworkingDayDescription;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getNonworkingDayDate() {
+		return nonworkingDayDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setNonworkingDayDate(Date nonworkingDayDate) {
+		this.nonworkingDayDate = nonworkingDayDate;
 	}
+
+	
 }

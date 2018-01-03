@@ -1,10 +1,12 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import com.kadrovska.kadrovskasluzba.dto.CityDTO;
 import com.kadrovska.kadrovskasluzba.model.City;
 
+@Component
 public class CityDTOToCity implements Converter<CityDTO, City> {
 
 	@Override

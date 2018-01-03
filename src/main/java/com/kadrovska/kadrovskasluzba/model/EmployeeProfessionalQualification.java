@@ -21,18 +21,18 @@ public class EmployeeProfessionalQualification {
 	@Column(nullable = false)
 	private Date dateOfGraduation;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String educationalInstitution;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String profession;
-
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pQId")
+	@JoinColumn(name = "pQId", nullable=false)
 	private ProfessionalQualification professionalQualification;
-
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employeeId")
+	@JoinColumn(name = "employeeId", nullable=false)
 	private Employee employee;
 
 	public EmployeeProfessionalQualification() {

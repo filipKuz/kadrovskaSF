@@ -13,4 +13,9 @@ public interface AnnualHolidayRegulationServiceInterface {
 	AnnualHolidayRegulation save(AnnualHolidayRegulation annualHolidayRegulation);
 
 	void delete(Long id);
+	
+	List<AnnualHolidayRegulation> findByBusinessYear(Integer year);
+	
+	AnnualHolidayRegulation findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear);
+	
 }

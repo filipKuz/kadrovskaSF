@@ -1,5 +1,8 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +23,7 @@ public class CompanyToCompanyDTO implements Converter<Company, CompanyDTO> {
 		companyDTO.setEmail(company.getEmail());
 		companyDTO.setPhoneNumber(company.getPhoneNumber());
 		companyDTO.setVat(company.getVat());
+		companyDTO.setIsOurs(company.getIsOurs());
 
 		City city = company.getCity();
 		if (city != null) {
@@ -27,5 +31,15 @@ public class CompanyToCompanyDTO implements Converter<Company, CompanyDTO> {
 		}
 
 		return companyDTO;
+	}
+
+	public List<CompanyDTO> convert(List<Company> companies) {
+		List<CompanyDTO> retValue = new ArrayList<>();
+
+		for (Company company : companies) {
+			retValue.add(convert(company));
+		}
+
+		return retValue;
 	}
 }

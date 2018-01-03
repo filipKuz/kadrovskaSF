@@ -1,6 +1,7 @@
 package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,8 @@ public class WorkHistory {
 	@GeneratedValue
 	private Long workHistoryId;
 
-	private String previousCompany;
+	@Column(columnDefinition="VARCHAR(30)")
+	private String companyName;
 
 	@Column(nullable = false)
 	private Date startDate;
@@ -43,12 +45,12 @@ public class WorkHistory {
 		this.workHistoryId = workHistoryId;
 	}
 
-	public String getPreviousCompany() {
-		return previousCompany;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setPreviousCompany(String previousCompany) {
-		this.previousCompany = previousCompany;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public Date getStartDate() {
@@ -82,4 +84,18 @@ public class WorkHistory {
 	public void setWorkPlace(WorkPlace workPlace) {
 		this.workPlace = workPlace;
 	}
+	
+	public Integer getNumOfWorkingDays(){
+		Calendar currenttime = Calendar.getInstance();
+	    Date today = new Date((currenttime.getTime()).getTime());
+	    Date strDate = this.getStartDate();
+	    Date endDate = this.getEndDate();
+		if(this.getEndDate()==null){
+			endDate = today;
+		}
+
+		System.out.println("Broj radnih dana na jednom radnom mjestu: "+  (int) (( endDate.getTime() - strDate.getTime())/ 86400000 ));
+		return (int) ((endDate.getTime() - strDate.getTime())/ 86400000 );
+	}
+
 }

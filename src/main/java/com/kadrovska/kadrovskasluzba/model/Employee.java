@@ -1,6 +1,7 @@
 package com.kadrovska.kadrovskasluzba.model;
 
 import java.sql.Date;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,28 +21,31 @@ public class Employee {
 	@GeneratedValue
 	private Long employeeId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String parentName;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String madenName;
 
 	@Column(nullable = false)
 	private Date birthDate;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(6)")
 	private String sex;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String address;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String email;
 
+	@Column(columnDefinition="VARCHAR(15)")
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -61,7 +65,7 @@ public class Employee {
 	private Set<WorkHistory> workingHistory = new HashSet<>();
 
 	@ManyToOne
-	@JoinColumn(name = "cityId")
+	@JoinColumn(name = "cityId", nullable=false)
 	private City city;
 
 	public Employee() {
@@ -201,5 +205,40 @@ public class Employee {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	public Integer getNumOfAdditionalVacationDays(){
+		Integer numOfWorkingDays = 0;
+		Integer NumOfAdditionalVacationDays = -1;
+		
+		for (WorkHistory wh: this.getWorkingHistory()){
+			numOfWorkingDays += wh.getNumOfWorkingDays();
+		}
+		
+		System.out.println("Ukupan broj radnih dana: " + numOfWorkingDays);
+		
+		for(int i = 0; i<= numOfWorkingDays; i += 365*5){
+			NumOfAdditionalVacationDays +=1;
+		}
+		return NumOfAdditionalVacationDays;
+	
+	}
+	
+	public WorkPlace getCurrentWorkPlace(){
+		for (WorkHistory wh : this.workingHistory){
+			if (wh.getEndDate()==null && !this.workingHistory.isEmpty()){
+				return wh.getWorkPlace();
+			}
+		}		
+		return null;
+	}
+
+	public Boolean thisYearAHR(){
+		for (AnnualHolidayRegulation ahr: this.getAnnualHolidayRegulations()){
+			if(ahr.getBusinessYear() == Year.now().getValue() ){
+				return true;
+			}
+		}
+		return false;
 	}
 }

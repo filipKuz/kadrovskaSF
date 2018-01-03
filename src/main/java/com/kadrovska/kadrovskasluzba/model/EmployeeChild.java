@@ -17,16 +17,16 @@ public class EmployeeChild {
 	@GeneratedValue
 	private Long employeeChildId;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, columnDefinition="VARCHAR(30)")
 	private String name;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, columnDefinition="VARCHAR(30)")
 	private String lastName;
 	
 	@Column(nullable=false)
 	private Date birthDate;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, columnDefinition="VARCHAR(6)")
 	private String sex;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

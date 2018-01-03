@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.Employee;
@@ -31,7 +33,11 @@ public class EmployeeService implements EmployeeServiceInterface{
 	public Employee save(Employee e) {
 		return employeeRepo.save(e);
 	}
-	
-	
+
+	@Override
+	public Page<Employee> findActiveEmployees(PageRequest pageRequest, String searchTerm) {
+		return employeeRepo.findActiveEmployees(pageRequest, searchTerm);
+	}
+
 
 }

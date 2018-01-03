@@ -1,5 +1,6 @@
 package com.kadrovska.kadrovskasluzba.model;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class AnnualHolidayRegulation {
@@ -75,4 +77,6 @@ public class AnnualHolidayRegulation {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+	
+
 }

@@ -19,20 +19,26 @@ public class Company {
 	@GeneratedValue
 	private Long companyId;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String name;
 
 	@Column(nullable = false)
 	private Long vat;
-
+	
+	@Column(columnDefinition="VARCHAR(30)")
 	private String address;
 
+	@Column(columnDefinition="VARCHAR(30)")
 	private String email;
+	
+	@Column (nullable=false, columnDefinition="tinyint(1) default 0")
+	private Boolean isOurs;
 
+	@Column(columnDefinition="VARCHAR(15)")
 	private String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cityId")
+	@JoinColumn(name = "cityId", nullable=false)
 	private City city;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
@@ -104,4 +110,14 @@ public class Company {
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
+
+	public Boolean getIsOurs() {
+		return isOurs;
+	}
+
+	public void setIsOurs(Boolean isOurs) {
+		this.isOurs = isOurs;
+	}
+	
+	
 }
