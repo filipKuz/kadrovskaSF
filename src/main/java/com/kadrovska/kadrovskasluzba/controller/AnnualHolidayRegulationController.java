@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class AnnualHolidayRegulationController {
 
 	@Autowired
 	private AHRtoAHRDTO toAhrDTO;
-
+	
 	@Autowired
 	private AHRDTOtoAHR toAHR;
 
@@ -39,10 +40,18 @@ public class AnnualHolidayRegulationController {
 	@Autowired
 	private EmployeeServiceInterface employeeService;
 
+	Integer thisYear = Year.now().getValue();
+	
 	@GetMapping
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> getAnnualHolidayRegulations() {
 
-		return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findByBusinessYear(Year.now().getValue())), HttpStatus.OK);
+		return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findByBusinessYear(thisYear)), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "findByEmployee/{employeeId}")
+	public ResponseEntity<AnnualHolidayRegulationDTO> getAHRByEmployeeId(
+			@PathVariable("employeeId") Long employeeId) {
+			return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findByEmployeeEmployeeIdAndBusinessYear(employeeId,thisYear)), HttpStatus.OK);
 	}
 
 	@PostMapping(consumes = "application/json")
@@ -57,9 +66,8 @@ public class AnnualHolidayRegulationController {
 	@PostMapping(value = "createAnnualHolidayRegulations")
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> createAnnualHolidayRegulations() {
 		
-		//Page<Employee> employeesPage = employeeService.findActiveEmployees(new PageRequest(page, size));
-		//List<Employee> employees = employeesPage.getContent();
-		//ovu listu sam ti dodao samo da ne puca, izbrisi je posle
+		/*Page<Employee> employeesPage = employeeService.findActiveEmployees(new PageRequest(0, 100));
+		List<Employee> employees = employeesPage.getContent();*/
 		List<Employee> employees = new ArrayList<>();
 		List<AnnualHolidayRegulationDTO> annualHolidayRegulationsDTO = new ArrayList<AnnualHolidayRegulationDTO>();
 		for (Employee e : employees) {
