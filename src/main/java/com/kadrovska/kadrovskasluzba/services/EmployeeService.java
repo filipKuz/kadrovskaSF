@@ -39,5 +39,9 @@ public class EmployeeService implements EmployeeServiceInterface{
 		return employeeRepo.findActiveEmployees(pageRequest, searchTerm);
 	}
 
-
+	@Override
+	public List<Employee> findActiveEmployees() {
+		return employeeRepo.findActiveEmployees();
+	}
+	
 }
