@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,11 @@ public class WorkPlaceController {
 		return new ResponseEntity<>(workPlaceToWorkPlaceDTO.convert(workPlaceService.findAll()), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<WorkPlaceDTO> getWorkPlace(@PathVariable long id) {
+		return new ResponseEntity<>(workPlaceToWorkPlaceDTO.convert(workPlaceService.findOne(id)), HttpStatus.OK);
+	}
+	
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<WorkPlaceDTO> saveWorkPlace(@RequestBody WorkPlaceDTO workPlaceDTO) {
 		System.out.println(workPlaceDTO);

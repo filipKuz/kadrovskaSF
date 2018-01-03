@@ -232,7 +232,7 @@ public class Employee {
 		}		
 		return null;
 	}
-	
+
 	public Boolean thisYearAHR(){
 		for (AnnualHolidayRegulation ahr: this.getAnnualHolidayRegulations()){
 			if(ahr.getBusinessYear() == Year.now().getValue() ){

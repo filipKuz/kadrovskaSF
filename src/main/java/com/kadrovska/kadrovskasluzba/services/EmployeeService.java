@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.Employee;
@@ -33,10 +35,9 @@ public class EmployeeService implements EmployeeServiceInterface{
 	}
 
 	@Override
-	public List<Employee> findActiveEmployees() {
-		return employeeRepo.findActiveEmployees();
+	public Page<Employee> findActiveEmployees(PageRequest pageRequest) {
+		return employeeRepo.findActiveEmployees(pageRequest);
 	}
-	
-	
+
 
 }

@@ -13,4 +13,6 @@ public interface CompanyServiceInterface {
 	Company save(Company city);
 
 	void delete(Long id);
+	
+	Company findByIsOursTrue();
 }

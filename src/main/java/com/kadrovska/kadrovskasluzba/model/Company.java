@@ -30,6 +30,9 @@ public class Company {
 
 	@Column(columnDefinition="VARCHAR(30)")
 	private String email;
+	
+	@Column (nullable=false, columnDefinition="tinyint(1) default 0")
+	private Boolean isOurs;
 
 	@Column(columnDefinition="VARCHAR(15)")
 	private String phoneNumber;
@@ -107,4 +110,14 @@ public class Company {
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
+
+	public Boolean getIsOurs() {
+		return isOurs;
+	}
+
+	public void setIsOurs(Boolean isOurs) {
+		this.isOurs = isOurs;
+	}
+	
+	
 }

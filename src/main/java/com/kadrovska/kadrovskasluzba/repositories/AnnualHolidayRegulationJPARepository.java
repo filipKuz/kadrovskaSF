@@ -9,5 +9,8 @@ import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
 public interface AnnualHolidayRegulationJPARepository extends JpaRepository<AnnualHolidayRegulation,Long> {
 	
 	List<AnnualHolidayRegulation> findByBusinessYear(Integer year);
+	
+	AnnualHolidayRegulation findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear);
+
 
 }

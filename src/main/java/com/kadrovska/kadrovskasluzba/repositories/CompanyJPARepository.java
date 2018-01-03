@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.kadrovska.kadrovskasluzba.model.Company;
 
 public interface CompanyJPARepository extends JpaRepository<Company, Long> {
-
+	
+	
+	Company findByIsOursTrue();
 }

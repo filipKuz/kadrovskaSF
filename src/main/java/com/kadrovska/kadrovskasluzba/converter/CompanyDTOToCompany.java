@@ -25,6 +25,7 @@ public class CompanyDTOToCompany implements Converter<CompanyDTO, Company> {
 		company.setEmail(companyDTO.getEmail());
 		company.setPhoneNumber(companyDTO.getPhoneNumber());
 		company.setVat(companyDTO.getVat());
+		company.setIsOurs(companyDTO.getIsOurs());
 
 		City city = cityService.findOne(companyDTO.getCityId());
 		if (city != null) {
