@@ -5,14 +5,16 @@ public class ProfessionalQualificationDTO {
 	private Long professionalQualificationId;
 	private String name;
 	private String qualificationDegree;
-
+	private Boolean isActive;
+	
 	public ProfessionalQualificationDTO() {
 	}
 
-	public ProfessionalQualificationDTO(Long professionalQualificationId, String name, String qualificationDegree) {
+	public ProfessionalQualificationDTO(Long professionalQualificationId, String name, String qualificationDegree, Boolean isActive) {
 		this.professionalQualificationId = professionalQualificationId;
 		this.name = name;
 		this.qualificationDegree = qualificationDegree;
+		this.isActive = isActive;
 	}
 
 	public Long getProfessionalQualificationId() {
@@ -38,4 +40,14 @@ public class ProfessionalQualificationDTO {
 	public void setQualificationDegree(String qualificationDegree) {
 		this.qualificationDegree = qualificationDegree;
 	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+	
+	
 }

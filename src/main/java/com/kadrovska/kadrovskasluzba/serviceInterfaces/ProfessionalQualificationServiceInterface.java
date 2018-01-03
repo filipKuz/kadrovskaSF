@@ -9,5 +9,6 @@ public interface ProfessionalQualificationServiceInterface {
 	ProfessionalQualification findOne(Long id);
 	
 	List<ProfessionalQualification> findAll();
-
+	
+	List<ProfessionalQualification> findByActiveTrue();
 }

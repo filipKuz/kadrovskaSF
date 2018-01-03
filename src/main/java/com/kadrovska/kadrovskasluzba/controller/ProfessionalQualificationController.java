@@ -26,6 +26,6 @@ public class ProfessionalQualificationController {
 	@GetMapping
 	public ResponseEntity<List<ProfessionalQualificationDTO>> getAllPQs() {
 
-		return new ResponseEntity<>(toPQDTO.convert(pqService.findAll()), HttpStatus.OK);
+		return new ResponseEntity<>(toPQDTO.convert(pqService.findByActiveTrue()), HttpStatus.OK);
 	}
 }

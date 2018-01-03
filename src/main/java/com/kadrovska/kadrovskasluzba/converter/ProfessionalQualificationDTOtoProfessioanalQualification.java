@@ -18,6 +18,7 @@ public class ProfessionalQualificationDTOtoProfessioanalQualification
 		professionalQualification.setID(professionalQualificationDTO.getProfessionalQualificationId());
 		professionalQualification.setName(professionalQualificationDTO.getName());
 		professionalQualification.setQualificationDegree(professionalQualificationDTO.getQualificationDegree());
+		professionalQualification.setActive(professionalQualificationDTO.getIsActive());
 
 		return professionalQualification;
 	}

@@ -28,4 +28,9 @@ public class ProfessionalQualificationService implements ProfessionalQualificati
 		return pQrepo.findAll();
 	}
 
+	@Override
+	public List<ProfessionalQualification> findByActiveTrue() {
+		return pQrepo.findByActiveTrue();
+	}
+
 }

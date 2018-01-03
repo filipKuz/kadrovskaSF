@@ -21,6 +21,7 @@ public class ProfessionalQualificationtoProfessioanalQualificationDTO
 		pqDTO.setProfessionalQualificationId(professionalQualification.getID());
 		pqDTO.setName(professionalQualification.getName());
 		pqDTO.setQualificationDegree(professionalQualification.getQualificationDegree());
+		pqDTO.setIsActive(professionalQualification.getActive());
 
 		return pqDTO;
 	}

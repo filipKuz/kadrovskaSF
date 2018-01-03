@@ -22,6 +22,9 @@ public class ProfessionalQualification {
 
 	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String qualificationDegree;
+	
+	@Column (nullable=false, columnDefinition="tinyint(1) default 1")
+	private Boolean active;
 
 	@Column(nullable = false)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professionalQualification")
@@ -69,6 +72,16 @@ public class ProfessionalQualification {
 	public void setEmployeesPQ(Set<EmployeeProfessionalQualification> employeesPQ) {
 		this.employeesPQ = employeesPQ;
 	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	
+	
 	
 	
 }
