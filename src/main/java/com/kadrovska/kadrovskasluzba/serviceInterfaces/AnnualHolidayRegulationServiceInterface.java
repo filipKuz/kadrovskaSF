@@ -16,6 +16,6 @@ public interface AnnualHolidayRegulationServiceInterface {
 	
 	List<AnnualHolidayRegulation> findByBusinessYear(Integer year);
 	
-	AnnualHolidayRegulation findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear);
+	List<AnnualHolidayRegulation> findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear);
 	
 }

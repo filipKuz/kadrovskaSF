@@ -45,7 +45,7 @@ public class AnnualHolidayRegulationService implements AnnualHolidayRegulationSe
 	}
 	
 	@Override
-	public AnnualHolidayRegulation findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear) {
+	public List<AnnualHolidayRegulation> findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear) {
 		
 		return annualHolidayRegSerJPARep.findByEmployeeEmployeeIdAndBusinessYear(id, businessYear);
 	}

@@ -10,7 +10,7 @@ public interface AnnualHolidayRegulationJPARepository extends JpaRepository<Annu
 	
 	List<AnnualHolidayRegulation> findByBusinessYear(Integer year);
 	
-	AnnualHolidayRegulation findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear);
+	List<AnnualHolidayRegulation> findByEmployeeEmployeeIdAndBusinessYear(Long id, Integer businessYear);
 
 
 }
