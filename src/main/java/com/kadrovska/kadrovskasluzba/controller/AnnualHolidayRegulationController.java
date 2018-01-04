@@ -49,9 +49,12 @@ public class AnnualHolidayRegulationController {
 	}
 	
 	@GetMapping(value = "findByEmployee/{employeeId}")
-	public ResponseEntity<AnnualHolidayRegulationDTO> getAHRByEmployeeId(
+	public ResponseEntity <List <AnnualHolidayRegulationDTO>> getAHRByEmployeeId(
 			@PathVariable("employeeId") Long employeeId) {
-			return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findByEmployeeEmployeeIdAndBusinessYear(employeeId,thisYear)), HttpStatus.OK);
+			
+		return new ResponseEntity<>((toAhrDTO.convert(annualHolidayRegulationService.findByEmployeeEmployeeIdAndBusinessYear(employeeId, thisYear))),
+				HttpStatus.OK);
+			
 	}
 
 	@PostMapping(consumes = "application/json")
