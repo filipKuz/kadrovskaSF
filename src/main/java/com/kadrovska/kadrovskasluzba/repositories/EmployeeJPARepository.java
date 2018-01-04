@@ -1,5 +1,7 @@
 package com.kadrovska.kadrovskasluzba.repositories;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +19,7 @@ public interface EmployeeJPARepository extends JpaRepository<Employee, Long> {
 			+ " or LOWER(e.birthDate) like (CONCAT( '%', LOWER(:searchTerm), '%')))")
 	Page<Employee> findActiveEmployees(Pageable pageable, @Param("searchTerm") String searchTerm);
 	
+	@Query("select e from Employee e, WorkHistory wh" 
+			+ " where e.employeeId = wh.employee and wh.endDate is NULL")
+	List<Employee> findActiveEmployees();
 }

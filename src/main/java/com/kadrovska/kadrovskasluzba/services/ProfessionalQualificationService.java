@@ -33,4 +33,9 @@ public class ProfessionalQualificationService implements ProfessionalQualificati
 		return pQrepo.findByActiveTrue();
 	}
 
+	@Override
+	public ProfessionalQualification save(ProfessionalQualification pq) {
+		return pQrepo.save(pq);
+	}
+
 }

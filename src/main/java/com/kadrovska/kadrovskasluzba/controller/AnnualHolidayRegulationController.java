@@ -66,9 +66,7 @@ public class AnnualHolidayRegulationController {
 	@PostMapping(value = "createAnnualHolidayRegulations")
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> createAnnualHolidayRegulations() {
 		
-		/*Page<Employee> employeesPage = employeeService.findActiveEmployees(new PageRequest(0, 100));
-		List<Employee> employees = employeesPage.getContent();*/
-		List<Employee> employees = new ArrayList<>();
+		List<Employee> employees = employeeService.findActiveEmployees();
 		List<AnnualHolidayRegulationDTO> annualHolidayRegulationsDTO = new ArrayList<AnnualHolidayRegulationDTO>();
 		for (Employee e : employees) {
 			if(!e.thisYearAHR()){

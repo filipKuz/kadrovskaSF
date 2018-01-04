@@ -11,4 +11,6 @@ public interface ProfessionalQualificationServiceInterface {
 	List<ProfessionalQualification> findAll();
 	
 	List<ProfessionalQualification> findByActiveTrue();
+	
+	ProfessionalQualification save(ProfessionalQualification pq);
 }
