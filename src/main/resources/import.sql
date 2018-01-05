@@ -22,6 +22,8 @@ INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date
 INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Lewandowski', 'Robert', 'Mirko', '', '1996-8-20', 'M', 'Address 24',1,1);
 INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Muller', 'Thomas', 'Milos', '', '1980-8-20', 'M', 'Address 23',1,2);
 INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Suarez', 'Luis', 'Janko', '', '1982-8-20', 'M', 'Address 13',1,2);
+INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date, sex, address,company_id,city_id) VALUES ('Suarez', 'Denis', 'Addd', '', '1982-8-20', 'M', 'Address 13',1,2);
+
 
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2018,30,1);
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2018,27,2);

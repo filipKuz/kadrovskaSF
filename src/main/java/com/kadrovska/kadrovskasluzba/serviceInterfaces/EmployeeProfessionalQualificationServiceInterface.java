@@ -13,4 +13,6 @@ public interface EmployeeProfessionalQualificationServiceInterface {
 	EmployeeProfessionalQualification save(EmployeeProfessionalQualification e);
 	
 	List<EmployeeProfessionalQualification> findByEmployeeId(Long id);
+	
+	void delete(EmployeeProfessionalQualification epq);  
 }

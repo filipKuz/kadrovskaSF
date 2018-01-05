@@ -95,6 +95,28 @@ public class EmployeeController {
 		return new ResponseEntity<>(toEmployeeDTO.convert(employees.getContent()), headers, HttpStatus.OK);
 	}
 	
+	@GetMapping(value="allEmployees")
+	public ResponseEntity<List<EmployeeDTO>> getAllEmployees(@RequestParam("page") int page,
+																@RequestParam("size") int size,
+																@RequestParam("searchTerm") String searchTerm,
+																@RequestParam("sortTerm") String sortTerm,
+																@RequestParam("sortDirection") String sortDir) {
+		
+		Sort sort = new Sort("employeeId");
+		
+		if(sortDir.equals("ASC")) {
+			sort = new Sort(Sort.Direction.ASC, sortTerm);
+		}else if(sortDir.equals("DESC")) {
+			sort = new Sort(Sort.Direction.DESC, sortTerm);
+		}
+		Page<Employee> employees = employeeService.findAllEmployees(new PageRequest(page, size, sort), searchTerm);
+		System.out.println(searchTerm);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("totalPages", Integer.toString(employees.getTotalPages()));
+		headers.add("access-control-expose-headers", "totalPages");
+		return new ResponseEntity<>(toEmployeeDTO.convert(employees.getContent()), headers, HttpStatus.OK);
+	}
+	
 	@GetMapping(value="{id}")
 	public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("id") Long id) {
 		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(employeeServiceInterface.findOne(id)), HttpStatus.OK);

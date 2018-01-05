@@ -38,6 +38,11 @@ public class EmployeeProfessionalQualificationService implements EmployeeProfess
 		
 		return employeePQRepo.findByEmployeeEmployeeId(id);
 	}
+
+	@Override
+	public void delete(EmployeeProfessionalQualification epq) {
+		employeePQRepo.delete(epq);
+	}
 	
 	
 }

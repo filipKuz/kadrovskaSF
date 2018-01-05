@@ -72,4 +72,13 @@ public class EmployeeProfessionalQualificationDTO {
 	public void setProfession(String profession) {
 		this.profession = profession;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeProfessionalQualificationDTO [ePQId=" + ePQId + ", dateOfGraduation=" + dateOfGraduation
+				+ ", educationalInstitution=" + educationalInstitution + ", profession=" + profession
+				+ ", professionalQId=" + professionalQId + ", employeeId=" + employeeId + "]";
+	}
+	
+	
 }

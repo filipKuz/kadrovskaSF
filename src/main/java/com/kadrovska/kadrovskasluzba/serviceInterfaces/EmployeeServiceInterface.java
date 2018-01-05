@@ -17,6 +17,8 @@ public interface EmployeeServiceInterface {
 	
 	Page<Employee> findActiveEmployees(PageRequest pageRequest, String searchTerm);
 	
+	Page<Employee> findAllEmployees(PageRequest pageRequest, String searchTerm);
+	
 	List<Employee> findActiveEmployees();
 	
 	
