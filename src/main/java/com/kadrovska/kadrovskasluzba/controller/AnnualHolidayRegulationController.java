@@ -57,7 +57,7 @@ public class AnnualHolidayRegulationController {
 			
 	}
 
-	@PostMapping(consumes = "application/json")
+	@PostMapping
 	public ResponseEntity<AnnualHolidayRegulationDTO> saveAnnualHolidayRegulation(
 			@RequestBody AnnualHolidayRegulationDTO annualHolidayRegulationDTO) {
 		System.out.println(annualHolidayRegulationDTO);
