@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
 import com.kadrovska.kadrovskasluzba.model.NonworkingDay;
 import com.kadrovska.kadrovskasluzba.services.NonworkingDayServive;
 
@@ -27,6 +28,11 @@ public class NonworkingDayController {
 	@GetMapping
 	public ResponseEntity<List<NonworkingDay>> getNonworkingDays() {
 		return new ResponseEntity<>(nonworkingDayService.findAll(), HttpStatus.OK);
+	}
+	
+	@GetMapping(value="{id}")
+	public ResponseEntity<NonworkingDay> getNonworkingDayById(@PathVariable("id") Long id) {
+		return new ResponseEntity<NonworkingDay>(nonworkingDayService.findOne(id), HttpStatus.OK);
 	}
 	
 	

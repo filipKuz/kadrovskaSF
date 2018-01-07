@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kadrovska.kadrovskasluzba.converter.AHRDTOtoAHR;
 import com.kadrovska.kadrovskasluzba.converter.AHRtoAHRDTO;
 import com.kadrovska.kadrovskasluzba.dto.AnnualHolidayRegulationDTO;
+import com.kadrovska.kadrovskasluzba.dto.VacationRequestDTO;
 import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.AnnualHolidayRegulationServiceInterface;
@@ -48,6 +49,12 @@ public class AnnualHolidayRegulationController {
 		return new ResponseEntity<>(toAhrDTO.convert(annualHolidayRegulationService.findByBusinessYear(thisYear)), HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/findById/{id}")
+	public ResponseEntity<AnnualHolidayRegulationDTO> getById(
+			@PathVariable("id") Long id){
+		return new ResponseEntity<AnnualHolidayRegulationDTO>(toAhrDTO.convert(annualHolidayRegulationService.findOne(id)), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "findByEmployee/{employeeId}")
 	public ResponseEntity <List <AnnualHolidayRegulationDTO>> getAHRByEmployeeId(
 			@PathVariable("employeeId") Long employeeId) {
@@ -57,7 +64,7 @@ public class AnnualHolidayRegulationController {
 			
 	}
 
-	@PostMapping(consumes = "application/json")
+	@PostMapping
 	public ResponseEntity<AnnualHolidayRegulationDTO> saveAnnualHolidayRegulation(
 			@RequestBody AnnualHolidayRegulationDTO annualHolidayRegulationDTO) {
 		System.out.println(annualHolidayRegulationDTO);

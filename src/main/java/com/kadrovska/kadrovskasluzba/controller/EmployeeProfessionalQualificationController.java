@@ -89,7 +89,7 @@ public class EmployeeProfessionalQualificationController {
 	public ResponseEntity<?> editEpq(@RequestBody EmployeeProfessionalQualificationDTO epqDTO,
 									 @PathVariable("id") Long id) {
 		Employee e = employeeServiceInterface.findOne(epqDTO.getEmployeeId());
-		ProfessionalQualification pq = professionalServiceI.findOne(id);
+		ProfessionalQualification pq = professionalServiceI.findOne(epqDTO.getProfessionalQId().getProfessionalQualificationId());
 		EmployeeProfessionalQualification epq = epqService.findOne(id);
 		if (e==null || pq ==null || epq ==null) {
 			return new ResponseEntity<String> ("Bad parameters", HttpStatus.BAD_REQUEST);

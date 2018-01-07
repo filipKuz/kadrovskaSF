@@ -35,7 +35,9 @@ INSERT INTO employee_professional_qualification (date_of_graduation,educational_
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2009-05-05','FTN','Arhitekta',4,2);
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2009-05-05','FTN','Programer',4,3);
 
-INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(5,1,'2010-05-10','2010-06-10');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,1,'2017-12-30','2018-01-08');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,2,'2017-12-30','2018-01-08');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(5,1,'2018-01-10','2018-01-17');
 
 INSERT INTO work_history (company_name,start_date,end_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29','2010-05-10',1,1);
 INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',1,2);
@@ -48,3 +50,6 @@ INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VAL
 INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',5,1);
 
 INSERT INTO nonworking_day(nonworking_day_description, nonworking_day_date) VALUES('Nova godina', '2018-01-01')
+INSERT INTO nonworking_day(nonworking_day_description, nonworking_day_date) VALUES('Test', '2018-01-05')
+INSERT INTO nonworking_day(nonworking_day_description, nonworking_day_date) VALUES('Bozic', '2018-01-07')
+
