@@ -15,6 +15,8 @@ public interface NonworkingDayServiceInterface {
 	
 	void delete(Long id);
 	
+	void delete(NonworkingDay nwd);
+	
 	boolean isNonworking(Date date);
 	
 }

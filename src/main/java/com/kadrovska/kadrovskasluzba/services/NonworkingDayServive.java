@@ -34,6 +34,11 @@ public class NonworkingDayServive implements NonworkingDayServiceInterface {
 	public void delete(Long id) {
 		nonworkingDayRepo.delete(id);
 	}
+	
+	@Override
+	public void delete(NonworkingDay nwd) {
+		nonworkingDayRepo.delete(nwd);
+	}
 
 	@Override
 	public boolean isNonworking(Date date) {

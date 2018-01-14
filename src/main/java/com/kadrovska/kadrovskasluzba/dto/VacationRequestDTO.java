@@ -10,7 +10,7 @@ public class VacationRequestDTO {
 	private Integer numOfDays;
 	private Long annualHolidayRegulationId;
 
-	public VacationRequestDTO(Long vacationRequestId, Date startDate, Date endDate, Long employeeId, Integer numOfDays,
+	public VacationRequestDTO(Long vacationRequestId, Date startDate, Date endDate, Integer numOfDays,
 			Long annualHolidayRegulationId) {
 		this.vacationRequestId = vacationRequestId;
 		this.startDate = startDate;

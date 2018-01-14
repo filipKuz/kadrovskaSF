@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
+import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.model.NonworkingDay;
 import com.kadrovska.kadrovskasluzba.services.NonworkingDayServive;
 
@@ -43,10 +44,14 @@ public class NonworkingDayController {
 	}
 	
 	@DeleteMapping(value="{id}")
-	public ResponseEntity<?> deleteNonworkingDay(@PathVariable("id") Long id ){
-		nonworkingDayService.delete(id);
-		return new ResponseEntity<Void>(HttpStatus.OK);
-		
+	public ResponseEntity<String> deleteNonworkingDay(@PathVariable("id") Long id ){
+		NonworkingDay nwd = nonworkingDayService.findOne(id);
+		if (nwd == null) {
+			return new ResponseEntity<String> ("Bad parameters", HttpStatus.BAD_REQUEST);
+		}
+		nonworkingDayService.delete(nwd);
+		return 	new ResponseEntity<String> ("Success", HttpStatus.OK);
+	
 	}
 	
 	@PutMapping(value="{id}")

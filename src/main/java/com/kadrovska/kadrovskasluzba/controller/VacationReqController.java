@@ -75,11 +75,10 @@ public class VacationReqController {
 		return new ResponseEntity<String> ("Success", HttpStatus.OK);
 	}
 	
-	@PostMapping
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<?> createVReq(@RequestBody VacationRequestDTO vReqDTO) {
 		
-		System.out.println(vReqDTO);
-		AnnualHolidayRegulation ahr = ahrService.findOne(vReqDTO.getVacationRequestId());
+		AnnualHolidayRegulation ahr = ahrService.findOne(vReqDTO.getAnnualHolidayRegulationId());
 		if (ahr==null) {
 			return new ResponseEntity<String> ("Bad parameters", HttpStatus.BAD_REQUEST);
 		}
@@ -91,8 +90,8 @@ public class VacationReqController {
 		vReq.setEndDate(vacationReqService.generateEndDate(vReqDTO.getStartDate(), vReqDTO.getNumOfDays()));
 		ahr.setNumOfDays(ahr.getNumOfDays() - vReq.getNumOfDays());
 		if(ahr.getNumOfDays()>= 0){
-			vacationReqService.save(vReq);
 			ahrService.save(ahr);
+			vacationReqService.save(vReq);
 			return new ResponseEntity<VacationRequestDTO> (toVReqDTO.convert(vReq), HttpStatus.OK);
 		}
 		

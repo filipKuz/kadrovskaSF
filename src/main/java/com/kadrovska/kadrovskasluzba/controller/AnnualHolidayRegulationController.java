@@ -67,9 +67,7 @@ public class AnnualHolidayRegulationController {
 	@PostMapping
 	public ResponseEntity<AnnualHolidayRegulationDTO> saveAnnualHolidayRegulation(
 			@RequestBody AnnualHolidayRegulationDTO annualHolidayRegulationDTO) {
-		System.out.println(annualHolidayRegulationDTO);
 		AnnualHolidayRegulation a = annualHolidayRegulationService.save(toAHR.convert(annualHolidayRegulationDTO));
-		System.out.println(a);
 		return new ResponseEntity<>(toAhrDTO.convert(a), HttpStatus.OK);
 	}
 
@@ -88,11 +86,11 @@ public class AnnualHolidayRegulationController {
 					extraVacationDays = (int) e.getCurrentWorkPlace().getExtraVacationDays();
 				}
 				
-				System.out.println("Broj slobodnih dana zakosnskog minimuma: " + numOfMinimalDays);
-				System.out.println("Broj dodatnih slobodnih dana zbog staza: " + numOfAdditionalVacationDays);
-				System.out.println("Dodatni slobodni dani zbog ekstremnog radnog mesta: " + extraVacationDays);
+				//System.out.println("Broj slobodnih dana zakosnskog minimuma: " + numOfMinimalDays);
+				//System.out.println("Broj dodatnih slobodnih dana zbog staza: " + numOfAdditionalVacationDays);
+				//System.out.println("Dodatni slobodni dani zbog ekstremnog radnog mesta: " + extraVacationDays);
 				numOfDays += (numOfAdditionalVacationDays + numOfMinimalDays + extraVacationDays);
-				System.out.println("Ukupno slobodnih dana za ovu godinu " + numOfDays);
+				//System.out.println("Ukupno slobodnih dana za ovu godinu " + numOfDays);
 
 				AnnualHolidayRegulation a = new AnnualHolidayRegulation();
 				a.setBusinessYear(Year.now().getValue());
