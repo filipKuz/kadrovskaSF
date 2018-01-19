@@ -29,6 +29,11 @@ public class NonworkingDayController {
 		return new ResponseEntity<>(nonworkingDayService.findAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping(value="{id}")
+	public ResponseEntity<NonworkingDay> getNonworkingDayById(@PathVariable("id") Long id) {
+		return new ResponseEntity<NonworkingDay>(nonworkingDayService.findOne(id), HttpStatus.OK);
+	}
+	
 	
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<NonworkingDay> saveNonworkingDay(@RequestBody NonworkingDay newNonworkingDay) {
@@ -37,10 +42,14 @@ public class NonworkingDayController {
 	}
 	
 	@DeleteMapping(value="{id}")
-	public ResponseEntity<?> deleteNonworkingDay(@PathVariable("id") Long id ){
-		nonworkingDayService.delete(id);
-		return new ResponseEntity<Void>(HttpStatus.OK);
-		
+	public ResponseEntity<String> deleteNonworkingDay(@PathVariable("id") Long id ){
+		NonworkingDay nwd = nonworkingDayService.findOne(id);
+		if (nwd == null) {
+			return new ResponseEntity<String> ("Bad parameters", HttpStatus.BAD_REQUEST);
+		}
+		nonworkingDayService.delete(nwd);
+		return 	new ResponseEntity<String> ("Success", HttpStatus.OK);
+	
 	}
 	
 	@PutMapping(value="{id}")

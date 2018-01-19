@@ -3,16 +3,16 @@ package com.kadrovska.kadrovskasluzba.dto;
 public class CityDTO {
 
 	private Long cityId;
-	private Integer zipCode;
 	private String cityName;
+	private Integer zipCode;
 
 	public CityDTO() {
 	}
 
-	public CityDTO(Long cityId, Integer zipCode, String cityName) {
+	public CityDTO(Long cityId, String cityName, Integer zipCode) {
 		this.cityId = cityId;
-		this.zipCode = zipCode;
 		this.cityName = cityName;
+		this.zipCode = zipCode;
 	}
 
 	public Long getCityId() {
@@ -23,19 +23,19 @@ public class CityDTO {
 		this.cityId = cityId;
 	}
 
-	public Integer getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
-	}
-
 	public String getCityName() {
 		return cityName;
 	}
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+
+	public Integer getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(Integer zipCode) {
+		this.zipCode = zipCode;
 	}
 }

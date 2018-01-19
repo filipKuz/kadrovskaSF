@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
-import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.repositories.AnnualHolidayRegulationJPARepository;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.AnnualHolidayRegulationServiceInterface;
 

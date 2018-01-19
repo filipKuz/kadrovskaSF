@@ -52,39 +52,42 @@ public class EmployeeController {
 
 	@Autowired
 	private WorkHistoryDTOtoWorkHistory toWh;
-	
+
 	@Autowired
 	EmployeeServiceInterface employeeServiceInterface;
-	
+
 	@Autowired
 	CityServiceInterface cityServiceInterface;
-	
-	@Autowired 
+
+	@Autowired
 	WorkHistoryServiceInterface workHistoryServiceInterface;
-	
+
 	@Autowired
 	WorkPlaceServiceInterface workPlaceServiceInterface;
-	
+
 	@Autowired
 	CompanyServiceInterface companyServiceInterface;
-	
+
 	@GetMapping
 	public ResponseEntity<List<EmployeeDTO>> getEmployees() {
 		return new ResponseEntity<>(toEmployeeDTO.convert(employeeService.findAll()), HttpStatus.OK);
 	}
-	
-	@GetMapping(value="activeEmployees")
+
+	@GetMapping(value = "byCity/{cityId}")
+	public ResponseEntity<List<EmployeeDTO>> getEmployeesByCity(@PathVariable("cityId") long cityId) {
+		return new ResponseEntity<>(toEmployeeDTO.convert(employeeService.findByCityId(cityId)), HttpStatus.OK);
+	}
+
+	@GetMapping(value = "activeEmployees")
 	public ResponseEntity<List<EmployeeDTO>> getActiveEmployees(@RequestParam("page") int page,
-																@RequestParam("size") int size,
-																@RequestParam("searchTerm") String searchTerm,
-																@RequestParam("sortTerm") String sortTerm,
-																@RequestParam("sortDirection") String sortDir) {
-		
+			@RequestParam("size") int size, @RequestParam("searchTerm") String searchTerm,
+			@RequestParam("sortTerm") String sortTerm, @RequestParam("sortDirection") String sortDir) {
+
 		Sort sort = new Sort("employeeId");
-		
-		if(sortDir.equals("ASC")) {
+
+		if (sortDir.equals("ASC")) {
 			sort = new Sort(Sort.Direction.ASC, sortTerm);
-		}else if(sortDir.equals("DESC")) {
+		} else if (sortDir.equals("DESC")) {
 			sort = new Sort(Sort.Direction.DESC, sortTerm);
 		}
 		Page<Employee> employees = employeeService.findActiveEmployees(new PageRequest(page, size, sort), searchTerm);
@@ -94,19 +97,17 @@ public class EmployeeController {
 		headers.add("access-control-expose-headers", "totalPages");
 		return new ResponseEntity<>(toEmployeeDTO.convert(employees.getContent()), headers, HttpStatus.OK);
 	}
-	
-	@GetMapping(value="allEmployees")
+
+	@GetMapping(value = "allEmployees")
 	public ResponseEntity<List<EmployeeDTO>> getAllEmployees(@RequestParam("page") int page,
-																@RequestParam("size") int size,
-																@RequestParam("searchTerm") String searchTerm,
-																@RequestParam("sortTerm") String sortTerm,
-																@RequestParam("sortDirection") String sortDir) {
-		
+			@RequestParam("size") int size, @RequestParam("searchTerm") String searchTerm,
+			@RequestParam("sortTerm") String sortTerm, @RequestParam("sortDirection") String sortDir) {
+
 		Sort sort = new Sort("employeeId");
-		
-		if(sortDir.equals("ASC")) {
+
+		if (sortDir.equals("ASC")) {
 			sort = new Sort(Sort.Direction.ASC, sortTerm);
-		}else if(sortDir.equals("DESC")) {
+		} else if (sortDir.equals("DESC")) {
 			sort = new Sort(Sort.Direction.DESC, sortTerm);
 		}
 		Page<Employee> employees = employeeService.findAllEmployees(new PageRequest(page, size, sort), searchTerm);
@@ -116,32 +117,32 @@ public class EmployeeController {
 		headers.add("access-control-expose-headers", "totalPages");
 		return new ResponseEntity<>(toEmployeeDTO.convert(employees.getContent()), headers, HttpStatus.OK);
 	}
-	
-	@GetMapping(value="{id}")
+
+	@GetMapping(value = "{id}")
 	public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("id") Long id) {
-		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(employeeServiceInterface.findOne(id)), HttpStatus.OK);
+		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(employeeServiceInterface.findOne(id)),
+				HttpStatus.OK);
 	}
-	
 
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody Map<String, Object> data) {
 		Company com = companyServiceInterface.findByIsOursTrue();
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		EmployeeDTO ed = mapper.convertValue(data.get("Employee"), EmployeeDTO.class);
 		ed.setCompanyId(com.getId());
 		WorkPlace wp = workPlaceServiceInterface.findOne(Long.valueOf(data.get("workPlaceId").toString()));
 		WorkHistoryDTO whDTO = new WorkHistoryDTO();
 		System.out.println("1");
 		Employee employee = employeeService.save(toEmployee.convert(ed));
-		
+
 		whDTO.setEmployeeId(employee.getEmployeeId());
 		Calendar calendar = Calendar.getInstance();
 		Date currentDate = calendar.getTime();
 		whDTO.setStartDate(new java.sql.Date(currentDate.getTime()));
 		whDTO.setPreviousCompany(com.getName());
 		System.out.println("2");
-		//whDTO.setEndDate(new java.sql.Date(currentDate.getTime()));
+		// whDTO.setEndDate(new java.sql.Date(currentDate.getTime()));
 		whDTO.setWorkPlaceId(wp.getWorkPlaceId());
 		System.out.println(whDTO);
 		System.out.println(wp);
@@ -150,15 +151,15 @@ public class EmployeeController {
 		System.out.println(wh1);
 		return new ResponseEntity<>(toEmployeeDTO.convert(employee), HttpStatus.OK);
 	}
-	
-	@PutMapping(value="{id}") 
+
+	@PutMapping(value = "{id}")
 	public ResponseEntity<?> editEmployee(@RequestBody EmployeeDTO dto, @PathVariable("id") Long id) {
 		Employee e = employeeServiceInterface.findOne(id);
 		System.out.println(dto);
 		if (e == null) {
 			return new ResponseEntity<String>("Can't find employee with given id", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		e.setAddress(dto.getAddress());
 		e.setBirthDate(dto.getBirthDate());
 		e.setCity(cityServiceInterface.findOne(dto.getCityId()));
@@ -169,32 +170,30 @@ public class EmployeeController {
 		e.setParentName(dto.getParentName());
 		e.setPhoneNumber(dto.getPhoneNumber());
 		e.setSex(dto.getSex());
-		
+
 		employeeServiceInterface.save(e);
-		
+
 		return new ResponseEntity<EmployeeDTO>(toEmployeeDTO.convert(e), HttpStatus.OK);
 	};
-	
-	@PutMapping(value="delete/{id}") 
+
+	@PutMapping(value = "delete/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
 		Employee e = employeeServiceInterface.findOne(id);
 		if (e == null) {
 			return new ResponseEntity<String>("Can't find employee with given id", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Calendar calendar = Calendar.getInstance();
 		Date currentDate = calendar.getTime();
 		java.sql.Date date = new java.sql.Date(currentDate.getTime());
 		WorkHistory wh = workHistoryServiceInterface.findByEmployeeEmployeeIdAndEndDateIsNull(id);
-		if(wh != null) {
+		if (wh != null) {
 			wh.setEndDate(date);
 		}
-		
+
 		employeeServiceInterface.save(e);
-		
+
 		return new ResponseEntity<String>("Success", HttpStatus.OK);
 	};
-	
-	
-}
 
+}

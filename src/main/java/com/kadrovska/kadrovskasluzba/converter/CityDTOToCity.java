@@ -13,10 +13,16 @@ public class CityDTOToCity implements Converter<CityDTO, City> {
 	public City convert(CityDTO cityDTO) {
 		City city = new City();
 
+		System.out.println("OVO JE CITYDTO OBJECT");
+		System.out.println(cityDTO.getCityId() + " " + cityDTO.getCityName() + " " + cityDTO.getZipCode());
+		System.out.println(" ");
+
 		city.setID(cityDTO.getCityId());
 		city.setCityName(cityDTO.getCityName());
-		city.setZipCode(city.getZipCode());
+		city.setZipCode(cityDTO.getZipCode());
 
+		System.out.println("OVO JE CITY OBJECT");
+		System.out.println(city.getID() + " " + city.getCityName() + " " + city.getZipCode());
 		return city;
 	}
 }

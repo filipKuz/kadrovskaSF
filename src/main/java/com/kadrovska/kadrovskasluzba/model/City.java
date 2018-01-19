@@ -17,11 +17,11 @@ public class City {
 	@GeneratedValue
 	private Long cityId;
 
+	@Column(nullable = false, columnDefinition = "VARCHAR(30)")
+	private String cityName;
+
 	@Column(nullable = false)
 	private Integer zipCode;
-
-	@Column(nullable = false, columnDefinition="VARCHAR(30)")
-	private String cityName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
 	private Set<Employee> employees = new HashSet<>();
@@ -40,20 +40,20 @@ public class City {
 		cityId = iD;
 	}
 
-	public Integer getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
-	}
-
 	public String getCityName() {
 		return cityName;
 	}
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+
+	public Integer getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(Integer zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public Set<Employee> getEmployees() {
