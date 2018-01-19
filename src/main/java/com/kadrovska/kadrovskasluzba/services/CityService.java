@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.kadrovska.kadrovskasluzba.model.City;
@@ -36,5 +38,10 @@ public class CityService implements CityServiceInterface {
 	@Override
 	public void delete(Long id) {
 		cityRepo.delete(id);
+	}
+
+	@Override
+	public Page<City> findAll(PageRequest pageRequest, String searchTerm) {
+		return cityRepo.findAll(pageRequest, searchTerm);
 	}
 }

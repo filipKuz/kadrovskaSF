@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 import com.kadrovska.kadrovskasluzba.model.Employee;
 import com.kadrovska.kadrovskasluzba.repositories.EmployeeJPARepository;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
+
 @Transactional
 @Service
-public class EmployeeService implements EmployeeServiceInterface{
-	
+public class EmployeeService implements EmployeeServiceInterface {
+
 	@Autowired
 	private EmployeeJPARepository employeeRepo;
 
@@ -48,5 +49,10 @@ public class EmployeeService implements EmployeeServiceInterface{
 	public Page<Employee> findAllEmployees(PageRequest pageRequest, String searchTerm) {
 		return employeeRepo.findAllEmployees(pageRequest, searchTerm);
 	}
-	
+
+	@Override
+	public List<Employee> findByCityId(long cityId) {
+		return employeeRepo.findByCityId(cityId);
+	}
+
 }

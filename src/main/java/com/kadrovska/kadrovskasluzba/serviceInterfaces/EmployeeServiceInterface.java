@@ -14,12 +14,12 @@ public interface EmployeeServiceInterface {
 	List<Employee> findAll();
 
 	Employee save(Employee e);
-	
+
+	List<Employee> findByCityId(long cityId);
+
 	Page<Employee> findActiveEmployees(PageRequest pageRequest, String searchTerm);
-	
+
 	Page<Employee> findAllEmployees(PageRequest pageRequest, String searchTerm);
-	
+
 	List<Employee> findActiveEmployees();
-	
-	
 }

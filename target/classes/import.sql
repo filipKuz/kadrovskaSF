@@ -1,5 +1,9 @@
-INSERT INTO city (city_name, zip_code) VALUES('Prijedor',79101);
-INSERT INTO city (city_name, zip_code) VALUES('Los Angeles',33002);
+INSERT INTO city (city_name, zip_code) VALUES('Prijedor', 79101);
+INSERT INTO city (city_name, zip_code) VALUES('Los Angeles', 33002);
+INSERT INTO city (city_name, zip_code) VALUES('Novi Sad', 21000);
+INSERT INTO city (city_name, zip_code) VALUES('Beograd', 22000);
+INSERT INTO city (city_name, zip_code) VALUES('Kragujevac', 19200);
+
 
 INSERT INTO work_place (coefficient, name, extra_vacation_days) VALUES(1, 'Work place 1',2);
 INSERT INTO work_place (coefficient, name, extra_vacation_days) VALUES(2, 'Work place 2',3);

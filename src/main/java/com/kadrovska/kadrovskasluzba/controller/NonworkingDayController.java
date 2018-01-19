@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kadrovska.kadrovskasluzba.dto.EmployeeDTO;
-import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.model.NonworkingDay;
 import com.kadrovska.kadrovskasluzba.services.NonworkingDayServive;
 
