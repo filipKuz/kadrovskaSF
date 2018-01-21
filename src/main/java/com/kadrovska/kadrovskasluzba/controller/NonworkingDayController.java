@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +38,11 @@ public class NonworkingDayController {
 	
 	
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<NonworkingDay> saveNonworkingDay(@RequestBody NonworkingDay newNonworkingDay) {
+	public ResponseEntity<?> saveNonworkingDay(@Validated @RequestBody NonworkingDay newNonworkingDay, Errors errors) {
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		NonworkingDay nonworkingDay = nonworkingDayService.save(newNonworkingDay);
 		return new ResponseEntity<>(nonworkingDay, HttpStatus.CREATED);
 	}
@@ -53,17 +59,17 @@ public class NonworkingDayController {
 	}
 	
 	@PutMapping(value="{id}")
-	public ResponseEntity<?> editNonworkingDay(@RequestBody NonworkingDay nwd , @PathVariable("id") Long id){
+	public ResponseEntity<?> editNonworkingDay(@Validated @RequestBody NonworkingDay nwd ,Errors errors , @PathVariable("id") Long id){
 		NonworkingDay nwd2 = nonworkingDayService.findOne(id);
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
 		if (nwd2 == null){
 			return new ResponseEntity<String>("Can't find non-working day with given id", HttpStatus.BAD_REQUEST);
-		}
-		
+		}	
 		nwd2.setNonworkingDayDate(nwd.getNonworkingDayDate());
 		nwd2.setNonworkingDayDescription(nwd.getNonworkingDayDescription());
-		
 		nonworkingDayService.save(nwd2);
-		
 		return new ResponseEntity<NonworkingDay>(nwd2, HttpStatus.OK);
 	}
 }
