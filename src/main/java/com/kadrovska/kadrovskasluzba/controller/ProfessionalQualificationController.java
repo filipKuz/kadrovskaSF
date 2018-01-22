@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,8 +50,12 @@ public class ProfessionalQualificationController {
 	}
 	
 	@PutMapping(value = "{id}")
-	public ResponseEntity<?> editPQ(@RequestBody ProfessionalQualificationDTO pqDto, @PathVariable("id") Long id) {
+	public ResponseEntity<?> editPQ(@Validated @RequestBody ProfessionalQualificationDTO pqDto, @PathVariable("id") Long id, Errors errors) {
 		ProfessionalQualification pq = pqService.findOne(id);
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		if(pq == null) {
 			return new ResponseEntity<String> ("Can't find Professional qualfication with given id", HttpStatus.BAD_REQUEST);
 		}
@@ -76,7 +82,11 @@ public class ProfessionalQualificationController {
 	}
 	
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<?> createPQ(@RequestBody ProfessionalQualificationDTO pqDTO) {
+	public ResponseEntity<?> createPQ(@Validated @RequestBody ProfessionalQualificationDTO pqDTO, Errors errors) {
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		pqDTO.setIsActive(true);
 		ProfessionalQualification pq = pqService.save(toPQ.convert(pqDTO));
 		return new ResponseEntity<ProfessionalQualificationDTO> (toPQDTO.convert(pq), HttpStatus.OK);

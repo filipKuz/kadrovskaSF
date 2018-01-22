@@ -23,7 +23,7 @@ public class NonworkingDay {
 	private Long nonWorkingDayId;
 
 	@NotBlank(message="Description cannot be empty")
-	@Length(max=30, message="Description can not contain more than 30 letters")
+	@Length(max=30, message="Description can not contain more than 30 characters")
 	@Column(nullable = false, columnDefinition="VARCHAR(30)")
 	private String nonworkingDayDescription;
 

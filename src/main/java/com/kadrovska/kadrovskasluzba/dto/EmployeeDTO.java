@@ -2,19 +2,56 @@ package com.kadrovska.kadrovskasluzba.dto;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class EmployeeDTO {
 
 	private Long employeeId;
+	
+	@NotBlank(message="Last name cannot be empty")
+	@Length(max=30, message="Last name can not contain more than 30 characters")
 	private String lastName;
+	
+	@NotBlank(message="Name cannot be empty")
+	@Length(max=30, message="Name can not contain more than 30 characters")
 	private String firstName;
+	
+	@NotBlank(message="Parent name cannot be empty")
+	@Length(max=30, message="Parent name can not contain more than 30 characters")
 	private String parentName;
+	
+	@Length(max=30, message="Maden name can not contain more than 30 characters")
 	private String madenName;
+	
+	@NotNull(message="Birth date cannot be null")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthDate;
+	
+	@NotBlank(message="Sex cannot be empty")
+	@Length(max=6, message="Description can not contain more than 6 characters")
 	private String sex;
+	
+	@NotBlank(message="Address cannot be empty")
+	@Length(max=30, message="Address can not contain more than 30 characters")
 	private String address;
+	
+	@Length(max=30, message="Email can not contain more than 30 characters")
 	private String email;
+	
+	@Length(max=15, message="Phone number can not contain more than 15 characters")
 	private String phoneNumber;
+	
+	@NotNull(message="cityId cannot be null")
+	@Min(value=0, message="cityId must be >= than 0")
 	private Long cityId;
+	
+	@NotNull(message="companyId cannot be null")
+	@Min(value=0, message="companyId must be >= than 0")
 	private Long companyId;
 
 	public EmployeeDTO() {

@@ -21,6 +21,8 @@ public class VacationRequestDTO {
 	@Min(value=1, message="Number of days must be greater than 0")
 	private Integer numOfDays;
 	
+	@NotNull(message="annualHolidayRegulationId cannot be null")
+	@Min(value=0, message="annualHolidayRegulationId must be >= than 0")
 	private Long annualHolidayRegulationId;
 
 	public VacationRequestDTO(Long vacationRequestId, Date startDate, Date endDate, Integer numOfDays,

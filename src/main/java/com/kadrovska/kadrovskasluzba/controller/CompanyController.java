@@ -20,21 +20,27 @@ import com.kadrovska.kadrovskasluzba.serviceInterfaces.CompanyServiceInterface;
 public class CompanyController {
 
 	@Autowired
-	CompanyServiceInterface CompanyService;
+	CompanyServiceInterface companyService;
 
 	@Autowired
-	CompanyDTOToCompany CompanyDTOToCompanyConverter;
+	CompanyDTOToCompany companyDTOToCompanyConverter;
 
 	@Autowired
-	CompanyToCompanyDTO CompanyToCompanyDTOConverter;
+	CompanyToCompanyDTO companyToCompanyDTOConverter;
 
 	@GetMapping
 	public ResponseEntity<List<CompanyDTO>> getCompanies() {
-		return new ResponseEntity<>(CompanyToCompanyDTOConverter.convert(CompanyService.findAll()), HttpStatus.OK);
+		return new ResponseEntity<>(companyToCompanyDTOConverter.convert(companyService.findAll()), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<CompanyDTO> getCompany(@PathVariable long id) {
-		return new ResponseEntity<>(CompanyToCompanyDTOConverter.convert(CompanyService.findOne(id)), HttpStatus.OK);
+		return new ResponseEntity<>(companyToCompanyDTOConverter.convert(companyService.findOne(id)), HttpStatus.OK);
+	}
+
+	@GetMapping(path = "/ours")
+	public ResponseEntity<CompanyDTO> getOurCompany() {
+		return new ResponseEntity<>(companyToCompanyDTOConverter.convert(companyService.findByIsOursTrue()),
+				HttpStatus.OK);
 	}
 }

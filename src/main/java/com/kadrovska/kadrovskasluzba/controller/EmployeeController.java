@@ -13,6 +13,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -125,7 +127,11 @@ public class EmployeeController {
 	}
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody Map<String, Object> data) {
+	public ResponseEntity<?> saveEmployee(@Validated @RequestBody Map<String, Object> data, Errors errors) {
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		Company com = companyServiceInterface.findByIsOursTrue();
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -153,7 +159,11 @@ public class EmployeeController {
 	}
 
 	@PutMapping(value = "{id}")
-	public ResponseEntity<?> editEmployee(@RequestBody EmployeeDTO dto, @PathVariable("id") Long id) {
+	public ResponseEntity<?> editEmployee(@Validated @RequestBody EmployeeDTO dto, @PathVariable("id") Long id, Errors errors) {
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		Employee e = employeeServiceInterface.findOne(id);
 		System.out.println(dto);
 		if (e == null) {
