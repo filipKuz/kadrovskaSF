@@ -7,6 +7,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,8 +76,12 @@ public class VacationReqController {
 	}
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<?> createVReq(@RequestBody VacationRequestDTO vReqDTO) {
-
+	public ResponseEntity<?> createVReq(@Validated @RequestBody VacationRequestDTO vReqDTO, Errors errors) {
+		
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		AnnualHolidayRegulation ahr = ahrService.findOne(vReqDTO.getAnnualHolidayRegulationId());
 		if (ahr == null) {
 			return new ResponseEntity<String>("Bad parameters", HttpStatus.BAD_REQUEST);
