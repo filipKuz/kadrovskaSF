@@ -3,6 +3,7 @@ package com.kadrovska.kadrovskasluzba.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -66,7 +67,10 @@ public class VacationReqController {
 		ahr.setNumOfDays(ahr.getNumOfDays() + vreq.getNumOfDays());
 		vacationReqService.delete(id);
 		ahrService.save(ahr);
-		return new ResponseEntity<String>("Success", HttpStatus.OK);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("daysToAdd", vreq.getNumOfDays().toString());
+		headers.add("access-control-expose-headers", "daysToAdd");
+		return new ResponseEntity<String>("Success",headers, HttpStatus.OK);
 	}
 
 	@PostMapping(consumes = "application/json")
