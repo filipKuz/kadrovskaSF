@@ -10,5 +10,9 @@ public interface WorkPlaceServiceInterface {
 	
 	WorkPlace findOne(Long id);
 	
+	void delete(Long id);
+	
+	void delete(WorkPlace workPlace);
+	
 	WorkPlace save(WorkPlace workPlace);
 }

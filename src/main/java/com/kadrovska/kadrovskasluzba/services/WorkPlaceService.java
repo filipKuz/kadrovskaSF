@@ -33,4 +33,17 @@ public class WorkPlaceService implements WorkPlaceServiceInterface {
 		return workPlaceRepository.save(workPlace);
 	}
 
+	@Override
+	public void delete(Long id) {
+		workPlaceRepository.delete(id);
+		
+	}
+
+
+	@Override
+	public void delete(WorkPlace workPlace) {
+		workPlaceRepository.delete(workPlace);
+		
+	}
+
 }

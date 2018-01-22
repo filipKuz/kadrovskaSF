@@ -10,6 +10,10 @@ public interface WorkHistoryServiceInterface {
 	
 	WorkHistory findOne(Long id);
 	
+	void delete(Long id);
+	
+	void delete(WorkHistory workHistory);
+	
 	WorkHistory save(WorkHistory workHistory);
 	
 	WorkHistory findByEmployeeEmployeeIdAndEndDateIsNull(Long id);

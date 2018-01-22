@@ -38,4 +38,16 @@ public class WorkHistoryService implements WorkHistoryServiceInterface{
 	public WorkHistory findByEmployeeEmployeeIdAndEndDateIsNull(Long id) {
 		return workHistoryRepository.findByEmployeeEmployeeIdAndEndDateIsNull(id);
 	}
+
+	@Override
+	public void delete(Long id) {
+		workHistoryRepository.delete(id);
+		
+	}
+
+	@Override
+	public void delete(WorkHistory workHistory) {
+		workHistoryRepository.delete(workHistory);
+		
+	}
 }
