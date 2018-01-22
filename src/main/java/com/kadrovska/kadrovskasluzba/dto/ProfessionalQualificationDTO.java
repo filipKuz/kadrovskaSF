@@ -1,10 +1,21 @@
 package com.kadrovska.kadrovskasluzba.dto;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class ProfessionalQualificationDTO {
 
 	private Long professionalQualificationId;
+	
+
+	@NotBlank(message="Name cannot be empty")
+	@Length(max=30, message="Name cannot contain more than 30 characters")
 	private String name;
+	
+	@NotBlank(message="qualificationDegree cannot be empty")
+	@Length(max=30, message="qualificationDegree cannot contain more than 30 characters")
 	private String qualificationDegree;
+	
 	private Boolean isActive;
 	
 	public ProfessionalQualificationDTO() {

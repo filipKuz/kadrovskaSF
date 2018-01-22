@@ -98,11 +98,11 @@ public class AnnualHolidayRegulationController {
 				AnnualHolidayRegulation a = new AnnualHolidayRegulation();
 				a.setBusinessYear(Year.now().getValue());
 				a.setEmployee(e);
-				a.setNumOfDays(numOfDays);
+				a.setNumOfDays(numOfDays);	
 				annualHolidayRegulationService.save(a);
 				annualHolidayRegulationsDTO.add(toAhrDTO.convert(a));
 			}
 		}
-		return new ResponseEntity<>(annualHolidayRegulationsDTO, HttpStatus.CREATED);
+		return new ResponseEntity<>(annualHolidayRegulationsDTO , HttpStatus.CREATED);
 	}
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,7 +67,11 @@ public class EmployeeProfessionalQualificationController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> createEpq(@RequestBody EmployeeProfessionalQualificationDTO epqDTO) {
+	public ResponseEntity<?> createEpq(@Validated @RequestBody EmployeeProfessionalQualificationDTO epqDTO, Errors errors) {
+		
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
 		
 		System.out.println(epqDTO);
 		Employee e = employeeServiceInterface.findOne(epqDTO.getEmployeeId());
@@ -86,8 +92,12 @@ public class EmployeeProfessionalQualificationController {
 	}
 	
 	@PutMapping(value="{id}")
-	public ResponseEntity<?> editEpq(@RequestBody EmployeeProfessionalQualificationDTO epqDTO,
-									 @PathVariable("id") Long id) {
+	public ResponseEntity<?> editEpq(@Validated @RequestBody EmployeeProfessionalQualificationDTO epqDTO,
+									 @PathVariable("id") Long id, Errors errors) {
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
+		
 		Employee e = employeeServiceInterface.findOne(epqDTO.getEmployeeId());
 		ProfessionalQualification pq = professionalServiceI.findOne(epqDTO.getProfessionalQId().getProfessionalQualificationId());
 		EmployeeProfessionalQualification epq = epqService.findOne(id);
