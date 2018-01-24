@@ -2,6 +2,7 @@ package com.kadrovska.kadrovskasluzba.serviceInterfaces;
 
 import java.util.List;
 
+import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 
 public interface WorkHistoryServiceInterface {
@@ -17,5 +18,7 @@ public interface WorkHistoryServiceInterface {
 	WorkHistory save(WorkHistory workHistory);
 	
 	WorkHistory findByEmployeeEmployeeIdAndEndDateIsNull(Long id);
+
+	List<WorkHistory> findByEmployeeId(Long id);
 
 }

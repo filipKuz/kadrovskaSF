@@ -2,6 +2,7 @@ package com.kadrovska.kadrovskasluzba.converter;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.core.convert.converter.Converter;
@@ -16,15 +17,23 @@ public class WorkHistoryToWorkHistoryDTO implements Converter<WorkHistory, WorkH
 
 		WorkHistoryDTO workHistoryDTO = new WorkHistoryDTO();
 
+		workHistoryDTO.setWorkHistoryId(workHistory.getWorkHistoryId());
 		workHistoryDTO.setPreviousCompany(workHistory.getCompanyName());
 		workHistoryDTO.setStartDate(workHistory.getStartDate());
 		workHistoryDTO.setEndDate(workHistory.getEndDate());
+		workHistoryDTO.setWorkPlaceId(workHistory.getWorkPlace().getWorkPlaceId());
 
 		if (workHistory.getEmployee() != null) {
 			workHistoryDTO.setEmployeeId(workHistory.getEmployee().getEmployeeId());
 		}
-		workHistoryDTO.setWorkPlaceId(workHistory.getWorkPlace().getWorkPlaceId());
-
+//		System.out.println(workHistory.getWorkPlace().getWorkHistory().toString());
+//		System.out.println("*********************************************************************************************************************");
+//		if (workHistory.getWorkPlace().getWorkPlaceId() != 0) {
+//			
+//			
+//		}else {
+//			workHistoryDTO.setWorkPlaceId(null);
+//		}
 		return workHistoryDTO;
 	}
 
