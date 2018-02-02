@@ -80,6 +80,7 @@ public class WorkPlaceController {
 		
 		workPlace2.setName(workPlace.getName());
 		workPlace2.setCoefficient(workPlace.getCoefficient());
+		workPlace2.setExtraVacationDays(workPlace.getExtraVacationDays());
 		workPlaceService.save(workPlace2);
 		
 		return new ResponseEntity<WorkPlace>(workPlace2, HttpStatus.OK);
