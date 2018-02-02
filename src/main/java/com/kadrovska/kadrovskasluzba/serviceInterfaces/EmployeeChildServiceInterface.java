@@ -10,11 +10,11 @@ public interface EmployeeChildServiceInterface {
 
 	EmployeeChild findOne(Long id);
 
+	List<EmployeeChild> findByEmployeeId(Long employeeId);
+
 	EmployeeChild save(EmployeeChild child);
 
 	List<EmployeeChild> save(List<EmployeeChild> children);
 
 	void delete(Long id);
-
-	void delete(List<Long> ids);
 }
