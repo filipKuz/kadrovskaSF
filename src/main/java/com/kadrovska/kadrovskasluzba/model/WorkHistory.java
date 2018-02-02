@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class WorkHistory {
 
@@ -21,9 +23,11 @@ public class WorkHistory {
 	@Column(columnDefinition="VARCHAR(30)")
 	private String companyName;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(nullable = false)
 	private Date startDate;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -97,5 +101,6 @@ public class WorkHistory {
 		System.out.println("Broj radnih dana na jednom radnom mjestu: "+  (int) (( endDate.getTime() - strDate.getTime())/ 86400000 ));
 		return (int) ((endDate.getTime() - strDate.getTime())/ 86400000 );
 	}
+	
 
 }

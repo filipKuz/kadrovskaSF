@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kadrovska.kadrovskasluzba.model.EmployeeProfessionalQualification;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.repositories.WorkHistoryJPARepository;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryServiceInterface;
@@ -30,7 +31,7 @@ public class WorkHistoryService implements WorkHistoryServiceInterface{
 	}
 
 	@Override
-	public WorkHistory save(WorkHistory workHistory) {
+	public WorkHistory save(WorkHistory workHistory) {	
 		return workHistoryRepository.save(workHistory);
 	}
 
@@ -50,4 +51,11 @@ public class WorkHistoryService implements WorkHistoryServiceInterface{
 		workHistoryRepository.delete(workHistory);
 		
 	}
+
+	@Override
+	public List<WorkHistory> findByEmployeeId(Long id) {
+		return workHistoryRepository.findByEmployeeEmployeeId(id);
+	}
+
+
 }

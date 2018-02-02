@@ -52,7 +52,7 @@
 		<dependency>
    			<groupId>net.sf.jasperreports</groupId>
    			<artifactId>jasperreports</artifactId>
-    		<version>5.6.0</version>
+    		<version>6.5.1</version>
 		</dependency>
 		<dependency>
     		<groupId>commons-logging</groupId>
@@ -71,6 +71,13 @@
     		<groupId>commons-digester</groupId>
     		<artifactId>commons-digester</artifactId>
 		</dependency>
+		
+		<dependency>
+   			<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>5.1.45</version>
+		</dependency>
+		
 						
 	</dependencies>
 
