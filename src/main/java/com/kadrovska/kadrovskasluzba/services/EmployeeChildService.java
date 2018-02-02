@@ -14,7 +14,7 @@ public class EmployeeChildService implements EmployeeChildServiceInterface {
 
 	@Autowired
 	EmployeeChildJPARepository employeeChildJPARepository;
-	
+
 	@Override
 	public List<EmployeeChild> findAll() {
 		return employeeChildJPARepository.findAll();
@@ -23,6 +23,11 @@ public class EmployeeChildService implements EmployeeChildServiceInterface {
 	@Override
 	public EmployeeChild findOne(Long id) {
 		return employeeChildJPARepository.findOne(id);
+	}
+
+	@Override
+	public List<EmployeeChild> findByEmployeeId(Long employeeId) {
+		return employeeChildJPARepository.findByEmployeeId(employeeId);
 	}
 
 	@Override
@@ -39,12 +44,4 @@ public class EmployeeChildService implements EmployeeChildServiceInterface {
 	public void delete(Long id) {
 		employeeChildJPARepository.delete(id);
 	}
-
-	@Override
-	public void delete(List<Long> ids) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 }
