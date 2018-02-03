@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9a8fbb50-ec2c-4dd0-ab51-29ad064eed6a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="kadrofska"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="284"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="705"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT kadrovskasluzba.annual_holiday_regulation.business_year,
+	kadrovskasluzba.annual_holiday_regulation.num_of_days,
+	kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id,
+	kadrovskasluzba.employee.first_name,
+	kadrovskasluzba.employee.last_name,
+	kadrovskasluzba.vacation_request.end_date,
+	kadrovskasluzba.vacation_request.num_of_days,
+	kadrovskasluzba.vacation_request.str_date
+FROM kadrovskasluzba.vacation_request
+	INNER JOIN kadrovskasluzba.annual_holiday_regulation ON 
+	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id
+	INNER JOIN kadrovskasluzba.employee ON 
+	 kadrovskasluzba.annual_holiday_regulation.employee_id = kadrovskasluzba.employee.employee_id 
+	 
+]]>
+	</queryString>
+	<field name="business_year" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="business_year"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
+	</field>
+	<field name="num_of_days" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="num_of_days"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
+	</field>
+	<field name="annual_holiday_regulation_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="annual_holiday_regulation_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="end_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="end_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vacation_request"/>
+	</field>
+	<field name="COLUMN_7" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="num_of_days"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vacation_request"/>
+	</field>
+	<field name="str_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="str_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vacation_request"/>
+	</field>
+	<variable name="num_of_days1" class="java.lang.Integer" resetType="Group" resetGroup="Group2" calculation="Sum">
+		<variableExpression><![CDATA[$F{num_of_days}]]></variableExpression>
+	</variable>
+	<variable name="num_of_days2" class="java.lang.Integer" resetType="Group" resetGroup="Group2" calculation="Count">
+		<variableExpression><![CDATA[$F{num_of_days}]]></variableExpression>
+	</variable>
+	<variable name="COLUMN_71" class="java.lang.Integer" resetType="Group" resetGroup="Group2" calculation="Sum">
+		<variableExpression><![CDATA[$F{COLUMN_7}]]></variableExpression>
+	</variable>
+	<group name="annual_holiday_regulation_id">
+		<groupExpression><![CDATA[$F{annual_holiday_regulation_id}]]></groupExpression>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{annual_holiday_regulation_id}]]></groupExpression>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{annual_holiday_regulation_id}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement x="0" y="0" width="80" height="20" uuid="0727ec3c-0c3c-4359-b5dd-c66b528d153c"/>
+					<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="0" width="90" height="20" uuid="d065a315-a48a-445c-b3bf-b679022e7e1a"/>
+					<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="80" y="20" width="90" height="20" uuid="b32e1a89-6e30-47d8-82b8-8f2d765e6873"/>
+					<text><![CDATA[Pocetni datum]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="170" y="20" width="80" height="20" uuid="cda6f9d4-a36b-4468-ac5b-0694bd8e868e"/>
+					<text><![CDATA[Broj dana]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="250" y="20" width="90" height="20" uuid="f795eba1-5512-4a85-8843-355f3d42d2a7"/>
+					<text><![CDATA[Krajnji datum]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="170" y="0" width="80" height="20" uuid="180f1f09-d5c9-4a43-b991-a02c74e035be"/>
+					<textFieldExpression><![CDATA[$F{num_of_days}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="560" height="1" uuid="46d41768-504f-441f-97a5-b50a9d029d89"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<staticText>
+					<reportElement x="170" y="0" width="80" height="20" uuid="090ffe53-0195-437a-bbab-aceb58b8f4e6"/>
+					<text><![CDATA[Ukupan br. dana:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="250" y="0" width="100" height="20" uuid="81d961a7-4dfd-4e42-8782-b335ad00f6a6"/>
+					<textFieldExpression><![CDATA[$V{COLUMN_71}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="480" y="0" width="40" height="21" uuid="a42bd763-032c-4bce-ad44-424bd4b3c4da"/>
+				<text><![CDATA[Strana:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="21" uuid="1f10d121-4527-4985-843b-431e19bddf41"/>
+				<text><![CDATA[Datum:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="40" y="0" width="100" height="21" uuid="bfe3a421-0e03-42a5-aaf1-625920bdd0d0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="35" height="21" uuid="f04c5498-a0bc-4e0a-bf0b-a9faccacaf8c"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="20" width="260" height="50" uuid="c072a0e7-0605-4d1d-befd-f3417e3a6328"/>
+				<textElement textAlignment="Right">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Resenja za godisnje odmore za:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="20" width="70" height="50" uuid="4215815d-3abc-4779-bd87-2d490daf2d07"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[ god.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="340" y="20" width="70" height="50" uuid="4ad3a518-89f3-4af0-a4dd-491b8c00e8c1"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{business_year}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20" uuid="cf5545f9-51d8-41c6-a586-f9c7c4ebbeb0"/>
+				<text><![CDATA[Ime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="90" height="20" uuid="beede00d-dd89-4212-a2d7-84853f32a583"/>
+				<text><![CDATA[Prezime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="80" height="20" uuid="25dad9f7-77fa-4bc2-afe2-54eccd87c4a2"/>
+				<text><![CDATA[Preostali br. dana]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="250" y="0" width="90" height="20" uuid="6524dd0f-5c8f-4b0d-b46a-18f8f959705f"/>
+				<textFieldExpression><![CDATA[$F{end_date}.toLocalDate()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="80" height="20" uuid="ecd9e9f6-a1c6-4293-8df0-6411085bab86"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="90" height="20" uuid="1aa1eebd-01f2-4fed-9699-2dabeeeeff38"/>
+				<textFieldExpression><![CDATA[$F{str_date}.toLocalDate()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

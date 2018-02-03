@@ -1,13 +1,10 @@
 package com.kadrovska.kadrovskasluzba.controller;
 
-import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.datetime.joda.LocalDateTimeParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,20 +18,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.SimpleDateFormat;
 import com.kadrovska.kadrovskasluzba.converter.WorkHistoryDTOtoWorkHistory;
 import com.kadrovska.kadrovskasluzba.converter.WorkHistoryToWorkHistoryDTO;
-import com.kadrovska.kadrovskasluzba.dto.VacationRequestDTO;
 import com.kadrovska.kadrovskasluzba.dto.WorkHistoryDTO;
-import com.kadrovska.kadrovskasluzba.model.AnnualHolidayRegulation;
-import com.kadrovska.kadrovskasluzba.model.Employee;
-import com.kadrovska.kadrovskasluzba.model.VacationRequest;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.model.WorkPlace;
-import com.kadrovska.kadrovskasluzba.serviceInterfaces.EmployeeServiceInterface;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkHistoryServiceInterface;
 import com.kadrovska.kadrovskasluzba.services.WorkPlaceService;
+
 
 @Controller
 @RequestMapping("/api/workHistory")
@@ -50,10 +41,11 @@ public class WorkHistoryController {
 	private WorkHistoryServiceInterface wHistoryService;
 	
 	@Autowired
-	private EmployeeServiceInterface employeeService;
-	
-	@Autowired
 	private WorkPlaceService workPlaceService;
+	
+	Calendar calendar = Calendar.getInstance();
+	Date currentDate = calendar.getTime();
+	java.sql.Date date = new java.sql.Date(currentDate.getTime());
 	
 	// get work history
 	@GetMapping
@@ -93,18 +85,8 @@ public class WorkHistoryController {
 		if(errors.hasErrors()) {
 			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
 			}
-		
-		WorkHistory workHistory = new WorkHistory();
-		
-		workHistory.setWorkHistoryId(workHistoryDTO.getWorkHistoryId());
-		workHistory.setCompanyName(workHistoryDTO.getPreviousCompany());
-		workHistory.setStartDate(workHistoryDTO.getStartDate());
-		workHistory.setEndDate(workHistoryDTO.getEndDate());
-		
-		Employee employee = employeeService.findOne(workHistoryDTO.getEmployeeId());
-		if (employee != null) {
-			workHistory.setEmployee(employee);
-		}
+
+		WorkHistory workHistory = wHDTOtoWh.convert(workHistoryDTO);				
 		
 		if(workHistoryDTO.getWorkPlaceId() != null) {
 			WorkPlace workPlace = workPlaceService.findOne(workHistoryDTO.getWorkPlaceId());
@@ -113,27 +95,15 @@ public class WorkHistoryController {
 			}
 		}
 		
-		
-		
-		Calendar calendar = Calendar.getInstance();
-		Date currentDate = calendar.getTime();
-		java.sql.Date date = new java.sql.Date(currentDate.getTime());
-		
-		//wHistoryService.save(workHistory);
-		
-		List<WorkHistory> allWh= wHistoryService.findAll();
-		
-		WorkHistory lastWorkHistory = wHistoryService.findByEmployeeEmployeeIdAndEndDateIsNull(workHistory.getEmployee().getEmployeeId());
-		if (lastWorkHistory != null) {
+		if(workHistory.getEndDate() == null && workHistory.getEmployee().getCurrentWorkPlace() != null){
+			WorkHistory lastWorkHistory = wHistoryService.findByEmployeeEmployeeIdAndEndDateIsNull(workHistory.getEmployee().getEmployeeId());
 			lastWorkHistory.setEndDate(date);
+			wHistoryService.save(lastWorkHistory);
+			System.out.println("snimio");
 		}
 		
-	
-		wHistoryService.save(lastWorkHistory);
 		wHistoryService.save(workHistory);
-		
 		return new ResponseEntity<WorkHistoryDTO>(wHToWhDTO.convert(workHistory), HttpStatus.OK);
-		
 	}
 
 	
@@ -148,10 +118,11 @@ public class WorkHistoryController {
 		System.out.println("usoo");
 		System.out.println("----------------------------------------------------------");
 		try{
-			WorkHistory workHistory2 = wHistoryService.findOne(id);
-			if (workHistory2 == null){
+			WorkHistory workHistory = wHistoryService.findOne(id);
+			if (workHistory == null){
 				return new ResponseEntity<String>("Can't find work history given id", HttpStatus.BAD_REQUEST);
 			}
+<<<<<<< HEAD
 				workHistory2.setCompanyName(workHistoryDTO.getPreviousCompany());
 				workHistory2.setStartDate(workHistoryDTO.getStartDate());
 				workHistory2.setEndDate(workHistoryDTO.getEndDate());
@@ -170,15 +141,21 @@ public class WorkHistoryController {
 				}
 				
 				wHistoryService.save(workHistory2);
+=======
+				workHistory.setCompanyName(workHistoryDTO.getPreviousCompany());
+				workHistory.setStartDate(workHistoryDTO.getStartDate());
+				workHistory.setEndDate(workHistoryDTO.getEndDate());
+				wHistoryService.save(workHistory);
+>>>>>>> 977fcee3bca19aa3677df346a02701fbfa5eb01a
 				
-				return new ResponseEntity("success", HttpStatus.OK);
+				return new ResponseEntity<WorkHistoryDTO>(wHToWhDTO.convert(workHistory), HttpStatus.OK);
 			
 		}catch(Exception e) {
 			return new ResponseEntity<String>("somethgin", HttpStatus.OK);
 			}
 		}
 	
-	// delete work history
+	
 	@DeleteMapping(value="{id}")
 	public ResponseEntity<String> deleteWOrkHistory(@PathVariable("id") Long id ){
 		WorkHistory workHistory = wHistoryService.findOne(id);
@@ -187,7 +164,6 @@ public class WorkHistoryController {
 		}
 		wHistoryService.delete(workHistory);
 		return 	new ResponseEntity<String> ("Success", HttpStatus.OK);
-	
 	}
 	
 
