@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,7 +66,10 @@ public class WorkPlaceController {
 //	
 	// new work place
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<WorkPlace> saveWorkPlace(@RequestBody WorkPlace newWorkPlace) {
+	public ResponseEntity<?> saveWorkPlace(@Validated @RequestBody WorkPlace newWorkPlace, Errors errors) {
+		if(errors.hasErrors()) {
+			return new ResponseEntity<>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
 		System.out.println(newWorkPlace.toString());
 		WorkPlace workPlace = workPlaceService.save(newWorkPlace);
 		return new ResponseEntity<>(workPlace, HttpStatus.CREATED);
@@ -72,7 +77,10 @@ public class WorkPlaceController {
 	
 	// edit work place
 	@PutMapping(value="{id}")
-	public ResponseEntity<?> editWorkPlace(@RequestBody WorkPlace workPlace , @PathVariable("id") Long id){
+	public ResponseEntity<?> editWorkPlace(@Validated @RequestBody WorkPlace workPlace , @PathVariable("id") Long id, Errors errors){
+		if(errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+			}
 		WorkPlace workPlace2 = workPlaceService.findOne(id);
 		if (workPlace2 == null){
 			return new ResponseEntity<String>("Can't find work place given id", HttpStatus.BAD_REQUEST);
@@ -80,6 +88,7 @@ public class WorkPlaceController {
 		
 		workPlace2.setName(workPlace.getName());
 		workPlace2.setCoefficient(workPlace.getCoefficient());
+		workPlace2.setExtraVacationDays(workPlace.getExtraVacationDays());
 		workPlaceService.save(workPlace2);
 		
 		return new ResponseEntity<WorkPlace>(workPlace2, HttpStatus.OK);

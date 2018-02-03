@@ -20,6 +20,7 @@ public class WorkPlaceToWorkPlaceDTO implements Converter<WorkPlace, WorkPlaceDT
 		workPlaceDTO.setWorkPlaceId(workPlace.getWorkPlaceId());
 		workPlaceDTO.setName(workPlace.getName());
 		workPlaceDTO.setCoefficient(workPlace.getCoefficient());
+		workPlaceDTO.setExtraVacationDays(workPlace.getExtraVacationDays());
 
 		return workPlaceDTO;
 	}
