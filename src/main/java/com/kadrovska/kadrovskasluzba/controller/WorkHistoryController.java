@@ -73,14 +73,14 @@ public class WorkHistoryController {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<WorkHistoryDTO> getCity(@PathVariable long id) {
+	public ResponseEntity<WorkHistoryDTO> getWOrkHistoryById(@PathVariable long id) {
 		return new ResponseEntity<>(wHToWhDTO.convert(wHistoryService.findOne(id)), HttpStatus.OK);
 	}
 
 	
 	
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<?> createVReq(@Validated @RequestBody WorkHistoryDTO workHistoryDTO, Errors errors) {
+	public ResponseEntity<?> createWorkHistory(@Validated @RequestBody WorkHistoryDTO workHistoryDTO, Errors errors) {
 		
 		if(errors.hasErrors()) {
 			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
@@ -109,51 +109,31 @@ public class WorkHistoryController {
 	
 		
 	// edit work history
-	@PutMapping(value="{id}")
-	public ResponseEntity<?> editWorkHistory(@Validated @RequestBody WorkHistoryDTO workHistoryDTO, @PathVariable("id") Long id, Errors errors){
-		if(errors.hasErrors()) {
-			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
-			}
-		System.out.println("----------------------------------------------------------");
-		System.out.println("usoo");
-		System.out.println("----------------------------------------------------------");
-		try{
-			WorkHistory workHistory = wHistoryService.findOne(id);
-			if (workHistory == null){
-				return new ResponseEntity<String>("Can't find work history given id", HttpStatus.BAD_REQUEST);
-			}
-<<<<<<< HEAD
-				workHistory2.setCompanyName(workHistoryDTO.getPreviousCompany());
-				workHistory2.setStartDate(workHistoryDTO.getStartDate());
-				workHistory2.setEndDate(workHistoryDTO.getEndDate());
-				
-				if(workHistory2.getWorkPlace().getWorkPlaceId() != null) {
-					WorkPlace workPlace = workPlaceService.findOne(workHistoryDTO.getWorkPlaceId());
-					System.out.println("----------------------------------------------------------");
-					System.out.println("usoo2");
-					System.out.println("----------------------------------------------------------");
-					if (workPlace != null) {
-						workHistory2.setWorkPlace(workPlace);
-						System.out.println("----------------------------------------------------------");
-						System.out.println("usoo3");
-						System.out.println("----------------------------------------------------------");
-					}
+		@PutMapping(value="{id}")
+		public ResponseEntity<?> editWorkHistory(@Validated @RequestBody WorkHistoryDTO workHistoryDTO, @PathVariable("id") Long id, Errors errors){
+			if(errors.hasErrors()) {
+				return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
 				}
+			System.out.println("----------------------------------------------------------");
+			System.out.println("usoo");
+			System.out.println("----------------------------------------------------------");
+			try{
+				WorkHistory workHistory = wHistoryService.findOne(id);
+				if (workHistory == null){
+					return new ResponseEntity<String>("Can't find work history given id", HttpStatus.BAD_REQUEST);
+				}
+					workHistory.setCompanyName(workHistoryDTO.getPreviousCompany());
+					workHistory.setStartDate(workHistoryDTO.getStartDate());
+					workHistory.setEndDate(workHistoryDTO.getEndDate());
+					wHistoryService.save(workHistory);
+					
+					return new ResponseEntity<WorkHistoryDTO>(wHToWhDTO.convert(workHistory), HttpStatus.OK);
 				
-				wHistoryService.save(workHistory2);
-=======
-				workHistory.setCompanyName(workHistoryDTO.getPreviousCompany());
-				workHistory.setStartDate(workHistoryDTO.getStartDate());
-				workHistory.setEndDate(workHistoryDTO.getEndDate());
-				wHistoryService.save(workHistory);
->>>>>>> 977fcee3bca19aa3677df346a02701fbfa5eb01a
-				
-				return new ResponseEntity<WorkHistoryDTO>(wHToWhDTO.convert(workHistory), HttpStatus.OK);
-			
-		}catch(Exception e) {
-			return new ResponseEntity<String>("somethgin", HttpStatus.OK);
+			}catch(Exception e) {
+				return new ResponseEntity<String>("somethgin", HttpStatus.OK);
+				}
 			}
-		}
+		
 	
 	
 	@DeleteMapping(value="{id}")
