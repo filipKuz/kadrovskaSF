@@ -140,7 +140,7 @@ public class WorkHistoryController {
 		
 	// edit work history
 	@PutMapping(value="{id}")
-	public ResponseEntity<?> editWorkHistory(@Validated @RequestBody WorkHistoryDTO workHistory, @PathVariable("id") Long id, Errors errors){
+	public ResponseEntity<?> editWorkHistory(@Validated @RequestBody WorkHistoryDTO workHistoryDTO, @PathVariable("id") Long id, Errors errors){
 		if(errors.hasErrors()) {
 			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
 			}
@@ -152,9 +152,23 @@ public class WorkHistoryController {
 			if (workHistory2 == null){
 				return new ResponseEntity<String>("Can't find work history given id", HttpStatus.BAD_REQUEST);
 			}
-				workHistory2.setCompanyName(workHistory.getPreviousCompany());
-				workHistory2.setStartDate(workHistory.getStartDate());
-				workHistory2.setEndDate(workHistory.getEndDate());
+				workHistory2.setCompanyName(workHistoryDTO.getPreviousCompany());
+				workHistory2.setStartDate(workHistoryDTO.getStartDate());
+				workHistory2.setEndDate(workHistoryDTO.getEndDate());
+				
+				if(workHistory2.getWorkPlace().getWorkPlaceId() != null) {
+					WorkPlace workPlace = workPlaceService.findOne(workHistoryDTO.getWorkPlaceId());
+					System.out.println("----------------------------------------------------------");
+					System.out.println("usoo2");
+					System.out.println("----------------------------------------------------------");
+					if (workPlace != null) {
+						workHistory2.setWorkPlace(workPlace);
+						System.out.println("----------------------------------------------------------");
+						System.out.println("usoo3");
+						System.out.println("----------------------------------------------------------");
+					}
+				}
+				
 				wHistoryService.save(workHistory2);
 				
 				return new ResponseEntity("success", HttpStatus.OK);
