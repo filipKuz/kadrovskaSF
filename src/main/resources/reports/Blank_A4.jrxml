@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9a8fbb50-ec2c-4dd0-ab51-29ad064eed6a">
-	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[a2Fkcm92c2thc2x1emJhLmFubnVhbF9ob2xpZGF5X3JlZ3VsYXRpb24gQVMgLDE0Nyw3OSxmZDIy
-ODA4Yy1kNjlhLTQxYmQtYmNhOS02ODJjNWY4ZmRlODM7a2Fkcm92c2thc2x1emJhLnZhY2F0aW9u
-X3JlcXVlc3QgQVMgLDIzMywyNDMsMTE4MzNlYjctMmFiYy00Y2ZkLWFiMDEtNzhmN2JiMDhjNmYx
-O2thZHJvdnNrYXNsdXpiYS5lbXBsb3llZSBBUyAsMTksNjIsNWFlYzNiOWEtNGIzNy00YzFmLThi
-YTUtNDUxMjk3Y2E2ZTEzOw==]]>
-	</property>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="kadrofska"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="284"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="705"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT kadrovskasluzba.annual_holiday_regulation.business_year,
 	kadrovskasluzba.annual_holiday_regulation.num_of_days,
@@ -20,9 +16,11 @@ YTUtNDUxMjk3Y2E2ZTEzOw==]]>
 	kadrovskasluzba.vacation_request.str_date
 FROM kadrovskasluzba.vacation_request
 	INNER JOIN kadrovskasluzba.annual_holiday_regulation ON 
-	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id 
+	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id
 	INNER JOIN kadrovskasluzba.employee ON 
-	 kadrovskasluzba.annual_holiday_regulation.employee_id = kadrovskasluzba.employee.employee_id]]>
+	 kadrovskasluzba.annual_holiday_regulation.employee_id = kadrovskasluzba.employee.employee_id 
+	 
+]]>
 	</queryString>
 	<field name="business_year" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="business_year"/>

@@ -16,15 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kadrovska.kadrovskasluzba.converter.WorkPlaceDTOtoWorkPlace;
 import com.kadrovska.kadrovskasluzba.converter.WorkPlaceToWorkPlaceDTO;
-import com.kadrovska.kadrovskasluzba.dto.CityDTO;
 import com.kadrovska.kadrovskasluzba.dto.WorkPlaceDTO;
-import com.kadrovska.kadrovskasluzba.model.NonworkingDay;
 import com.kadrovska.kadrovskasluzba.model.WorkHistory;
 import com.kadrovska.kadrovskasluzba.model.WorkPlace;
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.WorkPlaceServiceInterface;
 import com.kadrovska.kadrovskasluzba.services.WorkHistoryService;
-
-
 
 @Controller
 @RequestMapping("/api/workPlace")
