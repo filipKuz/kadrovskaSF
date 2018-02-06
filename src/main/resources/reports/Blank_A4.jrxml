@@ -15,9 +15,9 @@
 	kadrovskasluzba.vacation_request.num_of_days,
 	kadrovskasluzba.vacation_request.str_date
 FROM kadrovskasluzba.vacation_request
-	INNER JOIN kadrovskasluzba.annual_holiday_regulation ON 
+	LEFT OUTER JOIN kadrovskasluzba.annual_holiday_regulation ON 
 	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id
-	INNER JOIN kadrovskasluzba.employee ON 
+	LEFT OUTER JOIN kadrovskasluzba.employee ON 
 	 kadrovskasluzba.annual_holiday_regulation.employee_id = kadrovskasluzba.employee.employee_id 
 	 
 ]]>
