@@ -31,18 +31,23 @@ public class WorkHistoryDTO {
 	@NotNull(message="workPlaceId cannot be null")
 	@Min(value=0, message="workPlaceId must be >= than 0")
 	private Long workPlaceId;
+	
+	private String workPlaceName;
+	
+	
 
 	public WorkHistoryDTO() {
 	}
 
 	public WorkHistoryDTO(Long workHistoryId, String previousCompany, Date startDate, Date endDate, Long employeeId,
-			Long workPlaceId) {
+			Long workPlaceId , String workPlaceName) {
 		this.workHistoryId = workHistoryId;
 		this.previousCompany = previousCompany;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.employeeId = employeeId;
 		this.workPlaceId = workPlaceId;
+		this.workPlaceName = workPlaceName;
 	}
 
 	public Long getWorkHistoryId() {
@@ -91,6 +96,17 @@ public class WorkHistoryDTO {
 
 	public void setWorkPlaceId(Long workPlaceId) {
 		this.workPlaceId = workPlaceId;
+	}
+	
+	
+	
+
+	public String getWorkPlaceName() {
+		return workPlaceName;
+	}
+
+	public void setWorkPlaceName(String workPlaceName) {
+		this.workPlaceName = workPlaceName;
 	}
 
 	@Override

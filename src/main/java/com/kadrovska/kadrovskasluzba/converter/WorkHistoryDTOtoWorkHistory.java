@@ -1,5 +1,7 @@
 package com.kadrovska.kadrovskasluzba.converter;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -42,6 +44,22 @@ public class WorkHistoryDTOtoWorkHistory implements Converter<WorkHistoryDTO, Wo
 				workHistory.setWorkPlace(workPlace);
 			}
 		}
+//		if (workHistoryDTO.getWorkPlaceName() != null) {
+//			WorkPlace workPlace = workPlaceService.findOne(workHistoryDTO.getWorkPlaceId());
+//			if (workPlace != null) {
+//				workHistory.set
+//				
+//			}
+//		}
+		
+		
+//		if (workHistoryDTO.getWorkPlaceName() != null ) {
+//			WorkPlace workPlace = workPlaceService.findOne(workHistoryDTO.getWorkPlaceId());
+//			if (workPlace != null) {
+//				workHistory.sett
+//				
+//			}
+//		}
 
 		return workHistory;
 	}

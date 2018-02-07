@@ -37,7 +37,8 @@ public class WorkHistory {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "workPlaceId")
 	private WorkPlace workPlace;
-
+	
+	
 	public WorkHistory() {
 	}
 
