@@ -24,8 +24,29 @@ public class ReportsController {
 	@Autowired
 	private ReportsServiceInterface reportsServiceInterface;
 
-	@GetMapping
-	public ResponseEntity<?> getReport() {
+	@GetMapping("AHR")
+	public ResponseEntity<?> getReportAHR() {
+
+		
+		try {
+			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport()));
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Disposition", "inline; filename=report.pdf");
+
+			return ResponseEntity
+		       		.ok()
+		       		.headers(headers)
+		       		.contentType(MediaType.APPLICATION_PDF)
+		       		.body(new InputStreamResource(bis));
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("children")
+	public ResponseEntity<?> getReportChildren() {
 
 		
 		try {
