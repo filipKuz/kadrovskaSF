@@ -5,8 +5,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public interface ReportsServiceInterface {
 	
-	JasperPrint GeneratePdfReport();
+	JasperPrint GeneratePdfReport(String par);
 	
-	void CompileJrxmlTemplate();
+	void CompileJrxmlTemplate(String par);
 
 }

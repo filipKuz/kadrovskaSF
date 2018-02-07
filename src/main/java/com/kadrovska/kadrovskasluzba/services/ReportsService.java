@@ -24,9 +24,17 @@ public class ReportsService implements ReportsServiceInterface {
 	private Environment env;
 
 	@Override
-	public JasperPrint GeneratePdfReport() {
-		CompileJrxmlTemplate();
-		String sourceFileName = "src/main/resources/reports/Blank_A4.jasper";
+	public JasperPrint GeneratePdfReport(String par) {
+		CompileJrxmlTemplate(par);
+		String sourceFileName="";
+		
+		if (par.equals("1")){
+			sourceFileName = "src/main/resources/reports/Blank_A4.jasper";
+		}else if(par.equals("2")){
+			sourceFileName = "src/main/resources/reports/children.jasper";
+		}
+		
+		
 		JasperPrint printFileName = null;
 
 		String dbUrl = env.getProperty("spring.datasource.url");
@@ -61,10 +69,15 @@ public class ReportsService implements ReportsServiceInterface {
 	}
 
 	@Override
-	public void CompileJrxmlTemplate() {
-
-		String sourceFileName = "src/main/resources/reports/Blank_A4.jrxml";
-
+	public void CompileJrxmlTemplate(String par) {
+		String sourceFileName="";
+		
+		if (par.equals("1")){
+			sourceFileName = "src/main/resources/reports/Blank_A4.jrxml";
+		}else if(par.equals("2")){
+			sourceFileName = "src/main/resources/reports/children.jrxml";
+		}
+		
 		try {
 			/**
 			 * Compile the report to a file name same as the JRXML file name

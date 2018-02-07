@@ -29,7 +29,7 @@ public class ReportsController {
 
 		
 		try {
-			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport()));
+			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport("1")));
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Disposition", "inline; filename=report.pdf");
 
@@ -50,7 +50,7 @@ public class ReportsController {
 
 		
 		try {
-			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport()));
+			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport("2")));
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Disposition", "inline; filename=report.pdf");
 

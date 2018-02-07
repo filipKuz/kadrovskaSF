@@ -33,14 +33,17 @@ INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) 
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2018,27,2);
 
 
-INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('Kuzmanovic','Filip','1994-05-14','Z',1);
+INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('Marko','Ilic','1994-05-14','M',1);
+INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('Marina','Ilic','1995-05-14','Z',1);
+INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('Filip','Messi','1996-05-14','M',2);
+
 
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2010-05-05','FTN','Inzenjer necega',1,1);
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2009-05-05','FTN','Arhitekta',4,2);
 INSERT INTO employee_professional_qualification (date_of_graduation,educational_institution,profession,pqid,employee_id) VALUES('2009-05-05','FTN','Programer',4,3);
 
-INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,1,'2017-12-30','2018-01-08');
-INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,2,'2017-12-30','2018-01-08');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,1,'2018-01-01','2018-01-08');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,2,'2018-01-01','2018-01-08');
 INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(5,1,'2018-01-10','2018-01-17');
 
 INSERT INTO work_history (company_name,start_date,end_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29','2010-05-10',1,1);
