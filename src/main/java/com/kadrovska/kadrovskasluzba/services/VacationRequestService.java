@@ -63,13 +63,13 @@ public class VacationRequestService implements VacationRequestServiceInterface {
 		endDate.setTime(strDate.getTime());
 
 		while (nwdService.isNonworking(endDate)) {
-			System.out.println("Krece na neradni pa se uvecao za jedan");
+			//System.out.println("Krece na neradni pa se uvecao za jedan");
 			endDate.setTime(endDate.getTime() + 1 * 86400000);
 		}
 		for (int i = 0; i < numOfDays; i++) {
 			endDate.setTime(endDate.getTime() + 1 * 86400000);
 			if (nwdService.isNonworking(endDate)) {
-				System.out.println("Uvecao se za jedan jer je neradan");
+				//System.out.println("Uvecao se za jedan jer je neradan");
 				i -= 1;
 			}
 		}

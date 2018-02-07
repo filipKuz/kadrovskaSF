@@ -72,20 +72,8 @@ public class CityController {
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<CityDTO> saveCity(@RequestBody Map<String, Object> data) {
 		ObjectMapper mapper = new ObjectMapper();
-		
-		System.out.println("OVO JE REQUEST BODy");
-		System.out.println(data);
-		System.out.println("");		
-		
 		CityDTO cityDTO = mapper.convertValue(data.get("City"), CityDTO.class);
-		
-		System.out.println("Ovo je cityDTO u kontroleru");
-		System.out.println(cityDTO.getCityId() + " " + cityDTO.getCityName() + " " + cityDTO.getZipCode());
-		System.out.println(" ");
-		
 		City city = cityService.save(cityDTOToCityConverter.convert(cityDTO));
-		
-		
 
 		return new ResponseEntity<>(cityToCityDTOConverter.convert(city), HttpStatus.OK);
 	}

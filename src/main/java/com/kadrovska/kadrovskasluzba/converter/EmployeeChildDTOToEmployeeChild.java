@@ -32,5 +32,4 @@ public class EmployeeChildDTOToEmployeeChild implements Converter<EmployeeChildD
 
 		return employeeChild;
 	}
-
 }

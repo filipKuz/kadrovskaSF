@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9a8fbb50-ec2c-4dd0-ab51-29ad064eed6a">
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="kadrofska"/>
-	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="284"/>
-	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="705"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[a2Fkcm92c2thc2x1emJhLmVtcGxveWVlIEFTICwzMjgsNzcsYmY1YTJiZjgtYTZhNi00NDQ3LWJi
+N2ItZGVmNjc5OTAxZWRhO2thZHJvdnNrYXNsdXpiYS52YWNhdGlvbl9yZXF1ZXN0IEFTICw3NCwy
+MTAsNTRmYzI4YWMtYTM5Yy00ZDk5LWE4MGUtNTllYWY1ZGRlMzE0O2thZHJvdnNrYXNsdXpiYS5h
+bm51YWxfaG9saWRheV9yZWd1bGF0aW9uIEFTICw1MCw0MCxkMjBlYWMwZi1mNTAzLTRiNjMtYjE1
+Mi02YzM3ZmY4MDA4YTE7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="kadrovska"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="294"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="706"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT kadrovskasluzba.annual_holiday_regulation.business_year,
-	kadrovskasluzba.annual_holiday_regulation.num_of_days,
 	kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id,
+	kadrovskasluzba.annual_holiday_regulation.num_of_days,
 	kadrovskasluzba.employee.first_name,
 	kadrovskasluzba.employee.last_name,
 	kadrovskasluzba.vacation_request.end_date,
@@ -16,22 +22,21 @@
 	kadrovskasluzba.vacation_request.str_date
 FROM kadrovskasluzba.vacation_request
 	INNER JOIN kadrovskasluzba.annual_holiday_regulation ON 
-	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id
+	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id 
 	INNER JOIN kadrovskasluzba.employee ON 
 	 kadrovskasluzba.annual_holiday_regulation.employee_id = kadrovskasluzba.employee.employee_id 
-	 
-]]>
+ORDER BY kadrovskasluzba.vacation_request.annual_holiday_regulation_id ASC]]>
 	</queryString>
 	<field name="business_year" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="business_year"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
 	</field>
-	<field name="num_of_days" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="num_of_days"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
-	</field>
 	<field name="annual_holiday_regulation_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="annual_holiday_regulation_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
+	</field>
+	<field name="num_of_days" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="num_of_days"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="annual_holiday_regulation"/>
 	</field>
 	<field name="first_name" class="java.lang.String">
@@ -74,11 +79,11 @@ FROM kadrovskasluzba.vacation_request
 		<groupHeader>
 			<band height="40">
 				<textField>
-					<reportElement x="0" y="0" width="80" height="20" uuid="0727ec3c-0c3c-4359-b5dd-c66b528d153c"/>
+					<reportElement x="0" y="1" width="80" height="20" uuid="0727ec3c-0c3c-4359-b5dd-c66b528d153c"/>
 					<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="80" y="0" width="90" height="20" uuid="d065a315-a48a-445c-b3bf-b679022e7e1a"/>
+					<reportElement x="80" y="1" width="90" height="20" uuid="d065a315-a48a-445c-b3bf-b679022e7e1a"/>
 					<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
 				</textField>
 				<staticText>
@@ -94,11 +99,11 @@ FROM kadrovskasluzba.vacation_request
 					<text><![CDATA[Krajnji datum]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="170" y="0" width="80" height="20" uuid="180f1f09-d5c9-4a43-b991-a02c74e035be"/>
+					<reportElement x="170" y="1" width="80" height="20" uuid="180f1f09-d5c9-4a43-b991-a02c74e035be"/>
 					<textFieldExpression><![CDATA[$F{num_of_days}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="0" y="0" width="560" height="1" uuid="46d41768-504f-441f-97a5-b50a9d029d89"/>
+					<reportElement x="-5" y="0" width="560" height="1" uuid="46d41768-504f-441f-97a5-b50a9d029d89"/>
 				</line>
 			</band>
 		</groupHeader>
@@ -121,23 +126,15 @@ FROM kadrovskasluzba.vacation_request
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement x="480" y="0" width="40" height="21" uuid="a42bd763-032c-4bce-ad44-424bd4b3c4da"/>
-				<text><![CDATA[Strana:]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="0" width="40" height="21" uuid="1f10d121-4527-4985-843b-431e19bddf41"/>
 				<text><![CDATA[Datum:]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement x="40" y="0" width="100" height="21" uuid="bfe3a421-0e03-42a5-aaf1-625920bdd0d0"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="520" y="0" width="35" height="21" uuid="f04c5498-a0bc-4e0a-bf0b-a9faccacaf8c"/>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format( new java.util.Date() )]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="80" y="20" width="260" height="50" uuid="c072a0e7-0605-4d1d-befd-f3417e3a6328"/>
+				<reportElement stretchType="RelativeToTallestObject" x="80" y="20" width="260" height="50" uuid="c072a0e7-0605-4d1d-befd-f3417e3a6328"/>
 				<textElement textAlignment="Right">
 					<font size="18"/>
 				</textElement>
@@ -160,6 +157,18 @@ FROM kadrovskasluzba.vacation_request
 		</band>
 	</title>
 	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="520" y="0" width="35" height="21" uuid="f04c5498-a0bc-4e0a-bf0b-a9faccacaf8c"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="480" y="0" width="40" height="21" uuid="a42bd763-032c-4bce-ad44-424bd4b3c4da"/>
+				<text><![CDATA[Strana:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="80" height="20" uuid="cf5545f9-51d8-41c6-a586-f9c7c4ebbeb0"/>
@@ -174,15 +183,12 @@ FROM kadrovskasluzba.vacation_request
 				<text><![CDATA[Preostali br. dana]]></text>
 			</staticText>
 		</band>
-	</pageHeader>
-	<columnHeader>
-		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="250" y="0" width="90" height="20" uuid="6524dd0f-5c8f-4b0d-b46a-18f8f959705f"/>
-				<textFieldExpression><![CDATA[$F{end_date}.toLocalDate()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format( $F{end_date} )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="170" y="0" width="80" height="20" uuid="ecd9e9f6-a1c6-4293-8df0-6411085bab86"/>
@@ -190,7 +196,8 @@ FROM kadrovskasluzba.vacation_request
 			</textField>
 			<textField>
 				<reportElement x="80" y="0" width="90" height="20" uuid="1aa1eebd-01f2-4fed-9699-2dabeeeeff38"/>
-				<textFieldExpression><![CDATA[$F{str_date}.toLocalDate()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[
+new SimpleDateFormat("dd.MM.yyyy").format( $F{str_date} )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

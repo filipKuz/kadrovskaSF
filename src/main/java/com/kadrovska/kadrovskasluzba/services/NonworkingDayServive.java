@@ -43,7 +43,7 @@ public class NonworkingDayServive implements NonworkingDayServiceInterface {
 	@Override
 	public boolean isNonworking(Date date) {
 		for(NonworkingDay n : nonworkingDayRepo.findAll()){
-			if(n.getNonworkingDayDate().getDate() == date.getDate() || date.getDay() == 6 || date.getDay() == 0){
+			if((n.getNonworkingDayDate().getTime()+3600000 == date.getTime()) || date.getDay() == 6 || date.getDay() == 0){
 				return true;
 			}
 		}
