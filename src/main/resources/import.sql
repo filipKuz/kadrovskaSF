@@ -32,6 +32,11 @@ INSERT INTO employee (last_name, first_name, parent_name, maden_name, birth_date
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2018,30,1);
 INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2018,27,2);
 
+INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2017,29,1);
+INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2017,26,2);
+
+INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2016,28,1);
+INSERT INTO annual_holiday_regulation(business_year, num_of_days, employee_id ) VALUES(2016,25,2);
 
 INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('Marko','Ilic','1994-05-14','M',1);
 INSERT INTO employee_child (name,last_name,birth_date,sex,employee_id) VALUES('Marina','Ilic','1995-05-14','Z',1);
@@ -45,6 +50,14 @@ INSERT INTO employee_professional_qualification (date_of_graduation,educational_
 INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,1,'2018-01-01','2018-01-08');
 INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(3,2,'2018-01-01','2018-01-08');
 INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(5,1,'2018-01-10','2018-01-17');
+
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(2,3,'2017-01-01','2017-01-07');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(2,4,'2017-01-01','2017-01-07');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(4,3,'2017-01-10','2017-01-16');
+
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(4,5,'2016-01-01','2016-01-09');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(4,6,'2016-01-01','2016-01-09');
+INSERT INTO vacation_request (num_of_days,annual_holiday_regulation_id,str_date,end_date) VALUES(6,5,'2016-01-10','2016-01-18');
 
 INSERT INTO work_history (company_name,start_date,end_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29','2010-05-10',1,1);
 INSERT INTO work_history (company_name,start_date,employee_id,work_place_id) VALUES('Company 2','1996-05-29',1,2);

@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kadrovska.kadrovskasluzba.serviceInterfaces.ReportsServiceInterface;
@@ -24,12 +25,12 @@ public class ReportsController {
 	@Autowired
 	private ReportsServiceInterface reportsServiceInterface;
 
-	@GetMapping("AHR")
-	public ResponseEntity<?> getReportAHR() {
+	@GetMapping("AHR/{by}")
+	public ResponseEntity<?> getReportAHR(@PathVariable("by") int by) {
 
 		
 		try {
-			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport("1")));
+			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport("1",by)));
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Disposition", "inline; filename=report.pdf");
 
@@ -48,9 +49,9 @@ public class ReportsController {
 	@GetMapping("children")
 	public ResponseEntity<?> getReportChildren() {
 
-		
+		int by = 0;
 		try {
-			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport("2")));
+			ByteArrayInputStream bis = new ByteArrayInputStream(JasperExportManager.exportReportToPdf(reportsServiceInterface.GeneratePdfReport("2",by)));
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Disposition", "inline; filename=report.pdf");
 

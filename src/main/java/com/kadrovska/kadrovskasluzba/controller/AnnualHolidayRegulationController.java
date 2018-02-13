@@ -53,13 +53,13 @@ public class AnnualHolidayRegulationController {
 				toAhrDTO.convert(annualHolidayRegulationService.findOne(id)), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/findByEmployee/{employeeId}")
+	@GetMapping(value = "/findByEmployee/{employeeId}/{businessYear}")
 	public ResponseEntity<List<AnnualHolidayRegulationDTO>> getAHRByEmployeeId(
-			@PathVariable("employeeId") Long employeeId) {
+			@PathVariable("employeeId") Long employeeId, @PathVariable("businessYear") int businessYear) {
 
 		return new ResponseEntity<>(
 				(toAhrDTO.convert(
-						annualHolidayRegulationService.findByEmployeeEmployeeIdAndBusinessYear(employeeId, thisYear))),
+						annualHolidayRegulationService.findByEmployeeEmployeeIdAndBusinessYear(employeeId, businessYear))),
 				HttpStatus.OK);
 	}
 	

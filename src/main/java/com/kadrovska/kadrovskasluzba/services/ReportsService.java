@@ -4,6 +4,8 @@ import com.kadrovska.kadrovskasluzba.serviceInterfaces.ReportsServiceInterface;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.HashMap;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ public class ReportsService implements ReportsServiceInterface {
 	private Environment env;
 
 	@Override
-	public JasperPrint GeneratePdfReport(String par) {
-		CompileJrxmlTemplate(par);
+	public JasperPrint GeneratePdfReport(String par, int BY) {
+		CompileJrxmlTemplate(par, BY);
 		String sourceFileName="";
 		
 		if (par.equals("1")){
@@ -41,7 +43,9 @@ public class ReportsService implements ReportsServiceInterface {
 		String dbDriver = env.getProperty("spring.datasource.driver-class-name");
 		String dbUname = env.getProperty("spring.datasource.username");
 		String dbPwd = env.getProperty("spring.datasource.password");
-
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+	    map.put("BY",BY);
 		
 		try {
 			
@@ -50,7 +54,7 @@ public class ReportsService implements ReportsServiceInterface {
 			// Get the connection
 			Connection conn = DriverManager.getConnection(dbUrl, dbUname, dbPwd);
 
-			printFileName = JasperFillManager.fillReport(sourceFileName, null, conn);
+			printFileName = JasperFillManager.fillReport(sourceFileName, map, conn);
 			if (printFileName != null) {
 				/**
 				 * 1- export to PDF
@@ -69,7 +73,7 @@ public class ReportsService implements ReportsServiceInterface {
 	}
 
 	@Override
-	public void CompileJrxmlTemplate(String par) {
+	public void CompileJrxmlTemplate(String par, int BY) {
 		String sourceFileName="";
 		
 		if (par.equals("1")){
