@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9a8fbb50-ec2c-4dd0-ab51-29ad064eed6a">
-	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[a2Fkcm92c2thc2x1emJhLmVtcGxveWVlIEFTICwzMjgsNzcsYmY1YTJiZjgtYTZhNi00NDQ3LWJi
-N2ItZGVmNjc5OTAxZWRhO2thZHJvdnNrYXNsdXpiYS52YWNhdGlvbl9yZXF1ZXN0IEFTICw3NCwy
-MTAsNTRmYzI4YWMtYTM5Yy00ZDk5LWE4MGUtNTllYWY1ZGRlMzE0O2thZHJvdnNrYXNsdXpiYS5h
-bm51YWxfaG9saWRheV9yZWd1bGF0aW9uIEFTICw1MCw0MCxkMjBlYWMwZi1mNTAzLTRiNjMtYjE1
-Mi02YzM3ZmY4MDA4YTE7]]>
-	</property>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="kadrovska"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="294"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="706"/>
+	<parameter name="BY" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2018]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT kadrovskasluzba.annual_holiday_regulation.business_year,
 	kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id,
@@ -25,6 +22,7 @@ FROM kadrovskasluzba.vacation_request
 	 kadrovskasluzba.vacation_request.annual_holiday_regulation_id = kadrovskasluzba.annual_holiday_regulation.annual_holiday_regulation_id 
 	INNER JOIN kadrovskasluzba.employee ON 
 	 kadrovskasluzba.annual_holiday_regulation.employee_id = kadrovskasluzba.employee.employee_id 
+	 where  kadrovskasluzba.annual_holiday_regulation.business_year = $P{BY}
 ORDER BY kadrovskasluzba.vacation_request.annual_holiday_regulation_id ASC]]>
 	</queryString>
 	<field name="business_year" class="java.lang.Integer">
@@ -124,7 +122,7 @@ ORDER BY kadrovskasluzba.vacation_request.annual_holiday_regulation_id ASC]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="73" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="40" height="21" uuid="1f10d121-4527-4985-843b-431e19bddf41"/>
 				<text><![CDATA[Datum:]]></text>
@@ -148,11 +146,11 @@ ORDER BY kadrovskasluzba.vacation_request.annual_holiday_regulation_id ASC]]>
 				<text><![CDATA[ god.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="340" y="20" width="70" height="50" uuid="4ad3a518-89f3-4af0-a4dd-491b8c00e8c1"/>
+				<reportElement x="340" y="20" width="70" height="50" uuid="1a94715e-c9d6-4ff1-a68a-846b96b5491f"/>
 				<textElement textAlignment="Center">
 					<font size="18"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{business_year}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{BY}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -196,8 +194,7 @@ ORDER BY kadrovskasluzba.vacation_request.annual_holiday_regulation_id ASC]]>
 			</textField>
 			<textField>
 				<reportElement x="80" y="0" width="90" height="20" uuid="1aa1eebd-01f2-4fed-9699-2dabeeeeff38"/>
-				<textFieldExpression><![CDATA[
-new SimpleDateFormat("dd.MM.yyyy").format( $F{str_date} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format( $F{str_date} )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
