@@ -99,8 +99,19 @@ public class WorkHistoryController {
 			WorkHistory lastWorkHistory = wHistoryService.findByEmployeeEmployeeIdAndEndDateIsNull(workHistory.getEmployee().getEmployeeId());
 			lastWorkHistory.setEndDate(date);
 			wHistoryService.save(lastWorkHistory);
+			System.out.println("***********************************************************************************");
 			System.out.println("snimio");
+			System.out.println("**********************************************************************************");
 		}
+//		else {
+//			workHistory.setEndDate(null);
+//			System.out.println("***********************************************************************************");
+//			System.out.println("end Date null");
+//			System.out.println("**********************************************************************************");
+//			
+//		}
+		
+		
 		
 		wHistoryService.save(workHistory);
 		return new ResponseEntity<WorkHistoryDTO>(wHToWhDTO.convert(workHistory), HttpStatus.OK);
