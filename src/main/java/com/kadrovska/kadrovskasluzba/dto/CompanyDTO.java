@@ -1,14 +1,37 @@
 package com.kadrovska.kadrovskasluzba.dto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class CompanyDTO {
 
 	private Long companyId;
+
+	@NotBlank(message = "Company name cannot be empty")
+	@Length(max = 30, message = "Company name cannot contain more than 30 characters")
 	private String name;
+
+	@NotNull(message="VAT cannot be null")
+	@Min(value=10000, message="VAT must be >= than 10000")
 	private Long vat;
+
+	@Length(max = 30, message = "Address cannot contain more than 30 characters")
 	private String address;
+
+	@Length(max = 30, message = "Email cannot contain more than 30 characters")
 	private String email;
+
+	@Length(max = 30, message = "Phone number cannot contain more than 15 characters")
 	private String phoneNumber;
+
+	@NotNull(message="CityId cannot be null")
+	@Min(value=0, message="CityId must be >= than 0")
 	private Long cityId;
+
+	@NotNull(message="IsOurs cannot be null")
 	private Boolean isOurs;
 
 	public CompanyDTO() {
@@ -26,8 +49,6 @@ public class CompanyDTO {
 		this.isOurs = isOurs;
 	}
 
-	
-	
 	public Boolean getIsOurs() {
 		return isOurs;
 	}

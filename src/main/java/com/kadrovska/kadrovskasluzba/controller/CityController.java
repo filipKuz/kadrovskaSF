@@ -11,6 +11,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,7 +72,11 @@ public class CityController {
 	}
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<CityDTO> saveCity(@RequestBody Map<String, Object> data) {
+	public ResponseEntity<?> saveCity(@Validated @RequestBody Map<String, Object> data, Errors errors) {
+		if (errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+		}
+
 		ObjectMapper mapper = new ObjectMapper();
 		CityDTO cityDTO = mapper.convertValue(data.get("City"), CityDTO.class);
 		City city = cityService.save(cityDTOToCityConverter.convert(cityDTO));
@@ -79,7 +85,12 @@ public class CityController {
 	}
 
 	@PutMapping(value = "{id}")
-	public ResponseEntity<?> editCity(@RequestBody CityDTO cityDTO, @PathVariable("id") Long id) {
+	public ResponseEntity<?> editCity(@Validated @RequestBody CityDTO cityDTO, @PathVariable("id") Long id,
+			Errors errors) {
+		if (errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+		}
+
 		City city = cityService.findOne(id);
 		if (city == null) {
 			return new ResponseEntity<String>("Can't find city with given id", HttpStatus.BAD_REQUEST);

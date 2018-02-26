@@ -1,12 +1,13 @@
 package com.kadrovska.kadrovskasluzba.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kadrovska.kadrovskasluzba.converter.EmployeeChildDTOToEmployeeChild;
 import com.kadrovska.kadrovskasluzba.converter.EmployeeChildToEmployeeChildDTO;
 import com.kadrovska.kadrovskasluzba.dto.EmployeeChildDTO;
@@ -56,7 +56,10 @@ public class EmployeeChildrenController {
 	}
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<EmployeeChildDTO> saveChild(@RequestBody EmployeeChildDTO childDTO) {
+	public ResponseEntity<?> saveChild(@Validated @RequestBody EmployeeChildDTO childDTO, Errors errors) {
+		if (errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+		}
 
 		EmployeeChild child = childrenService.save(childDTOToChildConverter.convert(childDTO));
 
@@ -64,7 +67,12 @@ public class EmployeeChildrenController {
 	}
 
 	@PutMapping(value = "{id}")
-	public ResponseEntity<?> editChild(@RequestBody EmployeeChildDTO childDTO, @PathVariable("id") Long id) {
+	public ResponseEntity<?> editChild(@Validated @RequestBody EmployeeChildDTO childDTO, @PathVariable("id") Long id,
+			Errors errors) {
+		if (errors.hasErrors()) {
+			return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+		}
+
 		EmployeeChild child = childrenService.findOne(id);
 		if (child == null) {
 			return new ResponseEntity<String>("Can't find child with given id", HttpStatus.BAD_REQUEST);
